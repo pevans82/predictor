@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import Routing from './Routing.js';
+
 import { API } from 'aws-amplify';
-import Layout from "./layout/Layout";
 // import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 // import {getRound, listNotes} from './graphql/queries';
 // import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
 
-const initialFormState = { name: '', description: '' }
+// const initialFormState = { name: '', description: '' }
 
 function App() {
     return (
-        <Layout/>
+        <Router><Routing /></Router>
     );
 
     //
