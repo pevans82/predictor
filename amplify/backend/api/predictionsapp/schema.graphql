@@ -3,3 +3,33 @@ type Note @model {
   name: String!
   description: String
 }
+
+type Round @model {
+  id: ID!
+  number: Int
+  isCurrent: Boolean!
+  isHome: Boolean!
+  opponent: String!
+  kickOff: AWSDateTime!
+}
+
+type Prediction @model {
+  id: ID!
+  username: String!
+  round: Round
+  leighScore: Int
+  opponentScore: Int
+}
+
+type Result @model {
+  id: ID!
+  round: Round
+  leighScore: Int
+  opponentScore: Int
+}
+
+type Ranking @model {
+  id: ID!
+  username: String!
+  points: Int
+}
