@@ -41,13 +41,7 @@ export const onCreateRound = /* GraphQL */ `
       number
       isCurrent
       isHome
-      opponent {
-        id
-        name
-        badge
-        createdAt
-        updatedAt
-      }
+      opponent
       kickOff
       createdAt
       updatedAt
@@ -61,13 +55,7 @@ export const onUpdateRound = /* GraphQL */ `
       number
       isCurrent
       isHome
-      opponent {
-        id
-        name
-        badge
-        createdAt
-        updatedAt
-      }
+      opponent
       kickOff
       createdAt
       updatedAt
@@ -81,47 +69,8 @@ export const onDeleteRound = /* GraphQL */ `
       number
       isCurrent
       isHome
-      opponent {
-        id
-        name
-        badge
-        createdAt
-        updatedAt
-      }
+      opponent
       kickOff
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateTeam = /* GraphQL */ `
-  subscription OnCreateTeam {
-    onCreateTeam {
-      id
-      name
-      badge
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateTeam = /* GraphQL */ `
-  subscription OnUpdateTeam {
-    onUpdateTeam {
-      id
-      name
-      badge
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteTeam = /* GraphQL */ `
-  subscription OnDeleteTeam {
-    onDeleteTeam {
-      id
-      name
-      badge
       createdAt
       updatedAt
     }
@@ -137,13 +86,7 @@ export const onCreatePrediction = /* GraphQL */ `
         number
         isCurrent
         isHome
-        opponent {
-          id
-          name
-          badge
-          createdAt
-          updatedAt
-        }
+        opponent
         kickOff
         createdAt
         updatedAt
@@ -165,13 +108,7 @@ export const onUpdatePrediction = /* GraphQL */ `
         number
         isCurrent
         isHome
-        opponent {
-          id
-          name
-          badge
-          createdAt
-          updatedAt
-        }
+        opponent
         kickOff
         createdAt
         updatedAt
@@ -193,13 +130,7 @@ export const onDeletePrediction = /* GraphQL */ `
         number
         isCurrent
         isHome
-        opponent {
-          id
-          name
-          badge
-          createdAt
-          updatedAt
-        }
+        opponent
         kickOff
         createdAt
         updatedAt
@@ -220,13 +151,7 @@ export const onCreateResult = /* GraphQL */ `
         number
         isCurrent
         isHome
-        opponent {
-          id
-          name
-          badge
-          createdAt
-          updatedAt
-        }
+        opponent
         kickOff
         createdAt
         updatedAt
@@ -247,13 +172,7 @@ export const onUpdateResult = /* GraphQL */ `
         number
         isCurrent
         isHome
-        opponent {
-          id
-          name
-          badge
-          createdAt
-          updatedAt
-        }
+        opponent
         kickOff
         createdAt
         updatedAt
@@ -274,13 +193,7 @@ export const onDeleteResult = /* GraphQL */ `
         number
         isCurrent
         isHome
-        opponent {
-          id
-          name
-          badge
-          createdAt
-          updatedAt
-        }
+        opponent
         kickOff
         createdAt
         updatedAt

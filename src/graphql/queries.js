@@ -37,13 +37,7 @@ export const getRound = /* GraphQL */ `
       number
       isCurrent
       isHome
-      opponent {
-        id
-        name
-        badge
-        createdAt
-        updatedAt
-      }
+      opponent
       kickOff
       createdAt
       updatedAt
@@ -62,43 +56,8 @@ export const listRounds = /* GraphQL */ `
         number
         isCurrent
         isHome
-        opponent {
-          id
-          name
-          badge
-          createdAt
-          updatedAt
-        }
+        opponent
         kickOff
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getTeam = /* GraphQL */ `
-  query GetTeam($id: ID!) {
-    getTeam(id: $id) {
-      id
-      name
-      badge
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listTeams = /* GraphQL */ `
-  query ListTeams(
-    $filter: ModelTeamFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        badge
         createdAt
         updatedAt
       }
@@ -116,13 +75,7 @@ export const getPrediction = /* GraphQL */ `
         number
         isCurrent
         isHome
-        opponent {
-          id
-          name
-          badge
-          createdAt
-          updatedAt
-        }
+        opponent
         kickOff
         createdAt
         updatedAt
@@ -149,6 +102,7 @@ export const listPredictions = /* GraphQL */ `
           number
           isCurrent
           isHome
+          opponent
           kickOff
           createdAt
           updatedAt
@@ -171,13 +125,7 @@ export const getResult = /* GraphQL */ `
         number
         isCurrent
         isHome
-        opponent {
-          id
-          name
-          badge
-          createdAt
-          updatedAt
-        }
+        opponent
         kickOff
         createdAt
         updatedAt
@@ -203,6 +151,7 @@ export const listResults = /* GraphQL */ `
           number
           isCurrent
           isHome
+          opponent
           kickOff
           createdAt
           updatedAt

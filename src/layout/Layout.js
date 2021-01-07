@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { HomeRoute, PlayRoute, LeaderboardRoute } from "../Routing";
 import { Link } from "react-router-dom";
+import {AmplifySignOut} from "@aws-amplify/ui-react";
 
 const drawerWidth = 250;
 const theme = createMuiTheme({
@@ -80,6 +81,7 @@ class Layout extends Component {
                         <ListItemText primary="Leaderboard" />
                     </ListItem>
                 </List>
+                <AmplifySignOut />
             </div>
         );
         return (
