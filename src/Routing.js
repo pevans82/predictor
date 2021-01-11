@@ -7,7 +7,7 @@ import Layout from './layout/Layout';
 
 export const HomeRoute = "/";
 export const PlayRoute = "/play/";
-export const LeaderboardRoute = "/leaderboards/";
+export const LeaderboardRoute = "/leaderboard/";
 
 class Routing extends React.Component {
     render() {
