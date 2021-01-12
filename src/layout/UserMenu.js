@@ -1,10 +1,13 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import {AmplifySignOut} from "@aws-amplify/ui-react";
+import {AuthState, onAuthUIStateChange} from "@aws-amplify/ui-components";
+import {Typography} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -12,15 +15,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function UserMenu() {
+export default function UserMenu({ onSignInClick }) {
     const classes = useStyles();
-    const [auth, setAuth] = React.useState(true);
+    const theme = useTheme();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const [authState, setAuthState] = React.useState();
+    const [user, setUser] = React.useState();
 
-    const handleChange = (event) => {
-        setAuth(event.target.checked);
-    };
+    React.useEffect(() => {
+        onAuthUIStateChange((nextAuthState, authData) => {
+            setAuthState(nextAuthState);
+            setUser(authData)
+        });
+    }, []);
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -30,7 +38,7 @@ export default function UserMenu() {
         setAnchorEl(null);
     };
 
-    return (
+    return authState === AuthState.SignedIn && user ? (
         <div>
             <IconButton
                 aria-label="account of current user"
@@ -57,9 +65,14 @@ export default function UserMenu() {
                 open={open}
                 onClose={handleClose}
             >
+                <Typography variant={"h6"}>Hi {user.username}</Typography>
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <AmplifySignOut onClick={handleClose}/>
             </Menu>
+        </div>
+    ) : (
+        <div>
+            <Button onClick={onSignInClick} color="secondary">Sign in</Button>
         </div>
     );
 }

@@ -4,17 +4,43 @@ import {BrowserRouter as Router} from "react-router-dom";
 import Routing from './Routing.js';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
+import {createMuiTheme, makeStyles, MuiThemeProvider} from "@material-ui/core/styles";
+import {CssBaseline} from "@material-ui/core";
+import Layout from "./layout/Layout";
+
 Amplify.configure(awsconfig);
+
 
 // import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 // import {getRound, listNotes} from './graphql/queries';
 // import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
 
 // const initialFormState = { name: '', description: '' }
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#BE1D2C',
+        },
+        secondary: {
+            main: '#fff',
+        },
+    },
+});
+
+const useStyles = makeStyles((theme) => ({
+
+}));
 
 function App() {
     return (
-        <Router><Routing/></Router>
+        <CssBaseline />,
+        <Router>
+            <Routing />
+            <MuiThemeProvider theme={theme}>
+                    <Layout/>
+            </MuiThemeProvider>
+            <Routing/>
+        </Router>
     );
 
     //

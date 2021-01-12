@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Box } from '@material-ui/core';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
 class Play extends Component {
     render() {
