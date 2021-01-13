@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router} from "react-router-dom";
-import Routing from './Routing.js';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 import {createMuiTheme, makeStyles, MuiThemeProvider} from "@material-ui/core/styles";
 import {CssBaseline} from "@material-ui/core";
 import Layout from "./layout/Layout";
+import {BrowserRouter as Router} from "react-router-dom";
 
 Amplify.configure(awsconfig);
 
@@ -30,13 +29,11 @@ const theme = createMuiTheme({
 function App() {
     return (
         <CssBaseline />,
-        <Router>
-            <Routing />
+            <Router>
             <MuiThemeProvider theme={theme}>
-                    <Layout/>
+                <Layout/>
             </MuiThemeProvider>
-            <Routing/>
-        </Router>
+            </Router>
     );
 
     //

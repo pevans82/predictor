@@ -15,7 +15,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import {Link} from "react-router-dom";
 
 import UserMenu from './UserMenu'
-import {HomeRoute, LeaderboardRoute, PlayRoute, ResultsRoute, HowToRoute} from "../Routing";
+import {HomeRoute, LeaderboardRoute, PlayRoute, ResultsRoute, HowToRoute} from "../pages/Pages";
 
 const drawerWidth = 240;
 
@@ -90,6 +90,7 @@ export default function Header({onSignInClick}) {
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
+                        color="inherit"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
                         <MenuIcon/>

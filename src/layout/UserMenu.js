@@ -8,7 +8,7 @@ import Menu from '@material-ui/core/Menu';
 import {AmplifySignOut} from "@aws-amplify/ui-react";
 import {AuthState, onAuthUIStateChange} from "@aws-amplify/ui-components";
 import {Typography} from "@material-ui/core";
-import {ProfileRoute} from "../Routing";
+import {ProfileRoute} from "../pages/Pages";
 import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -75,7 +75,7 @@ export default function UserMenu({ onSignInClick }) {
         </div>
     ) : (
         <div>
-            <Button onClick={onSignInClick} color="secondary">Sign in</Button>
+            <Button onClick={onSignInClick} color="inherit">Sign in</Button>
         </div>
     );
 }
