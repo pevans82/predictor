@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Box } from '@material-ui/core';
 import {withAuthenticator} from "@aws-amplify/ui-react";
-class Leaderboard extends Component {
+class Profile extends Component {
     render() {
         return (
             <Box>
-                Leaderboard
+                Profile
             </Box>
         );
     }
 }
-export default withAuthenticator(Leaderboard, true);
+export default withAuthenticator(Profile, true);

@@ -27,10 +27,6 @@ const theme = createMuiTheme({
     },
 });
 
-const useStyles = makeStyles((theme) => ({
-
-}));
-
 function App() {
     return (
         <CssBaseline />,

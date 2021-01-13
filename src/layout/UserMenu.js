@@ -8,6 +8,8 @@ import Menu from '@material-ui/core/Menu';
 import {AmplifySignOut} from "@aws-amplify/ui-react";
 import {AuthState, onAuthUIStateChange} from "@aws-amplify/ui-components";
 import {Typography} from "@material-ui/core";
+import {ProfileRoute} from "../Routing";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -26,7 +28,8 @@ export default function UserMenu({ onSignInClick }) {
     React.useEffect(() => {
         onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
-            setUser(authData)
+            setUser(authData);
+            handleClose();
         });
     }, []);
 
@@ -65,8 +68,8 @@ export default function UserMenu({ onSignInClick }) {
                 open={open}
                 onClose={handleClose}
             >
-                <Typography variant={"h6"}>Hi {user.username}</Typography>
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem disabled={true}><Typography variant={"h6"}>Hello, {user.username}</Typography></MenuItem>
+                <MenuItem component={Link} to={ProfileRoute} key={"profile"} onClick={handleClose}>Profile</MenuItem>
                 <AmplifySignOut onClick={handleClose}/>
             </Menu>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import {makeStyles, useTheme, ThemeProvider} from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,7 +15,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import {Link} from "react-router-dom";
 
 import UserMenu from './UserMenu'
-import {HomeRoute, LeaderboardRoute, PlayRoute} from "../Routing";
+import {HomeRoute, LeaderboardRoute, PlayRoute, ResultsRoute, HowToRoute} from "../Routing";
 
 const drawerWidth = 240;
 
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Header({headerSignIn}) {
+export default function Header({onSignInClick}) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -95,7 +95,7 @@ export default function Header({headerSignIn}) {
                         <MenuIcon/>
                     </IconButton>
                     <div className={classes.grow}/>
-                    <UserMenu onSignInClick={headerSignIn} />
+                    <UserMenu onSignInClick={onSignInClick} />
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -123,11 +123,11 @@ export default function Header({headerSignIn}) {
                     <ListItem button component={Link} to={LeaderboardRoute} key={"Leaderboard"} onClick={handleDrawerClose}>
                         <ListItemText primary="Leaderboard"/>
                     </ListItem>
-                    <ListItem button component={Link} to={HomeRoute} key={"Results"} onClick={handleDrawerClose}>
+                    <ListItem button component={Link} to={ResultsRoute} key={"Results"} onClick={handleDrawerClose}>
                         <ListItemText primary="Results"/>
                     </ListItem>
                     <Divider/>
-                    <ListItem button component={Link} to={HomeRoute} key={"How-to"} onClick={handleDrawerClose}>
+                    <ListItem button component={Link} to={HowToRoute} key={"How-to"} onClick={handleDrawerClose}>
                         <ListItemText primary="How-to"/>
                     </ListItem>
                 </List>

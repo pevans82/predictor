@@ -26,12 +26,8 @@ export default function Layout(props) {
     return (
         <div>
             <div id="main-layout">
-                <Header headerSignIn={handleSignIn}/>
-
-                <div className={classes.appSignIn}>
-                    {signIn && <AmplifyAuthenticator/>}
-                </div>
-
+                <Header onSignInClick={handleSignIn}/>
+                {signIn && <AmplifyAuthenticator/>}
                 <main className={classes.content}>
                     <div className={classes.toolbar}/>
                     <Box width="100%" className="mainContent">{props.children}</Box>
