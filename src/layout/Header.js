@@ -86,7 +86,6 @@ export default function Header({onSignInClick}) {
             >
                 <Toolbar>
                     <IconButton
-                        color="default"
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
