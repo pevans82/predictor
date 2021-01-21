@@ -31,13 +31,16 @@ const styles = theme => ({
     },
     title: {
         fontWeight: "bolder",
-        margin: "auto",
+        marginLeft: "auto",
+        marginRight: "auto",
+        margin: "1rem",
         maxWidth: 500,
     },
     textBlock: {
-        maxWidth: 800,
-        margin: "auto",
-        padding: "1rem",
+        maxWidth: 500,
+        marginLeft: "auto",
+        marginRight: "auto",
+        margin: "1rem",
     },
 });
 
@@ -57,21 +60,20 @@ class Home extends Component {
                     Next round
                 </div>
                 <div className={classes.primarySectionWrapper}>
-                <div className={classes.section}>
-                    Need some other content to go here
-                </div>
+                    <div className={classes.section}>
+                        <Typography className={classes.title} variant={"h2"} color={"secondary"}>SUPER LEIGH!</Typography>
+                        <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
+                            Leigh Centurions are back where they belong in the top flight of Rugby League. To celebrate we've created a fancy new
+                            predictor game. Please play responsibly and remember, it's just a bit of fun!
+                        </Typography>
+                    </div>
                 </div>
                 <div className={classes.section}>
                     <Typography className={classes.title} variant={"h2"} color={"primary"}>HOW TO PLAY?</Typography>
-                    <Typography className={classes.textBlock} variant={"body1"}>
-                        Leigh Centurions are back where they belong in the top flight of Rugby League. The other teams won't know what's hit them when
-                        they come down to the Sports Village and the Cherry and White army come raining down on them. So to celebrate we've created a
-                        fancy new web based version of Grandad's predictor game. Please play responsibly and remember, it's just for fun!
-                    </Typography>
                     <Grid container justify={"center"} spacing={4}>
                         <Grid item xs={12} sm={6} md={3}>
                             <HowToCard title={"SIGN UP"} icon={plusIcon}
-                                       description={"Sign up and register to play. Don't worry, We'll not sell your data. We just want to make sure you're not a pie'ater in disguise."}/>
+                                       description={"Register to play and pit your wits against others to be crowned Leyther's greatest predictor."}/>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
                             <HowToCard title={"PREDICT THE SCORE"} icon={questionIcon}
@@ -79,26 +81,33 @@ class Home extends Component {
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
                             <HowToCard title={"SUPPORT THE CENTURIONS!"} icon={swordIcon}
-                                       description={"Cheer the lads on and enjoy the game...no matter what the outcome."}/>
+                                       description={"Cheer the lads on and enjoy the game ...no matter what the outcome."}/>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
                             <HowToCard title={"CHECK THE LEADERBOARD"} icon={starIcon}
-                                       description={"After the results are in, we'll run your prediction through the fancy scoring system and update the leaderboard."}/>
+                                       description={"After the results are in, we'll run your prediction through a fancy scoring system and update the leaderboard."}/>
                         </Grid>
                     </Grid>
                 </div>
                 <div className={classes.primarySectionWrapper}>
                     <div className={classes.section}>
-                        <Typography className={classes.title} variant={"h2"} color={"secondary"}>This is awesome, but what made us do it?</Typography>
+                        <Typography className={classes.title} variant={"h2"} color={"secondary"}>Origins</Typography>
                         <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
-                            Grandad liked predicting the results of his beloved Leigh Centurions, and although he played with some of his buddies, he
-                            thought the scoring was wack so he decided to run his own. Not knowing where or how to begin he reached out to rocSOLID
-                            Services Ltd. After a brief (and gratis) consultation, he was given a fancy spreadsheet capable of tracking and scoring
-                            everyone's predictions. It's ok, we thought, we've made it fool proof, we thought! ...call after call of, it's not
-                            working...,
-                            I've done something to it... and how do I change this... drove us to despair and so we created this incredible web based
-                            application so that he can't break things anymore. If you have any idea's for improvement, <s>please keep them to
-                            yourself</s> you can raise them with Grandad personally. Please play responsibly and remember...it's just a bit of fun!
+                            There was a fan who thought he was great at predicting the results of his beloved Leigh Centurions, but that wasn't
+                            enough, he needed to prove that he wasn't just good, but he was the best.
+                        </Typography>
+                        <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
+                            Not knowing where or how to begin he reached out and was given a fancy spreadsheet capable of tracking and scoring
+                            predictions. With this, he challenged his family members whether they liked it or not.
+                        </Typography>
+                        <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
+                            It's ok, we thought, we've made it fool proof, we thought! ... call after call of, It's not working..., I've done
+                            something to it... and, how do I change this... drove us to despair and so we decided to release it to the world and find
+                            out once and for all, who really is the best!
+                        </Typography>
+                        <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
+                            If you have any idea's for improvement, please <s>keep them to
+                            yourself</s> let us know, we'd love to here your thoughts.
                         </Typography>
                     </div>
                 </div>
