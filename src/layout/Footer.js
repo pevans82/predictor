@@ -3,13 +3,12 @@ import {makeStyles, useTheme} from "@material-ui/core/styles";
 import {Grid, Typography} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-    footerBar: {
+    root: {
         background: '#000',
         width: '100%',
         margin: "auto",
     },
     footer: {
-        width: '100%',
         maxWidth: 700,
         margin: "auto",
         textAlign: "center",
@@ -25,10 +24,10 @@ export default function Footer() {
     const theme = useTheme();
 
     return (
-        <div className={classes.footerBar}>
+        <div className={classes.root}>
             <div className={classes.footer}>
                 <img className={classes.logo} src='centurionWhite.png'/>
-                <Grid container justify={"center"} spacing={2}>
+                <Grid container justify={"center"}>
                     <Grid item xs={12} sm={6} md={3}>
                         <Typography align={"center"} gutterBottom color={"secondary"}>
                             About
