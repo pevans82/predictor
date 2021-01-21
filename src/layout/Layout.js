@@ -7,15 +7,14 @@ import Pages from "../pages/Pages";
 import {Box} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-    content: {
-        // flexGrow: 1,
-        // minHeight: '100vh',
-        alignItems: "center",
+    page: {
+        textAlign: "center",
+        width: '100%',
     },
     toolbar: theme.mixins.toolbar,
 }));
 
-export default function Layout(props) {
+export default function Layout() {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -29,7 +28,7 @@ export default function Layout(props) {
             <Header onSignInClick={handleSignIn}/>
             <div className={classes.toolbar}/>
             {signIn && <AmplifyAuthenticator/>}
-            <Box className={classes.content}>
+            <Box className={classes.page}>
                 <Pages/>
             </Box>
             <Footer/>
