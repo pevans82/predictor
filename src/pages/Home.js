@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import {Box, Grid, Typography} from "@material-ui/core";
 import HowToCard from "../components/HowToCard"
+import plusIcon from '../images/plusIcon.png'
+import questionIcon from '../images/questionIcon.png'
+import swordIcon from '../images/swordIcon.png'
+import starIcon from '../images/starIcon.png'
+import centurions from "../images/centurions.jpg";
 
 const styles = theme => ({
     primarySectionWrapper: {
@@ -20,7 +25,7 @@ const styles = theme => ({
         margin: "auto",
     },
     centurion: {
-        background: `url(centurions.jpg) no-repeat top`,
+        background: `url(${centurions}) no-repeat top`,
         backgroundSize: `cover`,
         paddingBottom: `70%`,
     },
@@ -65,19 +70,19 @@ class Home extends Component {
                     </Typography>
                     <Grid container justify={"center"} spacing={4}>
                         <Grid item xs={12} sm={6} md={3}>
-                            <HowToCard title={"SIGN UP"} icon={"/plusIcon.png"}
-                                       description={"Sign up and register to play. Don't worry, We'll not sell your data, we just want to make sure you're not a pie'ater in disguise."}/>
+                            <HowToCard title={"SIGN UP"} icon={plusIcon}
+                                       description={"Sign up and register to play. Don't worry, We'll not sell your data. We just want to make sure you're not a pie'ater in disguise."}/>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
-                            <HowToCard title={"PREDICT THE SCORE"} icon={"/questionIcon.png"}
+                            <HowToCard title={"PREDICT THE SCORE"} icon={questionIcon}
                                        description={"Tell us what you think the score of Leigh Centurions' next fixture will be."}/>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
-                            <HowToCard title={"SUPPORT THE CENTURIONS!"} icon={"/swordIcon.png"}
+                            <HowToCard title={"SUPPORT THE CENTURIONS!"} icon={swordIcon}
                                        description={"Cheer the lads on and enjoy the game...no matter what the outcome."}/>
                         </Grid>
                         <Grid item xs={12} sm={6} md={3}>
-                            <HowToCard title={"CHECK THE LEADERBOARD"} icon={"/starIcon.png"}
+                            <HowToCard title={"CHECK THE LEADERBOARD"} icon={starIcon}
                                        description={"After the results are in, we'll run your prediction through the fancy scoring system and update the leaderboard."}/>
                         </Grid>
                     </Grid>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import {Grid, Typography} from "@material-ui/core";
+import centurionWhite from '../images/centurionWhite.png'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,7 +27,7 @@ export default function Footer() {
     return (
         <div className={classes.root}>
             <div className={classes.footer}>
-                <img className={classes.logo} src='centurionWhite.png'/>
+                <img className={classes.logo} src={centurionWhite} alt="Logo"/>
                 <Grid container justify={"center"}>
                     <Grid item xs={12} sm={6} md={3}>
                         <Typography align={"center"} gutterBottom color={"secondary"}>

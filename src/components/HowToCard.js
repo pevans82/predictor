@@ -4,10 +4,11 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import {Box} from "@material-ui/core";
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 200,
+        maxWidth: 225,
         margin: "auto",
     },
     media: {
@@ -26,8 +27,10 @@ export default function HowToCard(props) {
                 image={props.icon}
             />
             <CardContent>
-                <Typography gutterBottom variant="headline" component="h2" color={"primary"}>
-                    {props.title}
+                <Typography gutterBottom variant="h5" color={"primary"}>
+                    <Box fontWeight="fontWeightBold" style={{minHeight:60}}>
+                        {props.title}
+                    </Box>
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
                     {props.description}
