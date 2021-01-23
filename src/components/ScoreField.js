@@ -1,47 +1,41 @@
 import {TextField} from "@material-ui/core";
 import React from "react";
+import * as PropTypes from "prop-types";
 
-export default class ScoreField extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            value: '0',
-        };
-    }
-
-    handleChange = (event) => {
-        this.setState({
-            value: event.target.value === "" ? 0 : event.target.value,
-        });
-    };
-
-    handleInput = (event) => {
-        event.target.value = Math.max(0, parseInt(event.target.value)).toString().slice(0, 3)
-    }
-
-    render() {
-        return (
-            <TextField
-                id={this.props.id} label="score" type="number" variant="outlined"
-                style={{
-                    width: 100,
-                    height: 100,
-                    textAlign: "center"
-                }}
-                inputProps={{
-                    min: 0,
-                    max: 999,
-                    style: {
-                        fontSize: 40,
-                        textAlign: 'center'
-                    }
-                }}
-                onInput={this.handleInput}
-                value={this.state.value}
-                onChange={this.handleChange}
-            >
-            </TextField>
-        )
-    }
+const ScoreField = ({
+                        id,
+                        onChange,
+                        value,
+                        ...props
+                    }) => {
+    return (
+        <TextField
+            id={id} label="score" type="number" variant="outlined"
+            style={{
+                width: 100,
+                height: 100,
+                textAlign: "center"
+            }}
+            inputProps={{
+                min: 0,
+                max: 999,
+                style: {
+                    fontSize: 40,
+                    textAlign: 'center'
+                }
+            }}
+            onInput={(event) => event.target.value = Math.max(0, parseInt(event.target.value)).toString().slice(0, 3)}
+            value={(event) => event.target.value === "" ? 0 : event.target.value}
+            value={value === "" ? 0 : value}
+            onChange={onChange}
+        />
+    )
 }
+
+ScoreField.propTypes = {
+    id: PropTypes.string.isRequired,
+    value: PropTypes.any,
+    onChange: PropTypes.func.isRequired
+}
+
+export default ScoreField

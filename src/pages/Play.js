@@ -6,7 +6,6 @@ import Fixture from "../components/Fixture";
 import leigh from "../images/teams/leigh.png";
 import wigan from "../images/teams/wigan.png";
 import ScoreCard from "../components/ScoreCard";
-import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
     root: {
@@ -21,13 +20,11 @@ const styles = theme => ({
         padding: theme.spacing(2),
         maxWidth: 500,
     },
-    submit: {
-        marginTop: theme.spacing(5),
-    }
 });
 
 class Play extends Component {
     render() {
+
         const {classes} = this.props;
 
         return (
@@ -37,8 +34,8 @@ class Play extends Component {
                 <Fixture ground={"Leigh Sports Village"} kickOff={"Fri 31st Mar 8:00pm"}
                          homeTeamName={"Leigh Centurions"} homeTeamBadge={leigh} awayTeamName={"Wigan Warriors"}
                          awayTeamBadge={wigan}/>
+                <div className={classes.spaced}/>
                 <ScoreCard homeScore={20} awayScore={10}/>
-                <Button className={classes.submit} fullWidth={true} variant="contained" color="primary">Submit</Button>
             </Box>
         );
     }
