@@ -7,18 +7,19 @@ import questionIcon from '../images/questionIcon.png'
 import swordIcon from '../images/swordIcon.png'
 import starIcon from '../images/starIcon.png'
 import centurions from "../images/centurions.jpg";
+import Round from "../components/Round";
 
 const styles = theme => ({
     primarySectionWrapper: {
         background: '#BE1D2C',
-        width: "100%",
+        width: "100vw",
         margin: "auto",
     },
     section: {
         maxWidth: 1250,
-        marginLeft: "auto",
-        marginRight: "auto",
-        padding: "2rem",
+        margin: "auto",
+        paddingTop: "2rem",
+        paddingBottom: "2rem",
     },
     centurionWrapper: {
         maxWidth: 1000,
@@ -31,16 +32,14 @@ const styles = theme => ({
     },
     title: {
         fontWeight: "bolder",
-        marginLeft: "auto",
-        marginRight: "auto",
-        margin: "1rem",
+        margin: "auto",
+        padding: "1rem",
         maxWidth: 500,
     },
     textBlock: {
         maxWidth: 500,
-        marginLeft: "auto",
-        marginRight: "auto",
-        margin: "1rem",
+        margin: "auto",
+        padding: "1rem",
     },
 });
 
@@ -57,20 +56,28 @@ class Home extends Component {
                     </div>
                 </div>
                 <div className={classes.section}>
-                    Next round
+                    <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND</Typography>
+                    <Round round={1} location={"Leigh Sports Village"} kickOff={"Fri 31st Mar 8:00pm"}
+                           homeTeamName={"Leigh Centurions with a really long name"} homeTeamBadge={centurions} awayTeamName={"Wigan Warriors"}
+                           awayTeamBadge={centurions}/>
                 </div>
                 <div className={classes.primarySectionWrapper}>
                     <div className={classes.section}>
                         <Typography className={classes.title} variant={"h2"} color={"secondary"}>SUPER LEIGH!</Typography>
                         <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
-                            Leigh Centurions are back where they belong in the top flight of Rugby League. To celebrate we've created a fancy new
-                            predictor game. Please play responsibly and remember, it's just a bit of fun!
+                            Leigh Centurions are back where they belong in the top flight of Rugby League. To celebrate we've created this new game
+                            and dedicated it to all the Leythers out there.
+                        </Typography>
+                        <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
+                            It's simple, just predict the outcome of Leigh Centurions next fixture! The closer you are to the result, the more points
+                            you'll score. Successfully predict the winner to earn bonus points. How well do you know the squad and how well do you
+                            know the opposition? Please play responsibly and remember, it's just a bit of fun!
                         </Typography>
                     </div>
                 </div>
                 <div className={classes.section}>
                     <Typography className={classes.title} variant={"h2"} color={"primary"}>HOW TO PLAY?</Typography>
-                    <Grid container justify={"center"} spacing={4}>
+                    <Grid container justify={"center"}>
                         <Grid item xs={12} sm={6} md={3}>
                             <HowToCard title={"SIGN UP"} icon={plusIcon}
                                        description={"Register to play and pit your wits against others to be crowned Leyther's greatest predictor."}/>
@@ -91,7 +98,7 @@ class Home extends Component {
                 </div>
                 <div className={classes.primarySectionWrapper}>
                     <div className={classes.section}>
-                        <Typography className={classes.title} variant={"h2"} color={"secondary"}>Origins</Typography>
+                        <Typography className={classes.title} variant={"h2"} color={"secondary"}>ORIGINS</Typography>
                         <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
                             There was a fan who thought he was great at predicting the results of his beloved Leigh Centurions, but that wasn't
                             enough, he needed to prove that he wasn't just good, but he was the best.

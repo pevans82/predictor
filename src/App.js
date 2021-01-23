@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
-import {createMuiTheme, makeStyles, MuiThemeProvider} from "@material-ui/core/styles";
-import {CssBaseline} from "@material-ui/core";
+import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
+import {CssBaseline, responsiveFontSizes} from "@material-ui/core";
 import Layout from "./layout/Layout";
 import {BrowserRouter as Router} from "react-router-dom";
 
@@ -15,7 +15,7 @@ Amplify.configure(awsconfig);
 // import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
 
 // const initialFormState = { name: '', description: '' }
-const theme = createMuiTheme({
+let theme = createMuiTheme({
     palette: {
         primary: {
             main: '#BE1D2C',
@@ -26,13 +26,15 @@ const theme = createMuiTheme({
     },
 });
 
+theme = responsiveFontSizes(theme);
+
 function App() {
     return (
-        <CssBaseline />,
+        <CssBaseline/>,
             <Router>
-            <MuiThemeProvider theme={theme}>
-                <Layout/>
-            </MuiThemeProvider>
+                <MuiThemeProvider theme={theme}>
+                    <Layout/>
+                </MuiThemeProvider>
             </Router>
     );
 
