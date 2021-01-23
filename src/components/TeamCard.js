@@ -1,18 +1,19 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import {Box} from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         margin: "auto",
     },
     media: {
         height: "125px",
         width: "125px",
-        paddingTop: "1rem",
+        paddingTop: theme.spacing(1),
+        marginBottom: theme.spacing(2),
     },
-});
+}));
 
 export default function TeamCard(props) {
     const classes = useStyles();

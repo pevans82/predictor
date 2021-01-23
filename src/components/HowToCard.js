@@ -28,7 +28,7 @@ export default function HowToCard(props) {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" color={"primary"}>
-                    <Box fontWeight="fontWeightBold" style={{minHeight:60}}>
+                    <Box fontWeight="fontWeightBold" style={{minHeight:63}}>
                         {props.title}
                     </Box>
                 </Typography>

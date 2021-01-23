@@ -13,7 +13,7 @@ import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
-        marginRight: theme.spacing(2),
+        marginRight: theme.spacing(1),
     },
 }));
 
@@ -75,7 +75,7 @@ export default function UserMenu({ onSignInClick }) {
         </div>
     ) : (
         <div>
-            <Button onClick={onSignInClick} color="inherit">Sign in</Button>
+            <Button className={classes.menuButton} onClick={onSignInClick} color="inherit">Sign in</Button>
         </div>
     );
 }
