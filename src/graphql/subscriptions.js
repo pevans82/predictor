@@ -39,10 +39,24 @@ export const onCreateRound = /* GraphQL */ `
     onCreateRound {
       id
       number
-      isCurrent
-      isHome
-      opponent
+      homeTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      awayTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
       kickOff
+      status
       createdAt
       updatedAt
     }
@@ -53,10 +67,24 @@ export const onUpdateRound = /* GraphQL */ `
     onUpdateRound {
       id
       number
-      isCurrent
-      isHome
-      opponent
+      homeTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      awayTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
       kickOff
+      status
       createdAt
       updatedAt
     }
@@ -67,172 +95,60 @@ export const onDeleteRound = /* GraphQL */ `
     onDeleteRound {
       id
       number
-      isCurrent
-      isHome
-      opponent
+      homeTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      awayTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
       kickOff
+      status
       createdAt
       updatedAt
     }
   }
 `;
-export const onCreatePrediction = /* GraphQL */ `
-  subscription OnCreatePrediction {
-    onCreatePrediction {
+export const onCreateTeam = /* GraphQL */ `
+  subscription OnCreateTeam {
+    onCreateTeam {
       id
-      username
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
+      name
+      badgeSrc
+      ground
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdatePrediction = /* GraphQL */ `
-  subscription OnUpdatePrediction {
-    onUpdatePrediction {
+export const onUpdateTeam = /* GraphQL */ `
+  subscription OnUpdateTeam {
+    onUpdateTeam {
       id
-      username
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
+      name
+      badgeSrc
+      ground
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeletePrediction = /* GraphQL */ `
-  subscription OnDeletePrediction {
-    onDeletePrediction {
+export const onDeleteTeam = /* GraphQL */ `
+  subscription OnDeleteTeam {
+    onDeleteTeam {
       id
-      username
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateResult = /* GraphQL */ `
-  subscription OnCreateResult {
-    onCreateResult {
-      id
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateResult = /* GraphQL */ `
-  subscription OnUpdateResult {
-    onUpdateResult {
-      id
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteResult = /* GraphQL */ `
-  subscription OnDeleteResult {
-    onDeleteResult {
-      id
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateRanking = /* GraphQL */ `
-  subscription OnCreateRanking {
-    onCreateRanking {
-      id
-      username
-      points
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateRanking = /* GraphQL */ `
-  subscription OnUpdateRanking {
-    onUpdateRanking {
-      id
-      username
-      points
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteRanking = /* GraphQL */ `
-  subscription OnDeleteRanking {
-    onDeleteRanking {
-      id
-      username
-      points
+      name
+      badgeSrc
+      ground
       createdAt
       updatedAt
     }

@@ -4,32 +4,47 @@ type Note @model {
   description: String
 }
 
-type Round @model {
+type Round @model @key(name: "byStatus", fields: ["status"], queryField: "getRoundByStatus") {
   id: ID!
   number: Int
-  isCurrent: Boolean!
-  isHome: Boolean!
-  opponent: String!
+  homeTeam: Team! @connection(keyName: "RoundHomeTeam")
+  awayTeam: Team! @connection(keyName: "RoundAwayTeam")
   kickOff: AWSDateTime!
+  status: RoundStatus!
 }
 
-type Prediction @model {
-  id: ID!
-  username: String!
-  round: Round
-  leighScore: Int
-  opponentScore: Int
+enum RoundStatus {
+  pending
+  active
+  inPlay
+  closed
 }
 
-type Result @model {
+type Team @model {
   id: ID!
-  round: Round
-  leighScore: Int
-  opponentScore: Int
+  name: String!
+  badgeSrc: String
+  ground: String
 }
 
-type Ranking @model {
-  id: ID!
-  username: String!
-  points: Int
-}
+#
+#type Prediction @model {
+#  id: ID!
+#  username: String!
+#  round: Round
+#  leighScore: Int
+#  opponentScore: Int
+#}
+#
+#type Result @model {
+#  id: ID!
+#  round: Round
+#  leighScore: Int
+#  opponentScore: Int
+#}
+#
+#type Ranking @model {
+#  id: ID!
+#  username: String!
+#  points: Int
+#}

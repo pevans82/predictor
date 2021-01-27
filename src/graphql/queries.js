@@ -35,10 +35,24 @@ export const getRound = /* GraphQL */ `
     getRound(id: $id) {
       id
       number
-      isCurrent
-      isHome
-      opponent
+      homeTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      awayTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
       kickOff
+      status
       createdAt
       updatedAt
     }
@@ -54,110 +68,24 @@ export const listRounds = /* GraphQL */ `
       items {
         id
         number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getPrediction = /* GraphQL */ `
-  query GetPrediction($id: ID!) {
-    getPrediction(id: $id) {
-      id
-      username
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPredictions = /* GraphQL */ `
-  query ListPredictions(
-    $filter: ModelPredictionFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPredictions(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        username
-        round {
+        homeTeam {
           id
-          number
-          isCurrent
-          isHome
-          opponent
-          kickOff
+          name
+          badgeSrc
+          ground
           createdAt
           updatedAt
         }
-        leighScore
-        opponentScore
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getResult = /* GraphQL */ `
-  query GetResult($id: ID!) {
-    getResult(id: $id) {
-      id
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listResults = /* GraphQL */ `
-  query ListResults(
-    $filter: ModelResultFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listResults(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        round {
+        awayTeam {
           id
-          number
-          isCurrent
-          isHome
-          opponent
-          kickOff
+          name
+          badgeSrc
+          ground
           createdAt
           updatedAt
         }
-        leighScore
-        opponentScore
+        kickOff
+        status
         createdAt
         updatedAt
       }
@@ -165,28 +93,73 @@ export const listResults = /* GraphQL */ `
     }
   }
 `;
-export const getRanking = /* GraphQL */ `
-  query GetRanking($id: ID!) {
-    getRanking(id: $id) {
+export const getTeam = /* GraphQL */ `
+  query GetTeam($id: ID!) {
+    getTeam(id: $id) {
       id
-      username
-      points
+      name
+      badgeSrc
+      ground
       createdAt
       updatedAt
     }
   }
 `;
-export const listRankings = /* GraphQL */ `
-  query ListRankings(
-    $filter: ModelRankingFilterInput
+export const listTeams = /* GraphQL */ `
+  query ListTeams(
+    $filter: ModelTeamFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listRankings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        username
-        points
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getRoundByStatus = /* GraphQL */ `
+  query GetRoundByStatus(
+    $status: RoundStatus
+    $sortDirection: ModelSortDirection
+    $filter: ModelRoundFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getRoundByStatus(
+      status: $status
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        number
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        kickOff
+        status
         createdAt
         updatedAt
       }

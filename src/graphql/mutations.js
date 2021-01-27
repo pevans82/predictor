@@ -51,10 +51,24 @@ export const createRound = /* GraphQL */ `
     createRound(input: $input, condition: $condition) {
       id
       number
-      isCurrent
-      isHome
-      opponent
+      homeTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      awayTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
       kickOff
+      status
       createdAt
       updatedAt
     }
@@ -68,10 +82,24 @@ export const updateRound = /* GraphQL */ `
     updateRound(input: $input, condition: $condition) {
       id
       number
-      isCurrent
-      isHome
-      opponent
+      homeTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      awayTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
       kickOff
+      status
       createdAt
       updatedAt
     }
@@ -85,199 +113,69 @@ export const deleteRound = /* GraphQL */ `
     deleteRound(input: $input, condition: $condition) {
       id
       number
-      isCurrent
-      isHome
-      opponent
+      homeTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      awayTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
       kickOff
+      status
       createdAt
       updatedAt
     }
   }
 `;
-export const createPrediction = /* GraphQL */ `
-  mutation CreatePrediction(
-    $input: CreatePredictionInput!
-    $condition: ModelPredictionConditionInput
+export const createTeam = /* GraphQL */ `
+  mutation CreateTeam(
+    $input: CreateTeamInput!
+    $condition: ModelTeamConditionInput
   ) {
-    createPrediction(input: $input, condition: $condition) {
+    createTeam(input: $input, condition: $condition) {
       id
-      username
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
+      name
+      badgeSrc
+      ground
       createdAt
       updatedAt
     }
   }
 `;
-export const updatePrediction = /* GraphQL */ `
-  mutation UpdatePrediction(
-    $input: UpdatePredictionInput!
-    $condition: ModelPredictionConditionInput
+export const updateTeam = /* GraphQL */ `
+  mutation UpdateTeam(
+    $input: UpdateTeamInput!
+    $condition: ModelTeamConditionInput
   ) {
-    updatePrediction(input: $input, condition: $condition) {
+    updateTeam(input: $input, condition: $condition) {
       id
-      username
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
+      name
+      badgeSrc
+      ground
       createdAt
       updatedAt
     }
   }
 `;
-export const deletePrediction = /* GraphQL */ `
-  mutation DeletePrediction(
-    $input: DeletePredictionInput!
-    $condition: ModelPredictionConditionInput
+export const deleteTeam = /* GraphQL */ `
+  mutation DeleteTeam(
+    $input: DeleteTeamInput!
+    $condition: ModelTeamConditionInput
   ) {
-    deletePrediction(input: $input, condition: $condition) {
+    deleteTeam(input: $input, condition: $condition) {
       id
-      username
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createResult = /* GraphQL */ `
-  mutation CreateResult(
-    $input: CreateResultInput!
-    $condition: ModelResultConditionInput
-  ) {
-    createResult(input: $input, condition: $condition) {
-      id
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateResult = /* GraphQL */ `
-  mutation UpdateResult(
-    $input: UpdateResultInput!
-    $condition: ModelResultConditionInput
-  ) {
-    updateResult(input: $input, condition: $condition) {
-      id
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteResult = /* GraphQL */ `
-  mutation DeleteResult(
-    $input: DeleteResultInput!
-    $condition: ModelResultConditionInput
-  ) {
-    deleteResult(input: $input, condition: $condition) {
-      id
-      round {
-        id
-        number
-        isCurrent
-        isHome
-        opponent
-        kickOff
-        createdAt
-        updatedAt
-      }
-      leighScore
-      opponentScore
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createRanking = /* GraphQL */ `
-  mutation CreateRanking(
-    $input: CreateRankingInput!
-    $condition: ModelRankingConditionInput
-  ) {
-    createRanking(input: $input, condition: $condition) {
-      id
-      username
-      points
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateRanking = /* GraphQL */ `
-  mutation UpdateRanking(
-    $input: UpdateRankingInput!
-    $condition: ModelRankingConditionInput
-  ) {
-    updateRanking(input: $input, condition: $condition) {
-      id
-      username
-      points
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteRanking = /* GraphQL */ `
-  mutation DeleteRanking(
-    $input: DeleteRankingInput!
-    $condition: ModelRankingConditionInput
-  ) {
-    deleteRanking(input: $input, condition: $condition) {
-      id
-      username
-      points
+      name
+      badgeSrc
+      ground
       createdAt
       updatedAt
     }

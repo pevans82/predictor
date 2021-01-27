@@ -3,6 +3,7 @@ import {makeStyles, useTheme} from '@material-ui/core/styles';
 import {Grid} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ScoreField from './ScoreField'
+// import { createNote as createNoteMutation } from './graphql/mutations';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,6 +31,13 @@ export default function ScoreCard(props) {
         event.preventDefault();
     }
 
+    // async function savePrediction() {
+    //     // if (!formData.name || !formData.description) return;
+    //     // await API.graphql({ query: createNoteMutation, variables: { input: formData } });
+    //     // setNotes([ ...notes, formData ]);
+    //     // setFormData(initialFormState);
+    // }
+
     const handleHomeScoreChange = (event) => {
         setHomeScore(event.target.value);
     };
@@ -39,7 +47,6 @@ export default function ScoreCard(props) {
     };
 
     return (
-
         <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
             <Grid style={{marginTop: theme.spacing(5)}} container justify={"center"}>
                 <Grid item xs={5}>

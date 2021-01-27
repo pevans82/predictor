@@ -1,8 +1,9 @@
 import React from 'react';
-import {makeStyles, useTheme} from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import {Grid} from "@material-ui/core";
 import TeamCard from "./TeamCard";
+import Moment from 'react-moment';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,25 +38,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Fixture(props) {
     const classes = useStyles();
-    const theme = useTheme();
 
     return (
         <div className={classes.root}>
             <div className={classes.head}>
-                <Typography gutterBottom variant="h6" color={"secondary"}>{props.ground}</Typography>
+                <Typography gutterBottom variant="h6" color={"secondary"}>{props.round.homeTeam.ground}</Typography>
                 <div className={classes.grow}></div>
-                <Typography gutterBottom variant="h6" color={"secondary"}>{props.kickOff}</Typography>
+                <Typography gutterBottom variant="h6" color={"secondary"}>
+                    <Moment format="ddd Do MMM YYYY HH:mm">{props.round.kickOff}</Moment>
+                </Typography>
             </div>
             <Grid container justify={"center"}>
                 <Grid item xs={5}>
-                    <TeamCard name={props.homeTeamName} badge={props.homeTeamBadge}/>
+                    <TeamCard name={props.round.homeTeam.name} badgeSrc={props.round.homeTeam.badgeSrc}/>
                 </Grid>
                 <Grid item xs={2} style={{marginTop:"100px"}}>
-
                     <Typography variant="h3" color={"primary"}>vs</Typography>
                 </Grid>
                 <Grid item xs={5}>
-                    <TeamCard name={props.awayTeamName} badge={props.awayTeamBadge}/>
+                    <TeamCard name={props.round.awayTeam.name} badgeSrc={props.round.awayTeam.badgeSrc}/>
                 </Grid>
             </Grid>
         </div>

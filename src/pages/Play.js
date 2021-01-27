@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box, Typography} from '@material-ui/core';
-import {withAuthenticator} from '@aws-amplify/ui-react';
-import {withStyles} from "@material-ui/core/styles";
+import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Fixture from "../components/Fixture";
-import leigh from "../images/teams/leigh.png";
-import wigan from "../images/teams/wigan.png";
 import ScoreCard from "../components/ScoreCard";
+import {getCurrentRound, initialRoundState} from "../queries";
+import {API} from "@aws-amplify/api";
+import {AmplifyAuthenticator} from "@aws-amplify/ui-react";
 
-const styles = theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 800,
         margin: "auto",
@@ -20,25 +20,32 @@ const styles = theme => ({
         padding: theme.spacing(2),
         maxWidth: 500,
     },
-});
+}));
 
-class Play extends Component {
-    render() {
+export default function Play() {
+    const classes = useStyles();
+    const theme = useTheme();
 
-        const {classes} = this.props;
+    const [round, setRound] = useState(initialRoundState)
 
-        return (
+    useEffect(() => {
+        fetchCurrentRound();
+    }, []);
+
+    async function fetchCurrentRound() {
+        const apiData = await API.graphql({query: getCurrentRound});
+        setRound(apiData.data.getRoundByStatus.items[0])
+    }
+
+    return (
+        <AmplifyAuthenticator>
             <Box className={classes.root}>
-                <Typography className={classes.title} variant={"h2"} color={"primary"}>ROUND 1</Typography>
+                <Typography className={classes.title} variant={"h2"} color={"primary"}>ROUND {round.number}</Typography>
                 <Typography style={{textAlign: "left"}} gutterBottom variant="h5" color={"primary"}>Enter your prediction</Typography>
-                <Fixture ground={"Leigh Sports Village"} kickOff={"Fri 31st Mar 8:00pm"}
-                         homeTeamName={"Leigh Centurions"} homeTeamBadge={leigh} awayTeamName={"Wigan Warriors"}
-                         awayTeamBadge={wigan}/>
+                <Fixture round={round}/>
                 <div className={classes.spaced}/>
                 <ScoreCard homeScore={20} awayScore={10}/>
             </Box>
-        );
-    }
+        </AmplifyAuthenticator>
+    );
 }
-
-export default withAuthenticator(withStyles(styles)(Play), true);

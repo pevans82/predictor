@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import {Box, Grid, Typography} from "@material-ui/core";
 import HowToCard from "../components/HowToCard"
@@ -7,12 +7,12 @@ import questionIcon from '../images/questionIcon.png'
 import swordIcon from '../images/swordIcon.png'
 import starIcon from '../images/starIcon.png'
 import centurions from "../images/centurions.jpg";
-import leigh from "../images/teams/leigh.png";
-import wigan from "../images/teams/wigan.png";
 import Fixture from "../components/Fixture";
 import {Link} from "react-router-dom";
 import {PlayRoute} from "./Pages";
 import Button from "@material-ui/core/Button";
+import {API, graphqlOperation} from "@aws-amplify/api";
+import {getCurrentRound, initialRoundState} from "../queries";
 
 const useStyles = makeStyles((theme) => ({
     primarySectionWrapper: {
@@ -52,6 +52,17 @@ export default function Home() {
     const classes = useStyles();
     const theme = useTheme();
 
+    const [round, setRound] = useState(initialRoundState)
+
+    useEffect(() => {
+        fetchCurrentRound();
+    }, []);
+
+    async function fetchCurrentRound() {
+        const apiData = await API.graphql({query: getCurrentRound});
+        setRound(apiData.data.getRoundByStatus.items[0])
+    }
+
     return (
         <Box>
             <div className={classes.primarySectionWrapper}>
@@ -59,15 +70,11 @@ export default function Home() {
                     <div className={classes.centurion}/>
                 </div>
             </div>
-            <div className={classes.section}>
                 <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND</Typography>
-                <Typography gutterBottom variant="h5" color={"primary"}>Round {1}</Typography>
-                <Fixture ground={"Leigh Sports Village"} kickOff={"Fri 31st Mar 8:00pm"}
-                         homeTeamName={"Leigh Centurions"} homeTeamBadge={leigh} awayTeamName={"Wigan Warriors"}
-                         awayTeamBadge={wigan}/>
+                <Typography gutterBottom variant="h5" color={"primary"}>Round {round.number}</Typography>
+                <Fixture round={round}/>
                 <Button style={{margin: theme.spacing(5)}} size="large" component={Link} to={PlayRoute} variant="contained" color="primary">Predict
                     Now!</Button>
-            </div>
             <div className={classes.primarySectionWrapper}>
                 <div className={classes.section}>
                     <Typography className={classes.title} variant={"h2"} color={"secondary"}>SUPER LEIGH!</Typography>
@@ -77,8 +84,10 @@ export default function Home() {
                     </Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
                         It's simple, just predict the outcome of Leigh Centurions next fixture! The closer you are to the result, the more points
-                        you'll score. Successfully predict the winner to earn bonus points. How well do you know the squad and how well do you
-                        know the opposition? Please play responsibly and remember, it's just a bit of fun!
+                        you'll score. Successfully predict the winner to earn bonus points.
+                    </Typography>
+                    <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
+                        Please play responsibly and remember, it's just a bit of fun!
                     </Typography>
                 </div>
             </div>
