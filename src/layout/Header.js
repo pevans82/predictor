@@ -128,7 +128,7 @@ export default function Header({onSignInClick}) {
                     </ListItem>
                     <Divider/>
                     <ListItem button component={Link} to={HowToRoute} key={"How-to"} onClick={handleDrawerClose}>
-                        <ListItemText primary="How-to"/>
+                        <ListItemText primary="How does it work"/>
                     </ListItem>
                 </List>
             </Drawer>

@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
-import { Box } from '@material-ui/core';
-import { withAuthenticator } from '@aws-amplify/ui-react';
+import {Box, Typography} from '@material-ui/core';
+import {AmplifyAuthenticator, withAuthenticator} from '@aws-amplify/ui-react';
+import {makeStyles} from "@material-ui/core/styles";
 
-class Results extends Component {
-    render() {
-        return (
-            <Box>
-                Results
+const useStyles = makeStyles((theme) => ({
+    root: {
+        maxWidth: 800,
+        margin: "auto",
+        marginTop: theme.spacing(5),
+        marginBottom: theme.spacing(5),
+    },
+    title: {
+        fontWeight: "bolder",
+        margin: "auto",
+        padding: theme.spacing(2),
+        maxWidth: 500,
+    },
+}));
+
+export default function Results() {
+    const classes = useStyles();
+
+    return (
+        <AmplifyAuthenticator>
+            <Box className={classes.root}>
+                <Typography className={classes.title} variant={"h2"} color={"primary"}>RESULTS</Typography>
             </Box>
-        );
-    }
+        </AmplifyAuthenticator>
+    );
 }
-
-export default withAuthenticator(Results, true);

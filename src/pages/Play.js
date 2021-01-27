@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Play() {
     const classes = useStyles();
-    const theme = useTheme();
 
     const [round, setRound] = useState(initialRoundState)
 
