@@ -39,11 +39,13 @@ export default function ScoreCard(props) {
     // }
 
     const handleHomeScoreChange = (event) => {
-        setHomeScore(event.target.value);
+        const value = event.target.value
+        setHomeScore(!value ? "0" : value);
     };
 
     const handleAwayScoreChange = (event) => {
-        setAwayScore(event.target.value);
+        const value = event.target.value
+        setAwayScore(!value ? "0" : value);
     };
 
     return (

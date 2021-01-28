@@ -11,7 +11,7 @@ import Fixture from "../components/Fixture";
 import {Link} from "react-router-dom";
 import {PlayRoute} from "./Pages";
 import Button from "@material-ui/core/Button";
-import {API, graphqlOperation} from "@aws-amplify/api";
+import {API} from "@aws-amplify/api";
 import {getCurrentRound, initialRoundState} from "../queries";
 
 const useStyles = makeStyles((theme) => ({
@@ -59,7 +59,11 @@ export default function Home() {
     }, []);
 
     async function fetchCurrentRound() {
-        const apiData = await API.graphql({query: getCurrentRound});
+        const apiData = await API.graphql({
+            query: getCurrentRound,
+            authMode: 'API_KEY'
+        });
+
         setRound(apiData.data.getRoundByStatus.items[0])
     }
 
@@ -70,11 +74,11 @@ export default function Home() {
                     <div className={classes.centurion}/>
                 </div>
             </div>
-                <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND</Typography>
-                <Typography gutterBottom variant="h5" color={"primary"}>Round {round.number}</Typography>
-                <Fixture round={round}/>
-                <Button style={{margin: theme.spacing(5)}} size="large" component={Link} to={PlayRoute} variant="contained" color="primary">Predict
-                    Now!</Button>
+            <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND</Typography>
+            <Typography gutterBottom variant="h5" color={"primary"}>Round {round.number}</Typography>
+            <Fixture round={round}/>
+            <Button style={{margin: theme.spacing(5)}} size="large" component={Link} to={PlayRoute} variant="contained" color="primary">Predict
+                Now!</Button>
             <div className={classes.primarySectionWrapper}>
                 <div className={classes.section}>
                     <Typography className={classes.title} variant={"h2"} color={"secondary"}>SUPER LEIGH!</Typography>

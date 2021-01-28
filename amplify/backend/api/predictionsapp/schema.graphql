@@ -1,41 +1,42 @@
-type Note @model {
-  id: ID!
-  name: String!
-  description: String
-}
-
-type Round @model @key(name: "byStatus", fields: ["status"], queryField: "getRoundByStatus") {
-  id: ID!
-  number: Int
-  homeTeam: Team! @connection(keyName: "RoundHomeTeam")
-  awayTeam: Team! @connection(keyName: "RoundAwayTeam")
-  kickOff: AWSDateTime!
-  status: RoundStatus!
+type Round @model @key(name: "byStatus", fields: ["status"], queryField: "getRoundByStatus") @auth(rules: [
+    {allow: public, operations: [read]},
+    {allow: groups, groups:["admin"], operations: [create, update, delete, read]}
+])  {
+    id: ID!
+    number: Int
+    homeTeam: Team! @connection(keyName: "RoundHomeTeam")
+    awayTeam: Team! @connection(keyName: "RoundAwayTeam")
+    kickOff: AWSDateTime!
+    status: RoundStatus!
 }
 
 enum RoundStatus {
-  pending
-  active
-  inPlay
-  closed
+    pending
+    active
+    inPlay
+    closed
 }
 
-type Team @model {
-  id: ID!
-  name: String!
-  badgeSrc: String
-  ground: String
+type Team @model @auth(rules: [
+    {allow: public, operations: [read]},
+    {allow: groups, groups:["admin"], operations: [create, update, delete, read]}
+])  {
+    id: ID!
+    name: String!
+    badgeSrc: String
+    ground: String
 }
 
-#
-#type Prediction @model {
-#  id: ID!
-#  username: String!
-#  round: Round
-#  leighScore: Int
-#  opponentScore: Int
-#}
-#
+type Prediction @model @auth(rules: [
+    { allow: owner },
+    {allow: groups, groups:["admin"], operations: [read]}
+]) {
+    id: ID!
+    round: Round! @connection(keyName: "PredictionRound")
+    homeScore: Int!
+    awayScore: Int!
+}
+
 #type Result @model {
 #  id: ID!
 #  round: Round

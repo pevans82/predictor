@@ -1,36 +1,111 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateNote = /* GraphQL */ `
-  subscription OnCreateNote {
-    onCreateNote {
+export const onCreatePrediction = /* GraphQL */ `
+  subscription OnCreatePrediction($owner: String) {
+    onCreatePrediction(owner: $owner) {
       id
-      name
-      description
+      homeScore
+      awayScore
       createdAt
       updatedAt
+      round {
+        id
+        number
+        kickOff
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
+      owner
     }
   }
 `;
-export const onUpdateNote = /* GraphQL */ `
-  subscription OnUpdateNote {
-    onUpdateNote {
+export const onUpdatePrediction = /* GraphQL */ `
+  subscription OnUpdatePrediction($owner: String) {
+    onUpdatePrediction(owner: $owner) {
       id
-      name
-      description
+      homeScore
+      awayScore
       createdAt
       updatedAt
+      round {
+        id
+        number
+        kickOff
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
+      owner
     }
   }
 `;
-export const onDeleteNote = /* GraphQL */ `
-  subscription OnDeleteNote {
-    onDeleteNote {
+export const onDeletePrediction = /* GraphQL */ `
+  subscription OnDeletePrediction($owner: String) {
+    onDeletePrediction(owner: $owner) {
       id
-      name
-      description
+      homeScore
+      awayScore
       createdAt
       updatedAt
+      round {
+        id
+        number
+        kickOff
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
+      owner
     }
   }
 `;
@@ -39,6 +114,10 @@ export const onCreateRound = /* GraphQL */ `
     onCreateRound {
       id
       number
+      kickOff
+      status
+      createdAt
+      updatedAt
       homeTeam {
         id
         name
@@ -55,10 +134,6 @@ export const onCreateRound = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      kickOff
-      status
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -67,6 +142,10 @@ export const onUpdateRound = /* GraphQL */ `
     onUpdateRound {
       id
       number
+      kickOff
+      status
+      createdAt
+      updatedAt
       homeTeam {
         id
         name
@@ -83,10 +162,6 @@ export const onUpdateRound = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      kickOff
-      status
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -95,6 +170,10 @@ export const onDeleteRound = /* GraphQL */ `
     onDeleteRound {
       id
       number
+      kickOff
+      status
+      createdAt
+      updatedAt
       homeTeam {
         id
         name
@@ -111,10 +190,6 @@ export const onDeleteRound = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      kickOff
-      status
-      createdAt
-      updatedAt
     }
   }
 `;

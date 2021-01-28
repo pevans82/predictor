@@ -24,9 +24,8 @@ const ScoreField = ({
                     textAlign: 'center'
                 }
             }}
-            onInput={(event) => event.target.value = Math.max(0, parseInt(event.target.value)).toString().slice(0, 3)}
-            value={(event) => event.target.value === "" ? 0 : event.target.value}
-            value={value === "" ? 0 : value}
+            onInput={(event) => event.target.value = parseInt(!event.target.value ? "0" : event.target.value).toString().slice(0, 3)}
+            value={!value ? "0" : value}
             onChange={onChange}
         />
     )

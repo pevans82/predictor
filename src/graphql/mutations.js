@@ -1,48 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createNote = /* GraphQL */ `
-  mutation CreateNote(
-    $input: CreateNoteInput!
-    $condition: ModelNoteConditionInput
-  ) {
-    createNote(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateNote = /* GraphQL */ `
-  mutation UpdateNote(
-    $input: UpdateNoteInput!
-    $condition: ModelNoteConditionInput
-  ) {
-    updateNote(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteNote = /* GraphQL */ `
-  mutation DeleteNote(
-    $input: DeleteNoteInput!
-    $condition: ModelNoteConditionInput
-  ) {
-    deleteNote(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createRound = /* GraphQL */ `
   mutation CreateRound(
     $input: CreateRoundInput!
@@ -51,6 +9,10 @@ export const createRound = /* GraphQL */ `
     createRound(input: $input, condition: $condition) {
       id
       number
+      kickOff
+      status
+      createdAt
+      updatedAt
       homeTeam {
         id
         name
@@ -67,10 +29,6 @@ export const createRound = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      kickOff
-      status
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -82,6 +40,10 @@ export const updateRound = /* GraphQL */ `
     updateRound(input: $input, condition: $condition) {
       id
       number
+      kickOff
+      status
+      createdAt
+      updatedAt
       homeTeam {
         id
         name
@@ -98,10 +60,6 @@ export const updateRound = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      kickOff
-      status
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -113,6 +71,10 @@ export const deleteRound = /* GraphQL */ `
     deleteRound(input: $input, condition: $condition) {
       id
       number
+      kickOff
+      status
+      createdAt
+      updatedAt
       homeTeam {
         id
         name
@@ -129,10 +91,6 @@ export const deleteRound = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      kickOff
-      status
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -178,6 +136,123 @@ export const deleteTeam = /* GraphQL */ `
       ground
       createdAt
       updatedAt
+    }
+  }
+`;
+export const createPrediction = /* GraphQL */ `
+  mutation CreatePrediction(
+    $input: CreatePredictionInput!
+    $condition: ModelPredictionConditionInput
+  ) {
+    createPrediction(input: $input, condition: $condition) {
+      id
+      homeScore
+      awayScore
+      createdAt
+      updatedAt
+      round {
+        id
+        number
+        kickOff
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
+      owner
+    }
+  }
+`;
+export const updatePrediction = /* GraphQL */ `
+  mutation UpdatePrediction(
+    $input: UpdatePredictionInput!
+    $condition: ModelPredictionConditionInput
+  ) {
+    updatePrediction(input: $input, condition: $condition) {
+      id
+      homeScore
+      awayScore
+      createdAt
+      updatedAt
+      round {
+        id
+        number
+        kickOff
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
+      owner
+    }
+  }
+`;
+export const deletePrediction = /* GraphQL */ `
+  mutation DeletePrediction(
+    $input: DeletePredictionInput!
+    $condition: ModelPredictionConditionInput
+  ) {
+    deletePrediction(input: $input, condition: $condition) {
+      id
+      homeScore
+      awayScore
+      createdAt
+      updatedAt
+      round {
+        id
+        number
+        kickOff
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
+      owner
     }
   }
 `;

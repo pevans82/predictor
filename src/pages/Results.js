@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Box, Typography} from '@material-ui/core';
-import {AmplifyAuthenticator, withAuthenticator} from '@aws-amplify/ui-react';
+import {AmplifyAuthenticator} from '@aws-amplify/ui-react';
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

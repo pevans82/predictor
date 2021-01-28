@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Typography} from '@material-ui/core';
-import {makeStyles, useTheme} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import Fixture from "../components/Fixture";
 import ScoreCard from "../components/ScoreCard";
 import {getCurrentRound, initialRoundState} from "../queries";
@@ -32,7 +32,11 @@ export default function Play() {
     }, []);
 
     async function fetchCurrentRound() {
-        const apiData = await API.graphql({query: getCurrentRound});
+        const apiData = await API.graphql({
+            query: getCurrentRound,
+            authMode: 'API_KEY'
+        });
+
         setRound(apiData.data.getRoundByStatus.items[0])
     }
 

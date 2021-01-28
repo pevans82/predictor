@@ -9,12 +9,6 @@ import {BrowserRouter as Router} from "react-router-dom";
 
 Amplify.configure(awsconfig);
 
-
-// import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-// import {getRound, listNotes} from './graphql/queries';
-// import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
-
-// const initialFormState = { name: '', description: '' }
 let theme = createMuiTheme({
     palette: {
         primary: {
@@ -38,9 +32,6 @@ function App() {
             </Router>
     );
 
-    //
-    // const [notes, setNotes] = useState([]);
-    // // const [setRound] = useState([]);
     // const [formData, setFormData] = useState(initialFormState);
     //
     // useEffect(() => {
