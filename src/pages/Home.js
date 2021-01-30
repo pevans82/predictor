@@ -11,8 +11,8 @@ import Fixture from "../components/Fixture";
 import {Link} from "react-router-dom";
 import {PlayRoute} from "./Pages";
 import Button from "@material-ui/core/Button";
+import {activeRound} from "../queries";
 import {API} from "@aws-amplify/api";
-import {getCurrentRound, initialRoundState} from "../queries";
 
 const useStyles = makeStyles((theme) => ({
     primarySectionWrapper: {
@@ -52,19 +52,31 @@ export default function Home() {
     const classes = useStyles();
     const theme = useTheme();
 
-    const [round, setRound] = useState(initialRoundState)
+    const [round, setRound] = useState()
 
     useEffect(() => {
-        fetchCurrentRound();
+        fetchCurrentRound()
     }, []);
 
     async function fetchCurrentRound() {
-        const apiData = await API.graphql({
-            query: getCurrentRound,
+        const active = await API.graphql({
+            query: activeRound,
             authMode: 'API_KEY'
         });
-
-        setRound(apiData.data.getRoundByStatus.items[0])
+        console.log(active)
+        setRound(active.data.roundByStatus.items[0])
+        // if (activeRound) {
+        //     console.log("returning active round")
+        //     setRound(activeRound.data.roundByStatus.items[0])
+        // }
+        //
+        // console.log("getting inPlay round")
+        // const inPlayRound = await API.graphql({
+        //     query: inPlayRound,
+        //     authMode: 'API_KEY'
+        // });
+        // console.log(inPlayRound)
+        // setRound(inPlayRound.data.roundByStatus.items[0])
     }
 
     return (
@@ -75,8 +87,8 @@ export default function Home() {
                 </div>
             </div>
             <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND</Typography>
-            <Typography gutterBottom variant="h5" color={"primary"}>Round {round.number}</Typography>
-            <Fixture round={round}/>
+            {round && <Typography gutterBottom variant="h5" color={"primary"}>Round {round.number}</Typography>}
+            {round && <Fixture round={round}/>}
             <Button style={{margin: theme.spacing(5)}} size="large" component={Link} to={PlayRoute} variant="contained" color="primary">Predict
                 Now!</Button>
             <div className={classes.primarySectionWrapper}>

@@ -5,34 +5,11 @@ export const getPrediction = /* GraphQL */ `
   query GetPrediction($id: ID!) {
     getPrediction(id: $id) {
       id
+      roundId
       homeScore
       awayScore
       createdAt
       updatedAt
-      round {
-        id
-        number
-        kickOff
-        status
-        createdAt
-        updatedAt
-        homeTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-        awayTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-      }
       owner
     }
   }
@@ -46,21 +23,70 @@ export const listPredictions = /* GraphQL */ `
     listPredictions(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        roundId
         homeScore
         awayScore
         createdAt
         updatedAt
-        round {
-          id
-          number
-          kickOff
-          status
-          createdAt
-          updatedAt
-        }
         owner
       }
       nextToken
+    }
+  }
+`;
+export const predictionsByRound = /* GraphQL */ `
+  query PredictionsByRound(
+    $roundId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelPredictionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    predictionsByRound(
+      roundId: $roundId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        roundId
+        homeScore
+        awayScore
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getRound = /* GraphQL */ `
+  query GetRound($id: ID!) {
+    getRound(id: $id) {
+      id
+      number
+      kickOff
+      status
+      createdAt
+      updatedAt
+      homeTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      awayTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -99,43 +125,15 @@ export const listRounds = /* GraphQL */ `
     }
   }
 `;
-export const getRound = /* GraphQL */ `
-  query GetRound($id: ID!) {
-    getRound(id: $id) {
-      id
-      number
-      kickOff
-      status
-      createdAt
-      updatedAt
-      homeTeam {
-        id
-        name
-        badgeSrc
-        ground
-        createdAt
-        updatedAt
-      }
-      awayTeam {
-        id
-        name
-        badgeSrc
-        ground
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const getRoundByStatus = /* GraphQL */ `
-  query GetRoundByStatus(
+export const roundByStatus = /* GraphQL */ `
+  query RoundByStatus(
     $status: RoundStatus
     $sortDirection: ModelSortDirection
     $filter: ModelRoundFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    getRoundByStatus(
+    roundByStatus(
       status: $status
       sortDirection: $sortDirection
       filter: $filter

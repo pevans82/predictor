@@ -5,34 +5,11 @@ export const onCreatePrediction = /* GraphQL */ `
   subscription OnCreatePrediction($owner: String) {
     onCreatePrediction(owner: $owner) {
       id
+      roundId
       homeScore
       awayScore
       createdAt
       updatedAt
-      round {
-        id
-        number
-        kickOff
-        status
-        createdAt
-        updatedAt
-        homeTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-        awayTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-      }
       owner
     }
   }
@@ -41,34 +18,11 @@ export const onUpdatePrediction = /* GraphQL */ `
   subscription OnUpdatePrediction($owner: String) {
     onUpdatePrediction(owner: $owner) {
       id
+      roundId
       homeScore
       awayScore
       createdAt
       updatedAt
-      round {
-        id
-        number
-        kickOff
-        status
-        createdAt
-        updatedAt
-        homeTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-        awayTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-      }
       owner
     }
   }
@@ -77,34 +31,11 @@ export const onDeletePrediction = /* GraphQL */ `
   subscription OnDeletePrediction($owner: String) {
     onDeletePrediction(owner: $owner) {
       id
+      roundId
       homeScore
       awayScore
       createdAt
       updatedAt
-      round {
-        id
-        number
-        kickOff
-        status
-        createdAt
-        updatedAt
-        homeTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-        awayTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-      }
       owner
     }
   }

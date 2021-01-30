@@ -12,23 +12,8 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto",
     },
     head: {
-        display: "flex",
         background: "linear-gradient(#BE1D2C, #FFF)",
         padding: theme.spacing(1),
-        marginBottom: theme.spacing(3),
-    },
-    head1: {
-        display: "flex",
-        background: "linear-gradient(#000, #BE1D2C)",
-        paddingLeft: theme.spacing(1),
-        paddingRight: theme.spacing(1),
-        marginBottom: theme.spacing(3),
-    },
-    head2: {
-        display: "flex",
-        background: "linear-gradient(#BE1D2C, #000)",
-        paddingLeft: theme.spacing(1),
-        paddingRight: theme.spacing(1),
         marginBottom: theme.spacing(3),
     },
     grow: {
@@ -42,17 +27,23 @@ export default function Fixture(props) {
     return (
         <div className={classes.root}>
             <div className={classes.head}>
-                <Typography gutterBottom variant="h6" color={"secondary"}>{props.round.homeTeam.ground}</Typography>
-                <div className={classes.grow}></div>
-                <Typography gutterBottom variant="h6" color={"secondary"}>
-                    <Moment format="ddd Do MMM YYYY HH:mm">{props.round.kickOff}</Moment>
-                </Typography>
+                <Grid container justify={"center"}>
+                    <Grid item xs={5}>
+                        <Typography gutterBottom variant="h6" color={"secondary"}>{props.round.homeTeam.ground}</Typography>
+                    </Grid>
+                    <Grid item xs={2}/>
+                    <Grid item xs={5}>
+                        <Typography gutterBottom variant="h6" color={"secondary"}>
+                            <Moment format="ddd Do MMM YYYY HH:mm">{props.round.kickOff}</Moment>
+                        </Typography>
+                    </Grid>
+                </Grid>
             </div>
             <Grid container justify={"center"}>
                 <Grid item xs={5}>
                     <TeamCard name={props.round.homeTeam.name} badgeSrc={props.round.homeTeam.badgeSrc}/>
                 </Grid>
-                <Grid item xs={2} style={{marginTop:"100px"}}>
+                <Grid item xs={2} style={{marginTop: "100px"}}>
                     <Typography variant="h3" color={"primary"}>vs</Typography>
                 </Grid>
                 <Grid item xs={5}>

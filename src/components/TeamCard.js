@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: theme.spacing(1),
         marginBottom: theme.spacing(2),
     },
+    name: {
+        padding: theme.spacing(1),
+    }
 }));
 
 export default function TeamCard(props) {
@@ -20,8 +23,8 @@ export default function TeamCard(props) {
 
     return (
         <div className={classes.root}>
-        <img className={classes.media} src={props.badgeSrc} alt="Logo"/>
-        <Typography gutterBottom variant="h5" color={"primary"}>
+            <img className={classes.media} src={props.badgeSrc} alt="Logo"/>
+            <Typography className={classes.name} gutterBottom variant="h5" color={"primary"}>
                 <Box fontWeight="fontWeightBold">
                     {props.name}
                 </Box>

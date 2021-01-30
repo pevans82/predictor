@@ -146,34 +146,11 @@ export const createPrediction = /* GraphQL */ `
   ) {
     createPrediction(input: $input, condition: $condition) {
       id
+      roundId
       homeScore
       awayScore
       createdAt
       updatedAt
-      round {
-        id
-        number
-        kickOff
-        status
-        createdAt
-        updatedAt
-        homeTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-        awayTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-      }
       owner
     }
   }
@@ -185,34 +162,11 @@ export const updatePrediction = /* GraphQL */ `
   ) {
     updatePrediction(input: $input, condition: $condition) {
       id
+      roundId
       homeScore
       awayScore
       createdAt
       updatedAt
-      round {
-        id
-        number
-        kickOff
-        status
-        createdAt
-        updatedAt
-        homeTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-        awayTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-      }
       owner
     }
   }
@@ -224,34 +178,11 @@ export const deletePrediction = /* GraphQL */ `
   ) {
     deletePrediction(input: $input, condition: $condition) {
       id
+      roundId
       homeScore
       awayScore
       createdAt
       updatedAt
-      round {
-        id
-        number
-        kickOff
-        status
-        createdAt
-        updatedAt
-        homeTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-        awayTeam {
-          id
-          name
-          badgeSrc
-          ground
-          createdAt
-          updatedAt
-        }
-      }
       owner
     }
   }

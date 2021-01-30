@@ -3,7 +3,8 @@ import {makeStyles, useTheme} from '@material-ui/core/styles';
 import {Grid} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ScoreField from './ScoreField'
-// import { createNote as createNoteMutation } from './graphql/mutations';
+import {API} from "@aws-amplify/api";
+import * as mutations from "../graphql/mutations";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,18 +26,31 @@ export default function ScoreCard(props) {
 
     const [homeScore, setHomeScore] = useState(props.homeScore);
     const [awayScore, setAwayScore] = useState(props.awayScore);
+    const [roundId, setRoundId] = useState(props.roundId);
+    const [predictionId, setPredictionId] = useState(props.predictionId);
 
     const handleSubmit = (event) => {
-        alert('Predication submitted: ' + homeScore + ' - ' + awayScore);
+        savePrediction();
         event.preventDefault();
     }
 
-    // async function savePrediction() {
-    //     // if (!formData.name || !formData.description) return;
-    //     // await API.graphql({ query: createNoteMutation, variables: { input: formData } });
-    //     // setNotes([ ...notes, formData ]);
-    //     // setFormData(initialFormState);
-    // }
+    async function savePrediction() {
+        if (predictionId) {
+            console.log("updated")
+            await API.graphql({
+                query: mutations.updatePrediction,
+                variables: {input: {id: predictionId, homeScore: homeScore, awayScore: awayScore}},
+                authMode: 'AMAZON_COGNITO_USER_POOLS'
+            });
+        } else {
+            console.log("created")
+            await API.graphql({
+                query: mutations.createPrediction,
+                variables: {input: {roundId: roundId, homeScore: homeScore, awayScore: awayScore}},
+                authMode: 'AMAZON_COGNITO_USER_POOLS'
+            });
+        }
+    }
 
     const handleHomeScoreChange = (event) => {
         const value = event.target.value

@@ -1,5 +1,26 @@
-export const getCurrentRound = `query getCurrentRound {
-    getRoundByStatus(limit: 1, status: active) {
+export const activeRound = `query activeRound {
+  roundByStatus(status: active, limit: 1) {
+    items {
+      awayTeam {
+        name
+        badgeSrc
+      }
+      homeTeam {
+        name
+        badgeSrc
+        ground
+      }
+      id
+      kickOff
+      number
+      status
+    }
+  }
+}
+`
+
+export const inPlayRound = `query inPlayRound {
+    roundByStatus(limit: 1, status: active) {
         items {
             awayTeam {
                 badgeSrc
@@ -10,6 +31,7 @@ export const getCurrentRound = `query getCurrentRound {
                 ground
                 name
             }
+            id
             number
             kickOff
             status
@@ -17,16 +39,3 @@ export const getCurrentRound = `query getCurrentRound {
     }
 }`
 
-export const initialRoundState = {
-    awayTeam: {
-        badgeSrc: "",
-        name: "",
-    },
-    homeTeam: {
-        badgeSrc: "",
-        ground: "",
-        name: "",
-    },
-    number: 0,
-    kickOff: "",
-    status: ""}
