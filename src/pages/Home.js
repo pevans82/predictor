@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import {Box, Grid, Typography} from "@material-ui/core";
 import HowToCard from "../components/HowToCard"
@@ -11,8 +11,7 @@ import Fixture from "../components/Fixture";
 import {Link} from "react-router-dom";
 import {PlayRoute} from "./Pages";
 import Button from "@material-ui/core/Button";
-import {activeRound} from "../queries";
-import {API} from "@aws-amplify/api";
+import {useRound} from "../hooks/useRound";
 
 const useStyles = makeStyles((theme) => ({
     primarySectionWrapper: {
@@ -51,33 +50,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
     const classes = useStyles();
     const theme = useTheme();
-
-    const [round, setRound] = useState()
-
-    useEffect(() => {
-        fetchCurrentRound()
-    }, []);
-
-    async function fetchCurrentRound() {
-        const active = await API.graphql({
-            query: activeRound,
-            authMode: 'API_KEY'
-        });
-        console.log(active)
-        setRound(active.data.roundByStatus.items[0])
-        // if (activeRound) {
-        //     console.log("returning active round")
-        //     setRound(activeRound.data.roundByStatus.items[0])
-        // }
-        //
-        // console.log("getting inPlay round")
-        // const inPlayRound = await API.graphql({
-        //     query: inPlayRound,
-        //     authMode: 'API_KEY'
-        // });
-        // console.log(inPlayRound)
-        // setRound(inPlayRound.data.roundByStatus.items[0])
-    }
+    const round = useRound();
 
     return (
         <Box>
