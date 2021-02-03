@@ -6,6 +6,7 @@ import Leaderboard from './Leaderboard'
 import Results from './Results'
 import HowTo from './HowTo'
 import Profile from './Profile'
+import SignIn from './SignIn'
 
 export const HomeRoute = "/";
 export const PlayRoute = "/play/";
@@ -13,6 +14,7 @@ export const LeaderboardRoute = "/leaderboard/";
 export const ResultsRoute = "/results/";
 export const HowToRoute = "/how-to/";
 export const ProfileRoute = "/profile/";
+export const SignInRoute = "/sign-in/";
 
 export default function Pages() {
     return (
@@ -23,6 +25,7 @@ export default function Pages() {
             <Route path={ResultsRoute} exact component={Results}/>
             <Route path={ProfileRoute} exact component={Profile}/>
             <Route path={HowToRoute} exact component={HowTo}/>
+            <Route path={SignInRoute} exact component={SignIn}/>
         </Switch>
     );
 }

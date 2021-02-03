@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
-import {Auth} from "@aws-amplify/auth/lib";
-import {Hub} from "@aws-amplify/core/lib";
+import {Auth, Hub} from "aws-amplify";
 
 export function useUser() {
     const [user, setUser] = useState()
@@ -9,10 +8,8 @@ export function useUser() {
         let updateUser = async authState => {
             try {
                 let user = await Auth.currentAuthenticatedUser()
-                console.log(user)
                 setUser(user)
             } catch {
-                console.log("no user")
                 setUser(null)
             }
         }

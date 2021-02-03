@@ -14,8 +14,6 @@ export function useRound() {
             query: activeRound,
             authMode: 'API_KEY'
         });
-        console.log("round retrieved...")
-        console.log(active)
         setRound(active.data.roundByStatus.items[0])
         // if (activeRound) {
         //     console.log("returning active round")

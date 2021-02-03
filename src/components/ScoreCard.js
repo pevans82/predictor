@@ -36,14 +36,12 @@ export default function ScoreCard(props) {
 
     async function savePrediction() {
         if (predictionId) {
-            console.log("updated")
             await API.graphql({
                 query: mutations.updatePrediction,
                 variables: {input: {id: predictionId, homeScore: homeScore, awayScore: awayScore}},
                 authMode: 'AMAZON_COGNITO_USER_POOLS'
             });
         } else {
-            console.log("created")
             await API.graphql({
                 query: mutations.createPrediction,
                 variables: {input: {roundId: roundId, homeScore: homeScore, awayScore: awayScore}},

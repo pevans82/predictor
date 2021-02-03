@@ -33,19 +33,16 @@ export default function Play() {
     const [prediction, setPrediction] = useState()
 
     useEffect(() => {
-        console.log("trigger prediction fetch")
         fetchPrediction()
     }, [user, round]);
 
     async function fetchPrediction() {
         if(user && round) {
-            console.log("fetching prediction")
             const pred = await API.graphql({
                 query: queries.predictionsByRound,
                 variables: {roundId: round.id},
                 authMode: 'AMAZON_COGNITO_USER_POOLS'
             });
-            console.log(pred)
             if(pred.data.predictionsByRound.items.length < 1) {
                 setPrediction({roundId: round.id, homeScore: 0, awayScore:0})
             } else {

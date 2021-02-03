@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -6,10 +6,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import {AmplifySignOut} from "@aws-amplify/ui-react";
-import {AuthState, onAuthUIStateChange} from "@aws-amplify/ui-components";
 import {Typography} from "@material-ui/core";
-import {ProfileRoute} from "../pages/Pages";
+import {ProfileRoute, SignInRoute} from "../pages/Pages";
 import {Link} from "react-router-dom";
+import {useUser} from "../hooks/useUser";
 
 const useStyles = makeStyles((theme) => ({
     menuButton: {
@@ -17,37 +17,33 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function UserMenu({ onSignInClick }) {
+export default function UserMenu() {
     const classes = useStyles();
+    const user = useUser();
+    const divRef = useRef();
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const [authState, setAuthState] = React.useState();
-    const [user, setUser] = React.useState();
 
-    React.useEffect(() => {
-        onAuthUIStateChange((nextAuthState, authData) => {
-            setAuthState(nextAuthState);
-            setUser(authData);
-            handleClose();
-        });
-    }, []);
+    useEffect(() => {
+        handleClose()
+    }, [user]);
 
-    const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget);
+    const handleClick = () => {
+        setAnchorEl(divRef.current);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
     };
 
-    return authState === AuthState.SignedIn && user ? (
-        <div>
+    return user ? (
+        <div ref={divRef}>
             <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
+                onClick={handleClick}
                 color="inherit"
                 className={classes.menuButton}
             >
@@ -75,7 +71,7 @@ export default function UserMenu({ onSignInClick }) {
         </div>
     ) : (
         <div>
-            <Button className={classes.menuButton} onClick={onSignInClick} color="inherit">Sign in</Button>
+            <Button className={classes.menuButton} component={Link} to={SignInRoute} color="inherit">Sign in</Button>
         </div>
     );
 }
