@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {Box, Typography, useTheme} from '@material-ui/core';
-import {makeStyles} from "@material-ui/core/styles";
+import React from 'react';
+import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Fixture from "../components/Fixture";
 import ScoreCard from "../components/ScoreCard";
-import {API} from "@aws-amplify/api";
 import {AmplifyAuthenticator} from "@aws-amplify/ui-react";
-import * as queries from '../graphql/queries';
 import {useRound} from "../hooks/useRound";
-import {useUser} from "../hooks/useUser";
+import {Box} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,29 +25,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Play() {
     const classes = useStyles();
     const theme = useTheme();
-    const user = useUser();
     const round = useRound();
-
-    const [prediction, setPrediction] = useState()
-
-    useEffect(() => {
-        fetchPrediction()
-    }, [user, round]);
-
-    async function fetchPrediction() {
-        if(user && round) {
-            const pred = await API.graphql({
-                query: queries.predictionsByRound,
-                variables: {roundId: round.id},
-                authMode: 'AMAZON_COGNITO_USER_POOLS'
-            });
-            if(pred.data.predictionsByRound.items.length < 1) {
-                setPrediction({roundId: round.id, homeScore: 0, awayScore:0})
-            } else {
-                setPrediction(pred.data.predictionsByRound.items[0])
-            }
-        }
-    }
 
     return (
         <AmplifyAuthenticator>
@@ -59,10 +35,7 @@ export default function Play() {
                     prediction</Typography>
                 {round && <Fixture round={round}/>}
                 <div className={classes.spaced}/>
-                {prediction && <ScoreCard homeScore={prediction.homeScore}
-                                          awayScore={prediction.awayScore}
-                                          predictionId={prediction.id}
-                                          roundId={prediction.roundId}/>}
+                <ScoreCard />
             </Box>
         </AmplifyAuthenticator>
     );
