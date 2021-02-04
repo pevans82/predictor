@@ -1,6 +1,28 @@
 import { useState, useEffect } from 'react';
 import {API} from "@aws-amplify/api";
-import {activeRound} from "../queries";
+
+const fetchRoundQuery = `query fetchRound($status: RoundStatus) {
+  roundByStatus(status: $status, limit: 1) {
+    items {
+      awayTeam {
+        name
+        badgeSrc
+      }
+      homeTeam {
+        name
+        badgeSrc
+        ground
+      }
+      id
+      kickOff
+      number
+      status
+    }
+  }
+}
+`
+
+const roundStates = ["active", "closed"]
 
 export function useRound() {
     const [round, setRound] = useState()
@@ -9,24 +31,26 @@ export function useRound() {
         fetchCurrentRound()
     }, []);
 
-    async function fetchCurrentRound() {
-        const active = await API.graphql({
-            query: activeRound,
+    async function fetchRound(status) {
+        const result = await API.graphql({
+            query: fetchRoundQuery,
+            variables: {"status": status},
             authMode: 'API_KEY'
         });
-        setRound(active.data.roundByStatus.items[0])
-        // if (activeRound) {
-        //     console.log("returning active round")
-        //     setRound(activeRound.data.roundByStatus.items[0])
-        // }
-        //
-        // console.log("getting inPlay round")
-        // const inPlayRound = await API.graphql({
-        //     query: inPlayRound,
-        //     authMode: 'API_KEY'
-        // });
-        // console.log(inPlayRound)
-        // setRound(inPlayRound.data.roundByStatus.items[0])
+
+        if(result.data.roundByStatus.items.length > 0) {
+            return result.data.roundByStatus.items[0]
+        }
+    }
+
+    async function fetchCurrentRound() {
+        const activeRound = await fetchRound("active")
+        if(activeRound) {
+            setRound(activeRound)
+        } else {
+            const closedRound = await fetchRound("closed")
+            setRound(closedRound)
+        }
     }
 
     return round;

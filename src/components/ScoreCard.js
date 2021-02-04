@@ -125,7 +125,9 @@ export default function ScoreCard(props) {
                     <ScoreField id={"awayScore"} value={awayScore} onChange={handleAwayScoreChange}/>
                 </Grid>
             </Grid>
+            {round && round.status === "active" &&
             <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained" type={"submit"} color="primary">Submit</Button>
+            }
             <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleSnackBarClose}>
                 <Alert onClose={handleSnackBarClose} severity="success">
                     Prediction successfully submitted!

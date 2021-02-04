@@ -31,8 +31,9 @@ export default function Play() {
         <AmplifyAuthenticator>
             <Box className={classes.root}>
                 {round && <Typography className={classes.title} variant={"h2"} color={"primary"}>ROUND {round.number}</Typography>}
+                {round && round.status === "active" &&
                 <Typography style={{textAlign: "left", margin: theme.spacing(1)}} gutterBottom variant="h5" color={"primary"}>Enter your
-                    prediction</Typography>
+                    prediction</Typography>}
                 {round && <Fixture round={round}/>}
                 <div className={classes.spaced}/>
                 <ScoreCard />

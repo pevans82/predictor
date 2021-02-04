@@ -17,8 +17,8 @@ type Round @model
 enum RoundStatus {
     pending
     active
-    inPlay
     closed
+    complete
 }
 
 type Team @model

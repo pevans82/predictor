@@ -59,11 +59,14 @@ export default function Home() {
                     <div className={classes.centurion}/>
                 </div>
             </div>
-            <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND</Typography>
+            {!round && <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND COMING SOON</Typography>}
+            {round && round.status === "active" && <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND</Typography>}
+            {round && round.status === "closed" && <Typography className={classes.title} variant={"h2"} color={"primary"}>ROUND IN PLAY</Typography>}
             {round && <Typography gutterBottom variant="h5" color={"primary"}>Round {round.number}</Typography>}
             {round && <Fixture round={round}/>}
+            {round && round.status === "active" &&
             <Button style={{margin: theme.spacing(5)}} size="large" component={Link} to={PlayRoute} variant="contained" color="primary">Predict
-                Now!</Button>
+                Now!</Button>}
             <div className={classes.primarySectionWrapper}>
                 <div className={classes.section}>
                     <Typography className={classes.title} variant={"h2"} color={"secondary"}>SUPER LEIGH!</Typography>
