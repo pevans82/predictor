@@ -22,8 +22,6 @@ const fetchRoundQuery = `query fetchRound($status: RoundStatus) {
 }
 `
 
-const roundStates = ["active", "closed"]
-
 export function useRound() {
     const [round, setRound] = useState()
 

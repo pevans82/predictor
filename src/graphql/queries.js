@@ -8,6 +8,7 @@ export const getPrediction = /* GraphQL */ `
       roundId
       homeScore
       awayScore
+      points
       createdAt
       updatedAt
       owner
@@ -26,6 +27,7 @@ export const listPredictions = /* GraphQL */ `
         roundId
         homeScore
         awayScore
+        points
         createdAt
         updatedAt
         owner
@@ -54,6 +56,7 @@ export const predictionsByRound = /* GraphQL */ `
         roundId
         homeScore
         awayScore
+        points
         createdAt
         updatedAt
         owner
@@ -196,6 +199,64 @@ export const getTeam = /* GraphQL */ `
       ground
       createdAt
       updatedAt
+    }
+  }
+`;
+export const getResult = /* GraphQL */ `
+  query GetResult($id: ID!) {
+    getResult(id: $id) {
+      id
+      roundId
+      homeScore
+      awayScore
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listResults = /* GraphQL */ `
+  query ListResults(
+    $filter: ModelResultFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listResults(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        roundId
+        homeScore
+        awayScore
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const resultsByRound = /* GraphQL */ `
+  query ResultsByRound(
+    $roundId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelResultFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    resultsByRound(
+      roundId: $roundId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        roundId
+        homeScore
+        awayScore
+        createdAt
+        updatedAt
+      }
+      nextToken
     }
   }
 `;

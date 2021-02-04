@@ -45,16 +45,24 @@ type Prediction @model
     roundId: ID!
     homeScore: Int!
     awayScore: Int!
+    points: Int
 }
 
-#type Result @model {
-#  id: ID!
-#  round: Round
-#  leighScore: Int
-#  opponentScore: Int
-#}
-#
-#type Ranking @model {
+type Result @model
+@auth(rules: [
+    {allow: public, operations: [read]},
+    {allow: private, operations: [read]},
+    {allow: groups, groups:["admin"], operations: [create, update, delete, read]}
+])
+@key(name: "byRound", fields: ["roundId"], queryField: "resultsByRound")
+{
+    id: ID!
+    roundId: ID!
+    homeScore: Int!
+    awayScore: Int!
+}
+
+#type Leaderboard @model {
 #  id: ID!
 #  username: String!
 #  points: Int

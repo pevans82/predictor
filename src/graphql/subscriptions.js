@@ -8,6 +8,7 @@ export const onCreatePrediction = /* GraphQL */ `
       roundId
       homeScore
       awayScore
+      points
       createdAt
       updatedAt
       owner
@@ -21,6 +22,7 @@ export const onUpdatePrediction = /* GraphQL */ `
       roundId
       homeScore
       awayScore
+      points
       createdAt
       updatedAt
       owner
@@ -34,6 +36,7 @@ export const onDeletePrediction = /* GraphQL */ `
       roundId
       homeScore
       awayScore
+      points
       createdAt
       updatedAt
       owner
@@ -155,6 +158,42 @@ export const onDeleteTeam = /* GraphQL */ `
       name
       badgeSrc
       ground
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateResult = /* GraphQL */ `
+  subscription OnCreateResult {
+    onCreateResult {
+      id
+      roundId
+      homeScore
+      awayScore
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateResult = /* GraphQL */ `
+  subscription OnUpdateResult {
+    onUpdateResult {
+      id
+      roundId
+      homeScore
+      awayScore
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteResult = /* GraphQL */ `
+  subscription OnDeleteResult {
+    onDeleteResult {
+      id
+      roundId
+      homeScore
+      awayScore
       createdAt
       updatedAt
     }
