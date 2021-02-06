@@ -1,8 +1,8 @@
 type Round @model
     @auth(rules: [
-        {allow: public, operations: [read]},
-        {allow: private, operations: [read]},
-        {allow: groups, groups:["admin"], operations: [create, update, delete, read]}
+        { allow: public, operations: [read] },
+        { allow: private, operations: [read] },
+        { allow: groups, groups:["admin"], operations: [create, update, delete, read] }
     ])
     @key(name: "byStatus", fields: ["status"], queryField: "roundByStatus")
 {
@@ -23,9 +23,9 @@ enum RoundStatus {
 
 type Team @model
     @auth(rules: [
-        {allow: public, operations: [read]},
-        {allow: private, operations: [read]},
-        {allow: groups, groups:["admin"], operations: [create, update, delete, read]}
+        { allow: public, operations: [read] },
+        { allow: private, operations: [read] },
+        { allow: groups, groups:["admin"], operations: [create, update, delete, read] }
     ])
 {
     id: ID!
@@ -37,7 +37,7 @@ type Team @model
 type Prediction @model
     @auth(rules: [
         { allow: owner },
-        {allow: groups, groups:["admin"], operations: [read]}
+        { allow: groups, groups:["admin"], operations: [read] }
     ])
     @key(name: "byRound", fields: ["roundId"], queryField: "predictionsByRound")
 {
@@ -50,9 +50,9 @@ type Prediction @model
 
 type Result @model
 @auth(rules: [
-    {allow: public, operations: [read]},
-    {allow: private, operations: [read]},
-    {allow: groups, groups:["admin"], operations: [create, update, delete, read]}
+    { allow: public, operations: [read] },
+    { allow: private, operations: [read] },
+    { allow: groups, groups:["admin"], operations: [create, update, delete, read] }
 ])
 @key(name: "byRound", fields: ["roundId"], queryField: "resultsByRound")
 {
