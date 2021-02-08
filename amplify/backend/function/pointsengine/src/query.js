@@ -1,5 +1,6 @@
-module.exports = {
-    fetchPredictionsQuery: `query fetchPredictions($roundId) {
+
+const fetchPredictionsQuery = gql`
+    query fetchPredictions($roundId) {
         predictionsByRound(roundId: $roundId) {
             items {
                 awayScore
@@ -8,5 +9,4 @@ module.exports = {
             }
         }
     }
-    `
-}
+`
