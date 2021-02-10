@@ -1,6 +1,5 @@
-
-const fetchPredictionsQuery = gql`
-    query fetchPredictions($roundId) {
+module.exports = {
+    query: `query predictionsByRound($roundId:ID!) {
         predictionsByRound(roundId: $roundId) {
             items {
                 awayScore
@@ -8,5 +7,12 @@ const fetchPredictionsQuery = gql`
                 id
             }
         }
+    }`,
+    mutation: `mutation updatePrediction($id: ID!, $points: Int!) {
+      updatePrediction(input: {id: $id, points: $points}) {
+        id
+        points
+      }
     }
-`
+    `
+}

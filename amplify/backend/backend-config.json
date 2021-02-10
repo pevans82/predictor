@@ -26,6 +26,9 @@
                 "apiKeyExpirationDays": 365,
                 "description": "predictor-app-public"
               }
+            },
+            {
+              "authenticationType": "AWS_IAM"
             }
           ]
         }
@@ -43,7 +46,8 @@
           "resourceName": "predictionsapp",
           "attributes": [
             "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
           ]
         }
       ]

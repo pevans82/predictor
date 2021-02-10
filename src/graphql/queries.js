@@ -1,70 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getPrediction = /* GraphQL */ `
-  query GetPrediction($id: ID!) {
-    getPrediction(id: $id) {
-      id
-      roundId
-      homeScore
-      awayScore
-      points
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listPredictions = /* GraphQL */ `
-  query ListPredictions(
-    $filter: ModelPredictionFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPredictions(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        roundId
-        homeScore
-        awayScore
-        points
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const predictionsByRound = /* GraphQL */ `
-  query PredictionsByRound(
-    $roundId: ID
-    $sortDirection: ModelSortDirection
-    $filter: ModelPredictionFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    predictionsByRound(
-      roundId: $roundId
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        roundId
-        homeScore
-        awayScore
-        points
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
 export const getRound = /* GraphQL */ `
   query GetRound($id: ID!) {
     getRound(id: $id) {
@@ -199,6 +135,70 @@ export const getTeam = /* GraphQL */ `
       ground
       createdAt
       updatedAt
+    }
+  }
+`;
+export const getPrediction = /* GraphQL */ `
+  query GetPrediction($id: ID!) {
+    getPrediction(id: $id) {
+      id
+      roundId
+      homeScore
+      awayScore
+      points
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listPredictions = /* GraphQL */ `
+  query ListPredictions(
+    $filter: ModelPredictionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPredictions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        roundId
+        homeScore
+        awayScore
+        points
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const predictionsByRound = /* GraphQL */ `
+  query PredictionsByRound(
+    $roundId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelPredictionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    predictionsByRound(
+      roundId: $roundId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        roundId
+        homeScore
+        awayScore
+        points
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
     }
   }
 `;
