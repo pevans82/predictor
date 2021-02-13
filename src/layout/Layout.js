@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import {makeStyles} from '@material-ui/core/styles';
 import Pages from "../pages/Pages";
-import {Box} from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
     page: {

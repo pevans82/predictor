@@ -7,6 +7,7 @@ export const onCreateRound = /* GraphQL */ `
       id
       number
       kickOff
+      ground
       status
       createdAt
       updatedAt
@@ -35,6 +36,7 @@ export const onUpdateRound = /* GraphQL */ `
       id
       number
       kickOff
+      ground
       status
       createdAt
       updatedAt
@@ -63,6 +65,7 @@ export const onDeleteRound = /* GraphQL */ `
       id
       number
       kickOff
+      ground
       status
       createdAt
       updatedAt
@@ -172,6 +175,31 @@ export const onCreateResult = /* GraphQL */ `
       awayScore
       createdAt
       updatedAt
+      round {
+        id
+        number
+        kickOff
+        ground
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
     }
   }
 `;
@@ -184,6 +212,31 @@ export const onUpdateResult = /* GraphQL */ `
       awayScore
       createdAt
       updatedAt
+      round {
+        id
+        number
+        kickOff
+        ground
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
     }
   }
 `;
@@ -196,6 +249,31 @@ export const onDeleteResult = /* GraphQL */ `
       awayScore
       createdAt
       updatedAt
+      round {
+        id
+        number
+        kickOff
+        ground
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
     }
   }
 `;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import {Grid} from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 import TeamCard from "./TeamCard";
 import Moment from 'react-moment';
 
@@ -29,7 +29,7 @@ export default function Fixture(props) {
             <div className={classes.head}>
                 <Grid container justify={"center"}>
                     <Grid item xs={5}>
-                        <Typography gutterBottom variant="h6" color={"secondary"}>{props.round.homeTeam.ground}</Typography>
+                        <Typography gutterBottom variant="h6" color={"secondary"}>{props.round.ground}</Typography>
                     </Grid>
                     <Grid item xs={2}/>
                     <Grid item xs={5}>

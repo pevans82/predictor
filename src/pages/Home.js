@@ -1,6 +1,8 @@
 import React from 'react';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
-import {Box, Grid, Typography} from "@material-ui/core";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import HowToCard from "../components/HowToCard"
 import plusIcon from '../images/plusIcon.png'
 import questionIcon from '../images/questionIcon.png'

@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import {Box} from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
     root: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
         margin: "auto",
     },
     media: {
-        height: 200,
+        height: 175,
         paddingTop: '25%',
     },
 });
@@ -28,7 +28,7 @@ export default function HowToCard(props) {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" color={"primary"}>
-                    <Box fontWeight="fontWeightBold" style={{minHeight:63}}>
+                    <Box fontWeight="fontWeightBold">
                         {props.title}
                     </Box>
                 </Typography>

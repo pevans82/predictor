@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import {AmplifySignOut} from "@aws-amplify/ui-react";
-import {Typography} from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import {ProfileRoute, SignInRoute} from "../pages/Pages";
 import {Link} from "react-router-dom";
 import {useUser} from "../hooks/useUser";

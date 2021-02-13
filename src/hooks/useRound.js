@@ -11,10 +11,10 @@ const fetchRoundQuery = `query fetchRound($status: RoundStatus) {
       homeTeam {
         name
         badgeSrc
-        ground
       }
       id
       kickOff
+      ground
       number
       status
     }

@@ -1,4 +1,4 @@
-import {TextField} from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 import React from "react";
 import * as PropTypes from "prop-types";
 
@@ -10,18 +10,20 @@ const ScoreField = ({
                     }) => {
     return (
         <TextField
-            id={id} label="score" type="number" variant="outlined"
+            id={id}
+            label="score"
+            variant="outlined"
             style={{
                 width: 100,
                 height: 100,
-                textAlign: "center"
+                textAlign: "center",
             }}
             inputProps={{
                 min: 0,
                 max: 999,
                 style: {
                     fontSize: 40,
-                    textAlign: 'center'
+                    textAlign: 'center',
                 }
             }}
             onInput={(event) => event.target.value = parseInt(!event.target.value ? "0" : event.target.value).toString().slice(0, 3)}
@@ -33,8 +35,7 @@ const ScoreField = ({
 
 ScoreField.propTypes = {
     id: PropTypes.string.isRequired,
-    value: PropTypes.any,
-    onChange: PropTypes.func.isRequired
+    value: PropTypes.any
 }
 
 export default ScoreField

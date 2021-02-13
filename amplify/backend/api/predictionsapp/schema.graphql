@@ -11,6 +11,7 @@ type Round @model
     homeTeam: Team! @connection(keyName: "RoundHomeTeam")
     awayTeam: Team! @connection(keyName: "RoundAwayTeam")
     kickOff: AWSDateTime!
+    ground: String
     status: RoundStatus!
 }
 
@@ -50,15 +51,15 @@ type Prediction @model
 }
 
 type Result @model
-@auth(rules: [
-    { allow: public, operations: [read] },
-    { allow: private, operations: [read] },
-    { allow: groups, groups:["admin"], operations: [create, update, delete, read] }
-])
-@key(name: "byRound", fields: ["roundId"], queryField: "resultsByRound")
+    @auth(rules: [
+        { allow: private, operations: [read] },
+        { allow: groups, groups:["admin"], operations: [create, update, delete, read] }
+    ])
+    @key(name: "byRound", fields: ["roundId"], queryField: "resultsByRound")
 {
     id: ID!
-    roundId: ID!
+    roundId: ID
+    round: Round! @connection(keyName: "ResultRound")
     homeScore: Int!
     awayScore: Int!
 }

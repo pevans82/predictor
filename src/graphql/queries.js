@@ -1,34 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getRound = /* GraphQL */ `
-  query GetRound($id: ID!) {
-    getRound(id: $id) {
-      id
-      number
-      kickOff
-      status
-      createdAt
-      updatedAt
-      homeTeam {
-        id
-        name
-        badgeSrc
-        ground
-        createdAt
-        updatedAt
-      }
-      awayTeam {
-        id
-        name
-        badgeSrc
-        ground
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
 export const listRounds = /* GraphQL */ `
   query ListRounds(
     $filter: ModelRoundFilterInput
@@ -40,6 +12,7 @@ export const listRounds = /* GraphQL */ `
         id
         number
         kickOff
+        ground
         status
         createdAt
         updatedAt
@@ -64,6 +37,35 @@ export const listRounds = /* GraphQL */ `
     }
   }
 `;
+export const getRound = /* GraphQL */ `
+  query GetRound($id: ID!) {
+    getRound(id: $id) {
+      id
+      number
+      kickOff
+      ground
+      status
+      createdAt
+      updatedAt
+      homeTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      awayTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
 export const roundByStatus = /* GraphQL */ `
   query RoundByStatus(
     $status: RoundStatus
@@ -83,6 +85,7 @@ export const roundByStatus = /* GraphQL */ `
         id
         number
         kickOff
+        ground
         status
         createdAt
         updatedAt
@@ -211,6 +214,31 @@ export const getResult = /* GraphQL */ `
       awayScore
       createdAt
       updatedAt
+      round {
+        id
+        number
+        kickOff
+        ground
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
     }
   }
 `;
@@ -228,6 +256,15 @@ export const listResults = /* GraphQL */ `
         awayScore
         createdAt
         updatedAt
+        round {
+          id
+          number
+          kickOff
+          ground
+          status
+          createdAt
+          updatedAt
+        }
       }
       nextToken
     }
@@ -255,6 +292,15 @@ export const resultsByRound = /* GraphQL */ `
         awayScore
         createdAt
         updatedAt
+        round {
+          id
+          number
+          kickOff
+          ground
+          status
+          createdAt
+          updatedAt
+        }
       }
       nextToken
     }

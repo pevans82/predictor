@@ -10,6 +10,7 @@ export const createRound = /* GraphQL */ `
       id
       number
       kickOff
+      ground
       status
       createdAt
       updatedAt
@@ -41,6 +42,7 @@ export const updateRound = /* GraphQL */ `
       id
       number
       kickOff
+      ground
       status
       createdAt
       updatedAt
@@ -72,6 +74,7 @@ export const deleteRound = /* GraphQL */ `
       id
       number
       kickOff
+      ground
       status
       createdAt
       updatedAt
@@ -202,6 +205,31 @@ export const createResult = /* GraphQL */ `
       awayScore
       createdAt
       updatedAt
+      round {
+        id
+        number
+        kickOff
+        ground
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
     }
   }
 `;
@@ -217,6 +245,31 @@ export const updateResult = /* GraphQL */ `
       awayScore
       createdAt
       updatedAt
+      round {
+        id
+        number
+        kickOff
+        ground
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
     }
   }
 `;
@@ -232,6 +285,31 @@ export const deleteResult = /* GraphQL */ `
       awayScore
       createdAt
       updatedAt
+      round {
+        id
+        number
+        kickOff
+        ground
+        status
+        createdAt
+        updatedAt
+        homeTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+        awayTeam {
+          id
+          name
+          badgeSrc
+          ground
+          createdAt
+          updatedAt
+        }
+      }
     }
   }
 `;
