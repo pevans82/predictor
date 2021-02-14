@@ -79,14 +79,12 @@ export default function Play() {
 
     async function savePrediction() {
         if (predictionId) {
-            console.log("updating prediction")
             await API.graphql({
                 query: mutations.updatePrediction,
                 variables: {input: {id: predictionId, homeScore: homeScore, awayScore: awayScore}},
                 authMode: 'AMAZON_COGNITO_USER_POOLS'
             });
         } else {
-            console.log("creating prediction")
             const pred = await API.graphql({
                 query: mutations.createPrediction,
                 variables: {input: {roundId: round.id, homeScore: homeScore, awayScore: awayScore}},
@@ -122,7 +120,9 @@ export default function Play() {
                     prediction</Typography>}
                 {round && <Fixture round={round}/>}
                 <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
-                    {round && <ScoreCard isActive={true} id={"play"} homeScore={homeScore} onHomeScoreChange={handleHomeScoreChange} awayScore={awayScore} onAwayScoreChange={handleAwayScoreChange}/>}
+                    {round &&
+                    <ScoreCard isActive={round.status === "active"} id={"play"} homeScore={homeScore} onHomeScoreChange={handleHomeScoreChange}
+                               awayScore={awayScore} onAwayScoreChange={handleAwayScoreChange}/>}
                     {round && round.status === "active" &&
                     <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained" type={"submit"} color="primary">Submit</Button>
                     }

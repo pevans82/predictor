@@ -38,7 +38,6 @@ type Team @model
 type Prediction @model
     @auth(rules: [
         { allow: owner },
-        { allow: groups, groups:["admin"], operations: [read] }
         { allow: private, provider: iam, operations: [read, update] }
     ])
     @key(name: "byRound", fields: ["roundId"], queryField: "predictionsByRound")
