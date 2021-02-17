@@ -14,7 +14,7 @@ import {KeyboardArrowLeft, KeyboardArrowRight} from "@material-ui/icons";
 import StaticScoreField from "../components/StaticScoreField";
 import {useUser} from "../hooks/useUser";
 import Link from "@material-ui/core/Link";
-import {onCreateResult, onUpdateResult} from "../graphql/subscriptions";
+import {onCreateResult, onUpdatePrediction, onUpdateResult} from "../graphql/subscriptions";
 
 export const PlayRoute = "/play/";
 
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const fetchResultsQuery = `query fetchResultsWithRounds {
+const fetchResultsQuery = `query fetchResults {
   listResults {
     items {
       id
@@ -74,7 +74,7 @@ export default function Results() {
     const [prediction, setPrediction] = useState(noPrediction);
 
     useEffect(() => {
-        fetchResults();
+        fetchResults(true);
     }, []);
 
     useEffect(() => {
@@ -82,7 +82,7 @@ export default function Results() {
             setActiveStep(results.length - 1);
             fetchPrediction(results.length - 1);
         }
-    }, [user, results]);
+    }, [user]);
 
     useEffect(() => {
         const updatedListener = assignUpdatedListener();
@@ -93,6 +93,27 @@ export default function Results() {
             createdListener.unsubscribe();
         };
     }, [results]);
+
+    useEffect(() => {
+        if (user) {
+            const predictionUpdatedListener = assignPredictionListener();
+
+            return function cleanup() {
+                predictionUpdatedListener.unsubscribe();
+            };
+        }
+    }, [prediction]);
+
+    function assignPredictionListener() {
+        return API.graphql(graphqlOperation(onUpdatePrediction, {owner: user.username})).subscribe({
+            next: (updated) => {
+                const updatedResult = updated.value.data.onUpdatePrediction;
+                if (updatedResult.id === prediction.id) {
+                    setPrediction(updated.value.data.onUpdatePrediction);
+                }
+            }
+        });
+    }
 
     function assignUpdatedListener() {
         return API.graphql(graphqlOperation(onUpdateResult)).subscribe({
@@ -109,19 +130,21 @@ export default function Results() {
     function assignCreatedListener() {
         return API.graphql(graphqlOperation(onCreateResult)).subscribe({
             next: (created) => {
-                setResults(results.concat(created.value.data.onCreateResult));
-                setMaxSteps(maxSteps + 1);
+                fetchResults(false);
             }
         });
     }
 
-    async function fetchResults() {
+    async function fetchResults(resetActiveStep) {
         const result = await API.graphql({
             query: fetchResultsQuery,
         });
         if (result.data.listResults.items.length > 0) {
-            setResults(result.data.listResults.items);
+            setResults(result.data.listResults.items.sort((a, b) => a.round.number - b.round.number));
             setMaxSteps(result.data.listResults.items.length);
+            if (resetActiveStep) {
+                setActiveStep(result.data.listResults.items.length - 1);
+            }
         }
     }
 
@@ -153,7 +176,7 @@ export default function Results() {
     return (
         <AmplifyAuthenticator>
             <Box className={classes.root}>
-                {maxSteps == 0 && <div>
+                {maxSteps === 0 && <div>
                     <Typography className={classes.title} variant={"h2"} color={"primary"}>RESULTS</Typography>
                     <Typography className={classes.title} variant={"h4"} color={"primary"}>Hold fire eager beaver !</Typography>
                     <Typography className={classes.title} variant={"body1"} color={"primary"}>We've not even played Round 1 yet! Don't forget to have
@@ -167,10 +190,6 @@ export default function Results() {
                     <Typography className={classes.title} variant={"h2"} color={"primary"}>ROUND {results[activeStep].round.number}</Typography>
                     <Typography className={classes.title} variant={"h4"} color={"primary"}>Points Scored</Typography>
                     <StaticScoreField id={"pts"} value={prediction.points}/>
-                    {results[activeStep].round.status !== 'complete' &&
-                    <Typography className={classes.title} variant={"body1"} color={"primary"}>* Game still in play or awaiting
-                        confirmation</Typography>
-                    }
                 </div>
                 }
                 {maxSteps > 1 &&
@@ -197,7 +216,10 @@ export default function Results() {
                         {results[activeStep].round.status === 'complete' ?
                             <Typography className={classes.title} variant={"h4"} color={"primary"}>Result</Typography>
                             :
-                            <Typography className={classes.title} variant={"h4"} color={"primary"}>Current Score</Typography>
+                            <div>
+                                <Typography className={classes.title} variant={"body1"} color={"primary"}>* Game still in play or confirming final score</Typography>
+                                <Typography className={classes.title} variant={"h4"} color={"primary"}>Current Score</Typography>
+                            </div>
                         }
                         <ScoreCard id={"results"} homeScore={results[activeStep].homeScore} awayScore={results[activeStep].awayScore}/>
                         <Typography className={classes.title} variant={"h4"} color={"primary"}>Prediction</Typography>

@@ -10,9 +10,15 @@ module.exports = {
     }`,
     mutation: `mutation updatePrediction($id: ID!, $points: Int!) {
       updatePrediction(input: {id: $id, points: $points}) {
-        id
-        points
+          id
+          roundId
+          homeScore
+          awayScore
+          points
+          createdAt
+          updatedAt
+          owner
+        }
       }
-    }
     `
 }

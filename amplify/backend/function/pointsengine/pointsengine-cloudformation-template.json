@@ -90,7 +90,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-          "S3Key": "amplify-builds/pointsengine-35422b6a6d437879624a-build.zip"
+          "S3Key": "amplify-builds/pointsengine-7a456a76424a7a484943-build.zip"
         }
       }
     },
