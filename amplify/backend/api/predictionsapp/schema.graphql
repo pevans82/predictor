@@ -54,17 +54,35 @@ type Result @model
         { allow: private, operations: [read] },
         { allow: groups, groups:["admin"], operations: [create, update, delete, read] }
     ])
-    @key(name: "byRound", fields: ["roundId"], queryField: "resultsByRound")
 {
     id: ID!
-    roundId: ID
     round: Round! @connection(keyName: "ResultRound")
     homeScore: Int!
     awayScore: Int!
 }
 
-#type Leaderboard @model {
-#  id: ID!
-#  username: String!
-#  points: Int
-#}
+type RoundLeaderboard @model
+    @auth(rules: [
+        { allow: private, operations: [read] }
+        { allow: private, provider: iam, operations: [read, create, update, delete] }
+    ])
+    @key(name: "byRoundPoints", fields: [ "roundId", "points" ], queryField: "roundLeaderboardByPoints")
+{
+    id: ID!
+    roundId: ID!
+    username: String!
+    points: Int!
+}
+
+type SeasonLeaderboard @model
+    @auth(rules: [
+        { allow: private, operations: [read] }
+        { allow: private, provider: iam, operations: [read, create, update] }
+    ])
+    @key(name: "bySeasonPoints", fields: [ "season", "points" ], queryField: "seasonLeaderboardByPoints")
+{
+    id: ID!
+    season: Int!
+    username: String!
+    points: Int!
+}

@@ -21,6 +21,12 @@
     "apipredictionsappGraphQLAPIKeyOutput": {
       "Type": "String",
       "Default": "apipredictionsappGraphQLAPIKeyOutput"
+    },
+    "deploymentBucketName": {
+      "Type": "String"
+    },
+    "s3Key": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -89,8 +95,12 @@
         "Layers": [],
         "Timeout": "25",
         "Code": {
-          "S3Bucket": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-          "S3Key": "amplify-builds/pointsengine-7a456a76424a7a484943-build.zip"
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": {
+            "Ref": "s3Key"
+          }
         }
       }
     },

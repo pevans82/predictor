@@ -1,27 +1,7 @@
 import {useEffect, useState} from 'react';
 import {API, graphqlOperation} from "@aws-amplify/api";
 import {onUpdateRound} from "../graphql/subscriptions";
-
-const fetchRoundQuery = `query fetchRound($status: RoundStatus) {
-  roundByStatus(status: $status, limit: 1) {
-    items {
-      awayTeam {
-        name
-        badgeSrc
-      }
-      homeTeam {
-        name
-        badgeSrc
-      }
-      id
-      kickOff
-      ground
-      number
-      status
-    }
-  }
-}
-`
+import {fetchRoundByStatusQuery} from "../Queries";
 
 export function useRound() {
     const [round, setRound] = useState()
@@ -40,8 +20,8 @@ export function useRound() {
 
     async function fetchRound(status) {
         const result = await API.graphql({
-            query: fetchRoundQuery,
-            variables: {"status": status},
+            query: fetchRoundByStatusQuery,
+            variables: {status: status},
             authMode: 'API_KEY'
         });
 

@@ -74,7 +74,7 @@ export default function Home() {
                     <Typography className={classes.title} variant={"h2"} color={"secondary"}>SUPER LEIGH!</Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
                         Leigh Centurions are back where they belong in the top flight of Rugby League. To celebrate we've created this new game
-                        and dedicated it to all the Leythers out there.
+                        for all the Leythers out there.
                     </Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
                         It's simple, just predict the outcome of Leigh Centurions next fixture! The closer you are to the result, the more points

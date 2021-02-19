@@ -170,7 +170,6 @@ export const onCreateResult = /* GraphQL */ `
   subscription OnCreateResult {
     onCreateResult {
       id
-      roundId
       homeScore
       awayScore
       createdAt
@@ -207,7 +206,6 @@ export const onUpdateResult = /* GraphQL */ `
   subscription OnUpdateResult {
     onUpdateResult {
       id
-      roundId
       homeScore
       awayScore
       createdAt
@@ -244,7 +242,6 @@ export const onDeleteResult = /* GraphQL */ `
   subscription OnDeleteResult {
     onDeleteResult {
       id
-      roundId
       homeScore
       awayScore
       createdAt
@@ -274,6 +271,78 @@ export const onDeleteResult = /* GraphQL */ `
           updatedAt
         }
       }
+    }
+  }
+`;
+export const onCreateRoundLeaderboard = /* GraphQL */ `
+  subscription OnCreateRoundLeaderboard {
+    onCreateRoundLeaderboard {
+      id
+      roundId
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateRoundLeaderboard = /* GraphQL */ `
+  subscription OnUpdateRoundLeaderboard {
+    onUpdateRoundLeaderboard {
+      id
+      roundId
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteRoundLeaderboard = /* GraphQL */ `
+  subscription OnDeleteRoundLeaderboard {
+    onDeleteRoundLeaderboard {
+      id
+      roundId
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateSeasonLeaderboard = /* GraphQL */ `
+  subscription OnCreateSeasonLeaderboard {
+    onCreateSeasonLeaderboard {
+      id
+      season
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateSeasonLeaderboard = /* GraphQL */ `
+  subscription OnUpdateSeasonLeaderboard {
+    onUpdateSeasonLeaderboard {
+      id
+      season
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteSeasonLeaderboard = /* GraphQL */ `
+  subscription OnDeleteSeasonLeaderboard {
+    onDeleteSeasonLeaderboard {
+      id
+      season
+      username
+      points
+      createdAt
+      updatedAt
     }
   }
 `;

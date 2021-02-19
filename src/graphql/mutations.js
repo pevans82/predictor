@@ -1,6 +1,21 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const deleteSeasonLeaderboard = /* GraphQL */ `
+  mutation DeleteSeasonLeaderboard(
+    $input: DeleteSeasonLeaderboardInput!
+    $condition: ModelSeasonLeaderboardConditionInput
+  ) {
+    deleteSeasonLeaderboard(input: $input, condition: $condition) {
+      id
+      season
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createRound = /* GraphQL */ `
   mutation CreateRound(
     $input: CreateRoundInput!
@@ -200,7 +215,6 @@ export const createResult = /* GraphQL */ `
   ) {
     createResult(input: $input, condition: $condition) {
       id
-      roundId
       homeScore
       awayScore
       createdAt
@@ -240,7 +254,6 @@ export const updateResult = /* GraphQL */ `
   ) {
     updateResult(input: $input, condition: $condition) {
       id
-      roundId
       homeScore
       awayScore
       createdAt
@@ -280,7 +293,6 @@ export const deleteResult = /* GraphQL */ `
   ) {
     deleteResult(input: $input, condition: $condition) {
       id
-      roundId
       homeScore
       awayScore
       createdAt
@@ -310,6 +322,81 @@ export const deleteResult = /* GraphQL */ `
           updatedAt
         }
       }
+    }
+  }
+`;
+export const createRoundLeaderboard = /* GraphQL */ `
+  mutation CreateRoundLeaderboard(
+    $input: CreateRoundLeaderboardInput!
+    $condition: ModelRoundLeaderboardConditionInput
+  ) {
+    createRoundLeaderboard(input: $input, condition: $condition) {
+      id
+      roundId
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateRoundLeaderboard = /* GraphQL */ `
+  mutation UpdateRoundLeaderboard(
+    $input: UpdateRoundLeaderboardInput!
+    $condition: ModelRoundLeaderboardConditionInput
+  ) {
+    updateRoundLeaderboard(input: $input, condition: $condition) {
+      id
+      roundId
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteRoundLeaderboard = /* GraphQL */ `
+  mutation DeleteRoundLeaderboard(
+    $input: DeleteRoundLeaderboardInput!
+    $condition: ModelRoundLeaderboardConditionInput
+  ) {
+    deleteRoundLeaderboard(input: $input, condition: $condition) {
+      id
+      roundId
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createSeasonLeaderboard = /* GraphQL */ `
+  mutation CreateSeasonLeaderboard(
+    $input: CreateSeasonLeaderboardInput!
+    $condition: ModelSeasonLeaderboardConditionInput
+  ) {
+    createSeasonLeaderboard(input: $input, condition: $condition) {
+      id
+      season
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateSeasonLeaderboard = /* GraphQL */ `
+  mutation UpdateSeasonLeaderboard(
+    $input: UpdateSeasonLeaderboardInput!
+    $condition: ModelSeasonLeaderboardConditionInput
+  ) {
+    updateSeasonLeaderboard(input: $input, condition: $condition) {
+      id
+      season
+      username
+      points
+      createdAt
+      updatedAt
     }
   }
 `;

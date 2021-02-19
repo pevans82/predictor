@@ -209,7 +209,6 @@ export const getResult = /* GraphQL */ `
   query GetResult($id: ID!) {
     getResult(id: $id) {
       id
-      roundId
       homeScore
       awayScore
       createdAt
@@ -251,7 +250,6 @@ export const listResults = /* GraphQL */ `
     listResults(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        roundId
         homeScore
         awayScore
         createdAt
@@ -270,16 +268,53 @@ export const listResults = /* GraphQL */ `
     }
   }
 `;
-export const resultsByRound = /* GraphQL */ `
-  query ResultsByRound(
-    $roundId: ID
-    $sortDirection: ModelSortDirection
-    $filter: ModelResultFilterInput
+export const getRoundLeaderboard = /* GraphQL */ `
+  query GetRoundLeaderboard($id: ID!) {
+    getRoundLeaderboard(id: $id) {
+      id
+      roundId
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listRoundLeaderboards = /* GraphQL */ `
+  query ListRoundLeaderboards(
+    $filter: ModelRoundLeaderboardFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    resultsByRound(
+    listRoundLeaderboards(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        roundId
+        username
+        points
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const roundLeaderboardByPoints = /* GraphQL */ `
+  query RoundLeaderboardByPoints(
+    $roundId: ID
+    $points: ModelIntKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelRoundLeaderboardFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    roundLeaderboardByPoints(
       roundId: $roundId
+      points: $points
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -288,19 +323,74 @@ export const resultsByRound = /* GraphQL */ `
       items {
         id
         roundId
-        homeScore
-        awayScore
+        username
+        points
         createdAt
         updatedAt
-        round {
-          id
-          number
-          kickOff
-          ground
-          status
-          createdAt
-          updatedAt
-        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getSeasonLeaderboard = /* GraphQL */ `
+  query GetSeasonLeaderboard($id: ID!) {
+    getSeasonLeaderboard(id: $id) {
+      id
+      season
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listSeasonLeaderboards = /* GraphQL */ `
+  query ListSeasonLeaderboards(
+    $filter: ModelSeasonLeaderboardFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSeasonLeaderboards(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        season
+        username
+        points
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const seasonLeaderboardByPoints = /* GraphQL */ `
+  query SeasonLeaderboardByPoints(
+    $season: Int
+    $points: ModelIntKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelSeasonLeaderboardFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    seasonLeaderboardByPoints(
+      season: $season
+      points: $points
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        season
+        username
+        points
+        createdAt
+        updatedAt
       }
       nextToken
     }
