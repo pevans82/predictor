@@ -4,10 +4,6 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import HowToCard from "../components/HowToCard"
-import plusIcon from '../images/plusIcon.png'
-import questionIcon from '../images/questionIcon.png'
-import swordIcon from '../images/swordIcon.png'
-import starIcon from '../images/starIcon.png'
 import centurions from "../images/centurions.jpg";
 import Fixture from "../components/Fixture";
 import {Link} from "react-router-dom";
@@ -89,19 +85,19 @@ export default function Home() {
                 <Typography className={classes.title} variant={"h2"} color={"primary"}>HOW TO PLAY?</Typography>
                 <Grid container justify={"center"}>
                     <Grid item xs={12} sm={6} md={3}>
-                        <HowToCard title={"SIGN UP"} icon={plusIcon}
+                        <HowToCard title={"SIGN UP"} icon={"account"}
                                    description={"Register to play and pit your wits against others to be crowned Leyther's greatest predictor."}/>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                        <HowToCard title={"PREDICT THE SCORE"} icon={questionIcon}
+                        <HowToCard title={"PREDICT THE SCORE"} icon={"question"}
                                    description={"Tell us what you think the score of Leigh Centurions' next fixture will be."}/>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                        <HowToCard title={"SUPPORT THE CENTURIONS!"} icon={swordIcon}
+                        <HowToCard title={"SUPPORT THE CENTURIONS!"} icon={"rugby"}
                                    description={"Cheer the lads on and enjoy the game ...no matter what the outcome."}/>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                        <HowToCard title={"CHECK THE LEADERBOARD"} icon={starIcon}
+                        <HowToCard title={"CHECK THE LEADERBOARD"} icon={"star"}
                                    description={"After the results are in, we'll score your prediction and update the leaderboard."}/>
                     </Grid>
                 </Grid>
