@@ -16,7 +16,14 @@
         "predictorf4b9a321": {}
       },
       "function": {
-        "pointsengine": {}
+        "pointsengine": {
+          "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
+          "s3Key": "amplify-builds/pointsengine-7a456a76424a7a484943-build.zip"
+        },
+        "leaderboardupdater": {
+          "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
+          "s3Key": "amplify-builds/leaderboardupdater-69786a36674f4c4f662f-build.zip"
+        }
       }
     }
   }
