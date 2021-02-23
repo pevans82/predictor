@@ -22,7 +22,7 @@
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-          "s3Key": "amplify-builds/leaderboardupdater-69786a36674f4c4f662f-build.zip"
+          "s3Key": "amplify-builds/leaderboardupdater-6d5831634f4163546268-build.zip"
         }
       }
     }

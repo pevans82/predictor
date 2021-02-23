@@ -44,6 +44,8 @@ export function useRound() {
         return API.graphql(graphqlOperation(onUpdateRound)).subscribe({
             next: (updated) => {
                 const updatedRound = updated.value.data.onUpdateRound;
+                console.log("current round id", round.id);
+                console.log("updated round id", updatedRound.id);
                 if (round.id === updatedRound.id) {
                     setRound(updatedRound);
                 }
