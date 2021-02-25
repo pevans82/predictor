@@ -4,7 +4,7 @@ type Round @model
         { allow: private, operations: [read] },
         { allow: groups, groups:["admin"], operations: [create, update, delete, read] }
     ])
-    @key(name: "byStatus", fields: ["status"], queryField: "roundByStatus")
+    @key(name: "byStatus", fields: ["status", "kickOff"], queryField: "roundByStatus")
 {
     id: ID!
     number: Int

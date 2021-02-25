@@ -57,6 +57,12 @@ export default function Results() {
     }, [user]);
 
     useEffect(() => {
+        if (results) {
+            fetchPrediction(activeRound);
+        }
+    }, [results, activeRound]);
+
+    useEffect(() => {
         const updatedListener = assignUpdatedListener();
         const createdListener = assignCreatedListener();
 
@@ -112,9 +118,10 @@ export default function Results() {
 
         if (result.data.listResults.items.length > 0) {
             setResults(result.data.listResults.items.sort((a, b) => a.round.number - b.round.number));
-            setMaxRounds(result.data.listResults.items.length);
+            const roundsCount = result.data.listResults.items.length
+            setMaxRounds(roundsCount);
             if (resetActiveRound) {
-                setActiveRound(result.data.listResults.items.length - 1);
+                setActiveRound(roundsCount - 1);
             }
         } else {
             setMaxRounds(0);
@@ -137,13 +144,11 @@ export default function Results() {
     const handlePrevious = () => {
         setActiveRound((prevActiveRound) => prevActiveRound - 1);
         setPrediction(noPrediction);
-        fetchPrediction(activeRound - 1);
     };
 
     const handleNext = () => {
         setActiveRound((prevActiveRound) => prevActiveRound + 1);
         setPrediction(noPrediction);
-        fetchPrediction(activeRound + 1);
     };
 
     return (
@@ -164,8 +169,8 @@ export default function Results() {
                     <StaticScoreField id={"pts"} value={prediction.points}/>
                 </div>
                 }
-                {maxRounds > 1 &&
-                <ProgressStepper onHandleNext={handleNext} onHandlePrevious={handlePrevious} maxRounds={maxRounds} activeRound={activeRound}/>}
+                {maxRounds > 1 && <ProgressStepper
+                    onHandleNext={handleNext} onHandlePrevious={handlePrevious} maxSteps={maxRounds} activeStep={activeRound}/>}
                 <Paper square elevation={0} className={classes.header}>
                     {results &&
                     <div>

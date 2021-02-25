@@ -18,10 +18,9 @@ module.exports = {
       }
     }`,
     pendingRoundsQuery: `query roundByStatus {
-      roundByStatus(sortDirection: ASC, status: pending) {
+      roundByStatus(sortDirection: ASC, limit: 1, status: pending) {
         items {
           id
-          kickOff
         }
       }
     }`,
@@ -47,12 +46,23 @@ module.exports = {
       updateRound(input: {id: $id, status: active, number: $number}) {
         id
         awayTeam {
+          badgeSrc
+          createdAt
+          ground
+          name
           id
+          updatedAt
         }
         createdAt
         ground
         homeTeam {
           id
+          badgeSrc
+          createdAt
+          ground
+          name
+          id
+          updatedAt
         }
         kickOff
         number

@@ -114,6 +114,7 @@ export default function Play() {
     return (
         <AmplifyAuthenticator>
             <Box className={classes.root}>
+                {!round && <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND COMING SOON</Typography>}
                 {round && <Typography className={classes.title} variant={"h2"} color={"primary"}>ROUND {round.number}</Typography>}
                 {round && round.status === "active" &&
                 <Typography style={{textAlign: "left", margin: theme.spacing(1)}} gutterBottom variant="h5" color={"primary"}>Enter your

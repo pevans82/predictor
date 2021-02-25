@@ -17,7 +17,7 @@ const createRoundForUser = require('./query.js').createRoundMutation;
 const fetchSeasonForUser = require('./query.js').seasonUserQuery;
 const createSeasonForUser = require('./query.js').createSeasonMutation;
 const updateSeasonForUser = require('./query.js').updateSeasonMutation;
-const fetchPendingRounds = require('./query.js').pendingRoundsQuery;
+const fetchNextRound = require('./query.js').pendingRoundsQuery;
 const updateRoundToActive = require('./query.js').activateRoundMutation;
 
 exports.handler = async (event) => {
@@ -39,15 +39,12 @@ exports.handler = async (event) => {
       await Promise.all(predictions.items.map(prediction => applySeasonPoints(prediction)));
 
       const rounds = await callGraphqlApi(
-          fetchPendingRounds,
+          fetchNextRound,
           "roundByStatus",
           null);
 
       if (rounds.items.length > 0) {
-        console.log(rounds.items);
-        console.log(rounds.items.sort((a, b) => a.kickOff - b.kickOff));
-        console.log(rounds.items.sort((a, b) => a.kickOff - b.kickOff)[0]);
-        // await activateRound(rounds.items.sort((a, b) => a.kickOff - b.kickOff)[0].id, event.Records[0].dynamodb.NewImage.number.N +1);
+        await activateRound(rounds.items[0].id, Number(event.Records[0].dynamodb.NewImage.number.N) +1);
       }
 
       return {

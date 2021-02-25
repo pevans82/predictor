@@ -96,9 +96,7 @@ export default function LeaderBoard() {
     }, [rounds])
 
     useEffect(() => {
-        if (activeRound) {
-            fetchRoundLeaderboard(activeRound);
-        }
+        fetchRoundLeaderboard(activeRound);
     }, [activeRound])
 
     async function fetchCompleteRounds() {
@@ -106,7 +104,7 @@ export default function LeaderBoard() {
             const result = await API.graphql(graphqlOperation(fetchCompleteRoundsQuery));
             const rounds = result.data.roundByStatus.items;
             if (rounds.length > 0) {
-                setRounds(rounds.sort((a, b) => a.number - b.number));
+                setRounds(rounds);
                 setMaxRounds(rounds.length);
                 setActiveRound(rounds.length - 1);
             }
@@ -123,7 +121,7 @@ export default function LeaderBoard() {
                     });
                 setSeasonRankings(rankings);
                 const points = rankings.filter(r => r.player === user.username).map(r => r.points);
-                setSeasonPoints(points ? points : 0);
+                setSeasonPoints(points.length > 0 ? points : 0);
             }
         }
     }
@@ -138,7 +136,7 @@ export default function LeaderBoard() {
                     });
                 setRoundRankings(rankings);
                 const points = rankings.filter(r => r.player === user.username).map(r => r.points);
-                setRoundPoints(points ? points : 0);
+                setRoundPoints(points.length > 0 ? points : 0);
             } else {
                 setRoundRankings([]);
                 setRoundPoints(0);
@@ -185,7 +183,7 @@ export default function LeaderBoard() {
                         <ProgressStepper onHandleNext={handleNext} onHandlePrevious={handlePrevious} maxSteps={maxRounds} activeStep={activeRound}/>}
                         {rounds &&
                         <Typography className={classes.title} variant={"h4"} color={"primary"}>ROUND {rounds[activeRound].number}</Typography>}
-                        {roundRankings && <PointsTable rows={roundRankings} username={user.username}/>}
+                        {roundRankings && user && <PointsTable rows={roundRankings} username={user.username}/>}
                     </TabPanel>
                     <TabPanel component={"div"} value={tabValue} index={1} dir={theme.direction}>
                         {user && <PointsTable rows={seasonRankings} username={user.username}/>}

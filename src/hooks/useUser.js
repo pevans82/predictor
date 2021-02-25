@@ -8,9 +8,9 @@ export function useUser() {
         let updateUser = async authState => {
             try {
                 let user = await Auth.currentAuthenticatedUser()
-                setUser(user)
+                setUser(user);
             } catch {
-                setUser(null)
+                setUser(null);
             }
         }
         Hub.listen('auth', updateUser) // listen for login/signup events

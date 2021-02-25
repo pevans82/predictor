@@ -69,6 +69,7 @@ export const getRound = /* GraphQL */ `
 export const roundByStatus = /* GraphQL */ `
   query RoundByStatus(
     $status: RoundStatus
+    $kickOff: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelRoundFilterInput
     $limit: Int
@@ -76,6 +77,7 @@ export const roundByStatus = /* GraphQL */ `
   ) {
     roundByStatus(
       status: $status
+      kickOff: $kickOff
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
