@@ -62,7 +62,7 @@ exports.handler = async (event) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify("round not closed")
+    body: JSON.stringify("round not modified from closed to complete")
   };
 
 };
@@ -96,7 +96,6 @@ async function applySeasonPoints(prediction) {
 }
 
 async function activateRound(roundId, number) {
-  console.log("activating round: ", roundId)
   return await callGraphqlApi(updateRoundToActive, "updateRound", {
         id: roundId,
         number: number

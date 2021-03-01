@@ -22,7 +22,11 @@
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-          "s3Key": "amplify-builds/leaderboardupdater-3454775a6c34306b4d38-build.zip"
+          "s3Key": "amplify-builds/leaderboardupdater-69546e754c416c466e55-build.zip"
+        },
+        "roundcloser": {
+          "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
+          "s3Key": "amplify-builds/roundcloser-71595636507535523343-build.zip"
         }
       }
     }

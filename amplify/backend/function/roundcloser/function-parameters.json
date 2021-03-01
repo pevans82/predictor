@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "api": {
+      "predictionsapp": [
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

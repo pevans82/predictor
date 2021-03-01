@@ -74,7 +74,7 @@ export default function Home() {
                     </Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
                         It's simple, just predict the outcome of Leigh Centurions next fixture! The closer you are to the result, the more points
-                        you'll score. Successfully predict the winner to earn bonus points.
+                        you'll score. Earn bonus points for predicting the winner and getting it spot on.
                     </Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
                         Please play responsibly and remember, it's just a bit of fun!

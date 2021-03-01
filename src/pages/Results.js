@@ -14,6 +14,7 @@ import Link from "@material-ui/core/Link";
 import {onCreateResult, onUpdatePrediction, onUpdateResult} from "../graphql/subscriptions";
 import ProgressStepper from "../components/ProgressStepper";
 import {fetchResultsQuery} from "../Queries";
+import PointsBreakdown from "../components/PointsBreakdown";
 
 export const PlayRoute = "/play/";
 
@@ -44,6 +45,8 @@ export default function Results() {
 
     const noPrediction = {homeScore: "-", awayScore: "-", points: "0"};
     const [prediction, setPrediction] = useState(noPrediction);
+
+    const [pointsBreakdown, setPointsBreakdown] = useState();
 
     useEffect(() => {
         fetchResults(true);
@@ -134,10 +137,24 @@ export default function Results() {
             variables: {roundId: results[resultIndex].round.id},
             authMode: 'AMAZON_COGNITO_USER_POOLS'
         });
+
         if (pred.data.predictionsByRound.items.length < 1) {
-            setPrediction(noPrediction)
+            setPrediction(noPrediction);
+            setPointsBreakdown(null);
         } else {
-            setPrediction(pred.data.predictionsByRound.items[0])
+            setPrediction(pred.data.predictionsByRound.items[0]);
+
+            const predictionDiff = pred.data.predictionsByRound.items[0].homeScore - pred.data.predictionsByRound.items[0].awayScore;
+            const resultDiff = results[activeRound].homeScore - results[activeRound].awayScore;
+
+            const score = pred.data.predictionsByRound.items[0].homeScore === results[activeRound].homeScore
+            && pred.data.predictionsByRound.items[0].awayScore === results[activeRound].awayScore ? 5 : 0;
+            const result = ((resultDiff < 0 && predictionDiff < 0) || (resultDiff === 0 && predictionDiff === 0) || (resultDiff > 0 && predictionDiff > 0)) ? 5 : 0;
+
+            const diff = Math.abs(predictionDiff - resultDiff);
+            const diffPoints = Math.floor(Math.max(0, 10 - (diff / 2)));
+
+            setPointsBreakdown({score: score, result: result, difference: diff, diffPoints: diffPoints, total: score + result + diffPoints});
         }
     }
 
@@ -187,6 +204,7 @@ export default function Results() {
                         <ScoreCard id={"results"} homeScore={results[activeRound].homeScore} awayScore={results[activeRound].awayScore}/>
                         <Typography className={classes.title} variant={"h4"} color={"primary"}>Prediction</Typography>
                         <ScoreCard id={"predictions"} homeScore={prediction.homeScore} awayScore={prediction.awayScore}/>
+                        {pointsBreakdown && <PointsBreakdown scorePoints={pointsBreakdown.score} resultPoints={pointsBreakdown.result} difference={pointsBreakdown.difference} diffPoints={pointsBreakdown.diffPoints} total={pointsBreakdown.total} />}
                     </div>
                     }
                 </Paper>
