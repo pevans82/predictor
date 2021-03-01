@@ -76,8 +76,8 @@ export default function LeaderBoard() {
 
     const [activeRound, setActiveRound] = useState(0);
     const [maxRounds, setMaxRounds] = useState(0);
-    const [seasonPoints, setSeasonPoints] = useState(0)
-    const [roundPoints, setRoundPoints] = useState(0)
+    const [seasonPoints, setSeasonPoints] = useState(0);
+    const [roundPoints, setRoundPoints] = useState(0);
 
     const [rounds, setRounds] = useState();
     const [seasonRankings, setSeasonRankings] = useState([]);
@@ -117,7 +117,7 @@ export default function LeaderBoard() {
             if (result.data.seasonLeaderboardByPoints.items.length > 0) {
                 const rankings =
                     result.data.seasonLeaderboardByPoints.items.map((r, i) => {
-                        return {key: i, position: i + 1, player: r.username, points: r.points}
+                        return {key: i, position: i + 1, player: r.username, points: r.points};
                     });
                 setSeasonRankings(rankings);
                 const points = rankings.filter(r => r.player === user.username).map(r => r.points);
@@ -132,7 +132,7 @@ export default function LeaderBoard() {
             if (result.data.roundLeaderboardByPoints.items.length > 0) {
                 const rankings =
                     result.data.roundLeaderboardByPoints.items.map((r, i) => {
-                        return {key: i, position: i + 1, player: r.username, points: r.points}
+                        return {key: i, position: i + 1, player: r.username, points: r.points};
                     });
                 setRoundRankings(rankings);
                 const points = rankings.filter(r => r.player === user.username).map(r => r.points);
@@ -160,7 +160,7 @@ export default function LeaderBoard() {
         <AmplifyAuthenticator>
             <Box className={classes.root}>
                 <div style={{marginBottom: theme.spacing(3)}}>
-                    <Typography className={classes.title} variant={"h2"} color={"primary"}>LEADERBOARD</Typography>
+                    <Typography className={classes.title} variant={"h2"} color={"primary"}>Leaderboards</Typography>
                     <Typography className={classes.title} variant={"h4"} color={"primary"}>Points</Typography>
                     <StaticScoreField value={tabValue === 1 ? seasonPoints : roundPoints}/>
                 </div>
@@ -182,7 +182,7 @@ export default function LeaderBoard() {
                         {maxRounds > 1 &&
                         <ProgressStepper onHandleNext={handleNext} onHandlePrevious={handlePrevious} maxSteps={maxRounds} activeStep={activeRound}/>}
                         {rounds &&
-                        <Typography className={classes.title} variant={"h4"} color={"primary"}>ROUND {rounds[activeRound].number}</Typography>}
+                        <Typography className={classes.title} variant={"h4"} color={"primary"}>Round {rounds[activeRound].number}</Typography>}
                         {roundRankings && user && <PointsTable rows={roundRankings} username={user.username}/>}
                     </TabPanel>
                     <TabPanel component={"div"} value={tabValue} index={1} dir={theme.direction}>

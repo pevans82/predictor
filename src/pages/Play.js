@@ -39,7 +39,7 @@ export default function Play() {
     const user = useUser();
     const round = useRound();
 
-    const [predictionId, setPredictionId] = useState(0)
+    const [predictionId, setPredictionId] = useState(0);
     const [homeScore, setHomeScore] = useState(0);
     const [awayScore, setAwayScore] = useState(0);
 
@@ -47,7 +47,7 @@ export default function Play() {
 
     useEffect(() => {
         if (!user) {
-            setPredictionId(0)
+            setPredictionId(0);
         }
         fetchPrediction();
     }, [user, round]);
@@ -60,13 +60,13 @@ export default function Play() {
                 authMode: 'AMAZON_COGNITO_USER_POOLS'
             });
             if (pred.data.predictionsByRound.items.length < 1) {
-                setPredictionId(0)
-                setHomeScore(0)
-                setAwayScore(0)
+                setPredictionId(0);
+                setHomeScore(0);
+                setAwayScore(0);
             } else {
-                setPredictionId(pred.data.predictionsByRound.items[0].id)
-                setHomeScore(pred.data.predictionsByRound.items[0].homeScore)
-                setAwayScore(pred.data.predictionsByRound.items[0].awayScore)
+                setPredictionId(pred.data.predictionsByRound.items[0].id);
+                setHomeScore(pred.data.predictionsByRound.items[0].homeScore);
+                setAwayScore(pred.data.predictionsByRound.items[0].awayScore);
             }
         }
     }
@@ -90,17 +90,17 @@ export default function Play() {
                 variables: {input: {roundId: round.id, homeScore: homeScore, awayScore: awayScore}},
                 authMode: 'AMAZON_COGNITO_USER_POOLS'
             });
-            setPredictionId(pred.data.createPrediction.id)
+            setPredictionId(pred.data.createPrediction.id);
         }
     }
 
     const handleHomeScoreChange = (event) => {
-        const value = event.target.value
+        const value = event.target.value;
         setHomeScore(!value ? "0" : value);
     };
 
     const handleAwayScoreChange = (event) => {
-        const value = event.target.value
+        const value = event.target.value;
         setAwayScore(!value ? "0" : value);
     };
 
@@ -115,7 +115,7 @@ export default function Play() {
         <AmplifyAuthenticator>
             <Box className={classes.root}>
                 {!round && <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND COMING SOON</Typography>}
-                {round && <Typography className={classes.title} variant={"h2"} color={"primary"}>ROUND {round.number}</Typography>}
+                {round && <Typography className={classes.title} variant={"h2"} color={"primary"}>Round {round.number}</Typography>}
                 {round && round.status === "active" &&
                 <Typography style={{textAlign: "left", margin: theme.spacing(1)}} gutterBottom variant="h5" color={"primary"}>Enter your
                     prediction</Typography>}

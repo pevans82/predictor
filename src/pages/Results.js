@@ -38,7 +38,7 @@ export default function Results() {
     const theme = useTheme();
     const user = useUser();
 
-    const [results, setResults] = useState()
+    const [results, setResults] = useState();
 
     const [activeRound, setActiveRound] = useState(0);
     const [maxRounds, setMaxRounds] = useState();
@@ -121,7 +121,7 @@ export default function Results() {
 
         if (result.data.listResults.items.length > 0) {
             setResults(result.data.listResults.items.sort((a, b) => a.round.number - b.round.number));
-            const roundsCount = result.data.listResults.items.length
+            const roundsCount = result.data.listResults.items.length;
             setMaxRounds(roundsCount);
             if (resetActiveRound) {
                 setActiveRound(roundsCount - 1);
@@ -172,7 +172,7 @@ export default function Results() {
         <AmplifyAuthenticator>
             <Box className={classes.root}>
                 {maxRounds === 0 && <div>
-                    <Typography className={classes.title} variant={"h2"} color={"primary"}>RESULTS</Typography>
+                    <Typography className={classes.title} variant={"h2"} color={"primary"}>Results</Typography>
                     <Typography className={classes.title} variant={"h4"} color={"primary"}>Hold fire eager beaver !</Typography>
                     <Typography className={classes.title} variant={"body1"} color={"primary"}>We've not even played Round 1 yet! Don't forget to have
                         a go and <Link href={PlayRoute} color="inherit">submit your predictions</Link> before the game starts otherwise you'll score a
@@ -181,7 +181,7 @@ export default function Results() {
                 </div>
                 }
                 {results && <div style={{marginBottom: theme.spacing(3)}}>
-                    <Typography className={classes.title} variant={"h2"} color={"primary"}>ROUND {results[activeRound].round.number}</Typography>
+                    <Typography className={classes.title} variant={"h2"} color={"primary"}>Round {results[activeRound].round.number}</Typography>
                     <Typography className={classes.title} variant={"h4"} color={"primary"}>Points Scored</Typography>
                     <StaticScoreField id={"pts"} value={prediction.points}/>
                 </div>
@@ -204,7 +204,9 @@ export default function Results() {
                         <ScoreCard id={"results"} homeScore={results[activeRound].homeScore} awayScore={results[activeRound].awayScore}/>
                         <Typography className={classes.title} variant={"h4"} color={"primary"}>Prediction</Typography>
                         <ScoreCard id={"predictions"} homeScore={prediction.homeScore} awayScore={prediction.awayScore}/>
-                        {pointsBreakdown && <PointsBreakdown scorePoints={pointsBreakdown.score} resultPoints={pointsBreakdown.result} difference={pointsBreakdown.difference} diffPoints={pointsBreakdown.diffPoints} total={pointsBreakdown.total} />}
+                        {pointsBreakdown && <PointsBreakdown scorePoints={pointsBreakdown.score} resultPoints={pointsBreakdown.result}
+                                                             difference={pointsBreakdown.difference} diffPoints={pointsBreakdown.diffPoints}
+                                                             total={pointsBreakdown.total}/>}
                     </div>
                     }
                 </Paper>

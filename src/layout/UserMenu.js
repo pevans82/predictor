@@ -26,7 +26,7 @@ export default function UserMenu() {
     const open = Boolean(anchorEl);
 
     useEffect(() => {
-        handleClose()
+        handleClose();
     }, [user]);
 
     const handleClick = () => {

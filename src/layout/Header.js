@@ -15,9 +15,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import {Link} from "react-router-dom";
 
 import UserMenu from './UserMenu'
-import {HomeRoute, LeaderboardRoute, PlayRoute, ResultsRoute, HowToRoute} from "../pages/Pages";
+import {HomeRoute, HowToRoute, LeaderboardRoute, PlayRoute, ResultsRoute} from "../pages/Pages";
+import Typography from "@material-ui/core/Typography";
+import {Backdrop} from "@material-ui/core";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
     headerRoot: {
@@ -61,6 +63,12 @@ const useStyles = makeStyles((theme) => ({
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
     },
+    backdrop: {
+        width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
 }));
 
 export default function Header() {
@@ -94,6 +102,7 @@ export default function Header() {
                     >
                         <MenuIcon/>
                     </IconButton>
+                    <Typography color={"secondary"}>Super Leigh</Typography>
                     <div className={classes.grow}/>
                     <UserMenu />
                 </Toolbar>
@@ -132,6 +141,7 @@ export default function Header() {
                     </ListItem>
                 </List>
             </Drawer>
+            <Backdrop className={classes.backdrop} open={open} onClick={handleDrawerClose}/>
         </div>
     );
 }

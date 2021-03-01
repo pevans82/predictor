@@ -58,8 +58,8 @@ export default function Home() {
                 </div>
             </div>
             {!round && <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND COMING SOON</Typography>}
-            {round && round.status === "active" && <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND</Typography>}
-            {round && round.status === "closed" && <Typography className={classes.title} variant={"h2"} color={"primary"}>ROUND IN PLAY</Typography>}
+            {round && round.status === "active" && <Typography className={classes.title} variant={"h2"} color={"primary"}>Next Round</Typography>}
+            {round && round.status === "closed" && <Typography className={classes.title} variant={"h2"} color={"primary"}>Round in Play</Typography>}
             {round && <Typography gutterBottom variant="h5" color={"primary"}>Round {round.number}</Typography>}
             {round && <Fixture round={round}/>}
             {round && round.status === "active" &&
@@ -82,7 +82,7 @@ export default function Home() {
                 </div>
             </div>
             <div className={classes.section}>
-                <Typography className={classes.title} variant={"h2"} color={"primary"}>HOW TO PLAY?</Typography>
+                <Typography className={classes.title} variant={"h2"} color={"primary"}>How to Play?</Typography>
                 <Grid container justify={"center"}>
                     <Grid item xs={12} sm={6} md={3}>
                         <HowToCard title={"SIGN UP"} icon={"account"}
@@ -104,9 +104,10 @@ export default function Home() {
             </div>
             <div className={classes.primarySectionWrapper}>
                 <div className={classes.section}>
-                    <Typography className={classes.title} variant={"h2"} color={"secondary"}>ORIGINS</Typography>
+                    <Typography className={classes.title} variant={"h2"} color={"secondary"}>Origins</Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
-                        There is a fan, lets call him <b>Steve</b>. He thinks he's great at predicting the results of his beloved Leigh Centurions,
+                        There is a fan, lets call him <strong>Steve</strong>. He thinks he's great at predicting the results of his beloved Leigh
+                        Centurions,
                         but that wasn't enough. He needed to prove that he wasn't just good, but he was the best!
                     </Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>

@@ -3,6 +3,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import centurionWhite from '../images/centurionWhite.png'
+import Link from "@material-ui/core/Link";
+import {AboutRoute, PrivacyRoute, TcAndCsRoute} from "../pages/Pages";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,22 +33,22 @@ export default function Footer() {
                 <Grid container justify={"center"}>
                     <Grid item xs={12} sm={6} md={3}>
                         <Typography align={"center"} gutterBottom color={"secondary"}>
-                            About
+                            <Link color={"secondary"} href={AboutRoute}>About</Link>
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <Typography align={"center"} gutterBottom color={"secondary"}>
-                            Terms & Conditions
+                            <Link color={"secondary"} href={TcAndCsRoute}>Terms & Conditions</Link>
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <Typography align={"center"} gutterBottom color={"secondary"}>
-                            Privacy
+                            <Link color={"secondary"} href={PrivacyRoute}>Privacy</Link>
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <Typography align={"center"} gutterBottom color={"secondary"}>
-                            Contact us
+                             <Link color={"secondary"} href={"mailto:superleigh@rocsolidservices.co.uk"}>Contact us</Link>
                         </Typography>
                     </Grid>
                 </Grid>

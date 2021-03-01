@@ -15,7 +15,7 @@ export default function SignIn() {
 
     useEffect(() => {
         if (authState === AuthState.SignedIn) {
-            history.goBack()
+            history.goBack();
         }
     }, [authState]);
 

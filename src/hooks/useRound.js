@@ -4,7 +4,7 @@ import {onUpdateRound} from "../graphql/subscriptions";
 import {fetchRoundByStatusQuery} from "../Queries";
 
 export function useRound() {
-    const [round, setRound] = useState()
+    const [round, setRound] = useState();
 
     useEffect(() => {
         fetchCurrentRound();
@@ -26,17 +26,17 @@ export function useRound() {
         });
 
         if (result.data.roundByStatus.items.length > 0) {
-            return result.data.roundByStatus.items[0]
+            return result.data.roundByStatus.items[0];
         }
     }
 
     async function fetchCurrentRound() {
         const activeRound = await fetchRound("active")
         if (activeRound) {
-            setRound(activeRound)
+            setRound(activeRound);
         } else {
             const closedRound = await fetchRound("closed")
-            setRound(closedRound)
+            setRound(closedRound);
         }
     }
 
