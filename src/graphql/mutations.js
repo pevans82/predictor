@@ -215,6 +215,7 @@ export const createResult = /* GraphQL */ `
   ) {
     createResult(input: $input, condition: $condition) {
       id
+      roundId
       homeScore
       awayScore
       createdAt
@@ -254,6 +255,7 @@ export const updateResult = /* GraphQL */ `
   ) {
     updateResult(input: $input, condition: $condition) {
       id
+      roundId
       homeScore
       awayScore
       createdAt
@@ -293,6 +295,7 @@ export const deleteResult = /* GraphQL */ `
   ) {
     deleteResult(input: $input, condition: $condition) {
       id
+      roundId
       homeScore
       awayScore
       createdAt

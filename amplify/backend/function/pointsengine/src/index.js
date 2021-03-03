@@ -24,14 +24,14 @@ exports.handler = async (event) => {
             const predictions = await callGraphqlApi(
                 fetchPredictions,
                 "predictionsByRound",
-                {"roundId": event.Records[0].dynamodb.OldImage.resultRoundId.S});
+                {"roundId": event.Records[0].dynamodb.OldImage.roundId.S});
 
             await wipePoints(predictions);
         } else {
             const predictions = await callGraphqlApi(
                 fetchPredictions,
                 "predictionsByRound",
-                {"roundId": event.Records[0].dynamodb.NewImage.resultRoundId.S});
+                {"roundId": event.Records[0].dynamodb.NewImage.roundId.S});
 
             await applyPoints(predictions, event.Records[0].dynamodb.NewImage.homeScore.N, event.Records[0].dynamodb.NewImage.awayScore.N);
         }

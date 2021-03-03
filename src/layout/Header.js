@@ -13,11 +13,11 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {Link} from "react-router-dom";
-
 import UserMenu from './UserMenu'
-import {HomeRoute, HowToRoute, LeaderboardRoute, PlayRoute, ResultsRoute} from "../pages/Pages";
+import {FixturesRoute, HomeRoute, HowToRoute, LeaderboardRoute, PlayRoute, ResultsRoute, ScoreRoute} from "../pages/Pages";
 import Typography from "@material-ui/core/Typography";
-import {Backdrop} from "@material-ui/core";
+import Backdrop from "@material-ui/core/Backdrop";
+import {useAdminUser} from "../hooks/useAdminUser";
 
 const drawerWidth = 200;
 
@@ -75,6 +75,7 @@ export default function Header() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
+    const adminUser = useAdminUser();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -104,7 +105,7 @@ export default function Header() {
                     </IconButton>
                     <Typography color={"secondary"}>Super Leigh</Typography>
                     <div className={classes.grow}/>
-                    <UserMenu />
+                    <UserMenu/>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -137,8 +138,17 @@ export default function Header() {
                     </ListItem>
                     <Divider/>
                     <ListItem button component={Link} to={HowToRoute} key={"How-to"} onClick={handleDrawerClose}>
-                        <ListItemText primary="How does it work"/>
+                        <ListItemText primary="How it works?"/>
                     </ListItem>
+                    {adminUser && <div>
+                        <Divider/>
+                        <ListItem button component={Link} to={ScoreRoute} key={"score"} onClick={handleDrawerClose}>
+                            <ListItemText primaryTypographyProps={{color: "primary"}} primary="Score"/>
+                        </ListItem>
+                        <ListItem button component={Link} to={FixturesRoute} key={"fixtures"} onClick={handleDrawerClose}>
+                            <ListItemText primaryTypographyProps={{color: "primary"}} primary="Fixtures"/>
+                        </ListItem>
+                    </div>}
                 </List>
             </Drawer>
             <Backdrop className={classes.backdrop} open={open} onClick={handleDrawerClose}/>

@@ -211,6 +211,7 @@ export const getResult = /* GraphQL */ `
   query GetResult($id: ID!) {
     getResult(id: $id) {
       id
+      roundId
       homeScore
       awayScore
       createdAt
@@ -252,6 +253,7 @@ export const listResults = /* GraphQL */ `
     listResults(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        roundId
         homeScore
         awayScore
         createdAt

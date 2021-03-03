@@ -65,12 +65,9 @@ export default function Profile() {
             play a different fixture."/>
                 </ListItem>
                 <ListItem>
-                    <ListItemText primary='Each round closes when the fixture kicks off - The kick off time is clearly displayed on both the home page and the play page when
-            entering predictions.'/>
-                </ListItem>
-                <ListItem>
                     <ListItemText
-                        primary='Predictions can be updated as often as you like up until the round closing. Once a round is closed, predictions can no longer be updated.'/>
+                        primary='Predictions can be updated as often as you like up until the fixture kicks off. The kick off time is clearly displayed on both the home page and the play page when
+            entering predictions. Once a round is in play, predictions can no longer be updated.'/>
                 </ListItem>
                 <ListItem>
                     <ListItemText primary='Failure to register a prediction before the round closes results in 0 (zero) points being scored.'/>

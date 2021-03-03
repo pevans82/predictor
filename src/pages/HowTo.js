@@ -32,14 +32,14 @@ export default function HowTo() {
 
     return (
         <Box className={classes.root}>
-            <Typography className={classes.title} variant={"h2"} color={"primary"}>How does it work?</Typography>
+            <Typography className={classes.title} variant={"h2"} color={"primary"}>How it works?</Typography>
             <Typography className={classes.title} variant={"h4"} color={"primary"}>Playing the game</Typography>
             <TitledContent title="Rounds" variant={"h5"}
                            content="Each round has a single fixture that is most likely to be Leigh Centurions' next game. A round goes through various stages:"/>
             <TitledContent title="Open" variant={"h6"}
-                           content="The next round will open as soon as the previous round is complete.  While a round is open, you may update your predications as often as you like until the round closes."/>
-            <TitledContent title={"Closed"} variant={"h6"}
-                           content={"A round is closed when the game kicks off.  The kick off time can be seen just above the teams on the fixture.  Once the game is closed you can no longer update your prediction."}/>
+                           content="The next round will open as soon as the previous round is complete.  While a round is open, you may update your predications as often as you like until the round becomes in play."/>
+            <TitledContent title={"In Play"} variant={"h6"}
+                           content={"A round is in play when the game kicks off.  The kick off time can be seen just above the teams on the fixture.  Once the game is in play you can no longer update your prediction."}/>
             <TitledContent title={"Complete"} variant={"h6"}
                            content={"After the game has finished and the scores have been verified, the round will be complete.  Your score for the round will be calculated and the leaderboards will be updated. The next round will also be opened."}/>
             <Typography className={classes.title} variant={"h4"} color={"primary"}>Scoring</Typography>
@@ -80,7 +80,7 @@ export default function HowTo() {
             <Typography className={classes.textBlock} variant="body1" color={"textSecondary"} component="p">Here we only receive 1 point because there
                 is an 18 point difference between the result (16) and our prediction (34).</Typography>
             <TitledContent title="Example 5" variant={"h6"}
-                           content="If you were a pie'ater and have predicted the final score to be 50 - 52, you would have received 1 point."/>
+                           content="If you were a nervous pie'ater and have predicted the final score to be 10 - 12, you would have received 1 point."/>
             <PointsBreakdown scorePoints={0} resultPoints={0} difference={18} diffPoints={1} total={1}/>
             <Typography className={classes.textBlock} variant="body1" color={"textSecondary"} component="p">Here we only receive 1 point because there
                 is an 18 point difference between the result (16) and our prediction (-2).</Typography>

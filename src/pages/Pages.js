@@ -10,6 +10,8 @@ import SignIn from './SignIn'
 import About from './About'
 import Privacy from './Privacy'
 import TsAndCs from './TsAndCs'
+import Score from "./Score";
+import Fixtures from "./Fixtures";
 
 export const HomeRoute = "/";
 export const PlayRoute = "/play/";
@@ -21,6 +23,8 @@ export const SignInRoute = "/sign-in/";
 export const AboutRoute = "/about/";
 export const PrivacyRoute = "/privacy/";
 export const TcAndCsRoute = "/terms-and-conditions/";
+export const ScoreRoute = "/score/";
+export const FixturesRoute = "/fixtures/";
 
 export default function Pages() {
     return (
@@ -35,6 +39,8 @@ export default function Pages() {
             <Route path={AboutRoute} exact component={About}/>
             <Route path={PrivacyRoute} exact component={Privacy}/>
             <Route path={TcAndCsRoute} exact component={TsAndCs}/>
+            <Route path={ScoreRoute} exact component={Score}/>
+            <Route path={FixturesRoute} exact component={Fixtures}/>
         </Switch>
     );
 }

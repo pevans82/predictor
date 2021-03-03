@@ -7,8 +7,8 @@ export function useUser() {
     useEffect(() => {
         let updateUser = async authState => {
             try {
-                let user = await Auth.currentAuthenticatedUser();
-                setUser(user);
+                const thisUser = await Auth.currentAuthenticatedUser();
+                setUser(thisUser);
             } catch {
                 setUser(null);
             }

@@ -18,7 +18,7 @@
       "function": {
         "pointsengine": {
           "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-          "s3Key": "amplify-builds/pointsengine-7a456a76424a7a484943-build.zip"
+          "s3Key": "amplify-builds/pointsengine-73506d516f4d5a432b48-build.zip"
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",

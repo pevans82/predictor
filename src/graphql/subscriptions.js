@@ -170,6 +170,7 @@ export const onCreateResult = /* GraphQL */ `
   subscription OnCreateResult {
     onCreateResult {
       id
+      roundId
       homeScore
       awayScore
       createdAt
@@ -206,6 +207,7 @@ export const onUpdateResult = /* GraphQL */ `
   subscription OnUpdateResult {
     onUpdateResult {
       id
+      roundId
       homeScore
       awayScore
       createdAt
@@ -242,6 +244,7 @@ export const onDeleteResult = /* GraphQL */ `
   subscription OnDeleteResult {
     onDeleteResult {
       id
+      roundId
       homeScore
       awayScore
       createdAt

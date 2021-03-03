@@ -73,3 +73,13 @@ export const fetchRoundLeaderBoardByPointsQuery = `query roundLeaderboardByPoint
         }
     }
 }`
+
+export const fetchResultByRoundIdQuery = `query listResults($roundId: ID!) {
+    listResults(filter: {roundId: {eq: $roundId}}) {
+        items {
+            id
+            awayScore
+            homeScore
+        }
+    }
+}`
