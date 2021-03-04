@@ -36,7 +36,11 @@ export function useRound() {
             setRound(activeRound);
         } else {
             const closedRound = await fetchRound("closed")
-            setRound(closedRound);
+            if (closedRound) {
+                setRound(closedRound);
+            } else {
+                setRound({id: 0});
+            }
         }
     }
 
@@ -45,13 +49,11 @@ export function useRound() {
             next: (updated) => {
                 const updatedRound = updated.value.data.onUpdateRound;
 
-                if (round) {
-                    if (round.id === updatedRound.id) {
-                        if(updatedRound.status === "complete") {
-                            setRound(null);
-                        } else {
-                            setRound(updatedRound);
-                        }
+                if (round.id === updatedRound.id) {
+                    if (updatedRound.status === "complete") {
+                        setRound({id: 0});
+                    } else {
+                        setRound(updatedRound);
                     }
                 } else {
                     if (updatedRound.status === "active") {

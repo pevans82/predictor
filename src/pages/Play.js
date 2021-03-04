@@ -27,6 +27,12 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         maxWidth: 500,
     },
+    noRound: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 400,
+    },
 }));
 
 function Alert(props) {
@@ -44,6 +50,16 @@ export default function Play() {
     const [awayScore, setAwayScore] = useState(0);
 
     const [openSnackBar, setOpenSnackBar] = useState(false);
+
+    const [roundReady, setRoundReady] = useState();
+
+    useEffect(() => {
+        if (round) {
+            setRoundReady(true);
+        } else {
+            setRoundReady(false);
+        }
+    }, [round]);
 
     useEffect(() => {
         if (!user) {
@@ -114,25 +130,31 @@ export default function Play() {
     return (
         <AmplifyAuthenticator>
             <Box className={classes.root}>
-                {!round && <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND COMING SOON</Typography>}
-                {round && <Typography className={classes.title} variant={"h2"} color={"primary"}>Round {round.number}</Typography>}
-                {round && round.status === "active" &&
-                <Typography style={{textAlign: "left", margin: theme.spacing(1)}} gutterBottom variant="h5" color={"primary"}>Enter your
-                    prediction</Typography>}
-                {round && <Fixture round={round}/>}
-                <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
-                    {round &&
-                    <ScoreCard isActive={round.status === "active"} id={"play"} homeScore={homeScore} onHomeScoreChange={handleHomeScoreChange}
-                               awayScore={awayScore} onAwayScoreChange={handleAwayScoreChange}/>}
-                    {round && round.status === "active" &&
-                    <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained" type={"submit"} color="primary">Submit</Button>
-                    }
-                    <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleSnackBarClose}>
-                        <Alert onClose={handleSnackBarClose} severity="success">
-                            Prediction successfully submitted!
-                        </Alert>
-                    </Snackbar>
-                </form>
+                {roundReady && <div>
+                    {round.id === 0 ?
+                        <div className={classes.noRound}><Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND COMING SOON</Typography></div>
+                        : <div>
+                            <Typography className={classes.title} variant={"h2"} color={"primary"}>Round {round.number}</Typography>
+                            {round.status === "active" &&
+                            <Typography style={{textAlign: "left", margin: theme.spacing(1)}} gutterBottom variant="h5" color={"primary"}>Enter your
+                                prediction</Typography>}
+                            <Fixture round={round}/>
+                            <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
+                                <ScoreCard isActive={round.status === "active"} id={"play"} homeScore={homeScore}
+                                           onHomeScoreChange={handleHomeScoreChange}
+                                           awayScore={awayScore} onAwayScoreChange={handleAwayScoreChange}/>
+                                {round.status === "active" &&
+                                <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained" type={"submit"}
+                                        color="primary">Submit</Button>
+                                }
+                                <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleSnackBarClose}>
+                                    <Alert onClose={handleSnackBarClose} severity="success">
+                                        Prediction successfully submitted!
+                                    </Alert>
+                                </Snackbar>
+                            </form>
+                        </div>}
+                </div>}
             </Box>
         </AmplifyAuthenticator>
     );

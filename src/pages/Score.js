@@ -1,4 +1,4 @@
-import React, {forwardRef, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Fixture from "../components/Fixture";
 import ScoreCard from "../components/ScoreCard";
@@ -13,7 +13,7 @@ import {fetchResultByRoundIdQuery} from "../Queries";
 import * as mutations from "../graphql/mutations";
 import MuiAlert from "@material-ui/lab/Alert";
 import {useAdminUser} from "../hooks/useAdminUser";
-import {onUpdateResult, onUpdateRound} from "../graphql/subscriptions";
+import {onUpdateResult} from "../graphql/subscriptions";
 import {ConfirmDialog} from "../components/ConfirmDialog";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto",
         padding: theme.spacing(2),
         maxWidth: 500,
+    },
+    noRound: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 400,
     },
 }));
 
@@ -49,7 +55,15 @@ export default function Score() {
 
     const [openConfirm, setOpenConfirm] = useState(false);
 
+    const [roundReady, setRoundReady] = useState();
+
     useEffect(() => {
+        if (round) {
+            setRoundReady(true);
+        } else {
+            setRoundReady(false);
+        }
+
         fetchResult();
     }, [round]);
 
@@ -155,40 +169,50 @@ export default function Score() {
     return (
         <AmplifyAuthenticator>
             <Box className={classes.root}>
-            {adminUser ?
-                <div>
-                {(!round || round.status !== "closed") && <Typography className={classes.title} variant={"h2"} color={"primary"}>No rounds in play</Typography>}
-                {round && round.status === "closed" && <div>
-                <Typography className={classes.title} variant={"h2"} color={"primary"}>Round {round.number}</Typography>
-                <Typography style={{textAlign: "left", margin: theme.spacing(1)}} gutterBottom variant="h5" color={"primary"}>Enter the score</Typography>
-                <Fixture round={round}/>
-                <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
-                    <ScoreCard isActive={true} id={"score"} homeScore={homeScore} onHomeScoreChange={handleHomeScoreChange}
-                               awayScore={awayScore} onAwayScoreChange={handleAwayScoreChange}/>
-                    <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained" type={"submit"} color="primary">Submit</Button>
-                    <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleSnackBarClose}>
-                        <Alert onClose={handleSnackBarClose} severity="success">
-                            Scores successfully submitted!
-                        </Alert>
-                    </Snackbar>
-                    <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained" onClick={() => setOpenConfirm(true)} color="primary">Complete</Button>
-                    <ConfirmDialog
-                        title="Complete the round?"
-                        open={openConfirm}
-                        setOpen={setOpenConfirm}
-                        onConfirm={handleComplete}
-                    >
-                        <Typography variant={"body1"}>Are you sure you want to complete the round?</Typography>
-                        <Typography variant={"body2"}>If these scores are wrong it will be a nightmare to sort out!</Typography>
-                    </ConfirmDialog>
-                </form>
-                </div>}
-                </div>
-            :
-                <div>
-                <Typography className={classes.title} variant={"h2"} color={"primary"}>! Naughty !</Typography>
-                <Typography className={classes.title} variant={"h4"}>You're not allowed to be here.</Typography>
-                </div>}
+                {adminUser ?
+                    <div>
+                        {roundReady && <div>
+                            {round.id === 0 || round.status !== "closed" ? <div className={classes.noRound}>
+                                    <Typography className={classes.title} variant={"h2"} color={"primary"}>No rounds in play</Typography>
+                                </div>
+                                : <div>
+                                    {round.status === "closed" && <div>
+                                        <Typography className={classes.title} variant={"h2"} color={"primary"}>Round {round.number}</Typography>
+                                        <Typography style={{textAlign: "left", margin: theme.spacing(1)}} gutterBottom variant="h5" color={"primary"}>Enter
+                                            the score</Typography>
+                                        <Fixture round={round}/>
+                                        <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
+                                            <ScoreCard isActive={true} id={"score"} homeScore={homeScore} onHomeScoreChange={handleHomeScoreChange}
+                                                       awayScore={awayScore} onAwayScoreChange={handleAwayScoreChange}/>
+                                            <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained" type={"submit"}
+                                                    color="primary">Submit</Button>
+                                            <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleSnackBarClose}>
+                                                <Alert onClose={handleSnackBarClose} severity="success">
+                                                    Scores successfully submitted!
+                                                </Alert>
+                                            </Snackbar>
+                                            <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained"
+                                                    onClick={() => setOpenConfirm(true)} color="primary">Complete</Button>
+                                            <ConfirmDialog
+                                                title="Complete the round?"
+                                                open={openConfirm}
+                                                setOpen={setOpenConfirm}
+                                                onConfirm={handleComplete}
+                                            >
+                                                <Typography variant={"body1"}>Are you sure you want to complete the round?</Typography>
+                                                <Typography variant={"body2"}>If these scores are wrong it will be a nightmare to sort
+                                                    out!</Typography>
+                                            </ConfirmDialog>
+                                        </form>
+                                    </div>}
+                                </div>}
+                        </div>}
+                    </div>
+                    :
+                    <div>
+                        <Typography className={classes.title} variant={"h2"} color={"primary"}>! Naughty !</Typography>
+                        <Typography className={classes.title} variant={"h4"}>You're not allowed to be here.</Typography>
+                    </div>}
             </Box>
         </AmplifyAuthenticator>
     );

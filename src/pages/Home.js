@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
@@ -43,12 +43,28 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto",
         padding: theme.spacing(2),
     },
+    noRound: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: 400,
+    },
 }));
 
 export default function Home() {
     const classes = useStyles();
     const theme = useTheme();
     const round = useRound();
+
+    const [roundReady, setRoundReady] = useState();
+
+    useEffect(() => {
+        if (round) {
+            setRoundReady(true);
+        } else {
+            setRoundReady(false);
+        }
+    }, [round]);
 
     return (
         <Box>
@@ -57,14 +73,25 @@ export default function Home() {
                     <div className={classes.centurion}/>
                 </div>
             </div>
-            {!round && <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND COMING SOON</Typography>}
-            {round && round.status === "active" && <Typography className={classes.title} variant={"h2"} color={"primary"}>Next Round</Typography>}
-            {round && round.status === "closed" && <Typography className={classes.title} variant={"h2"} color={"primary"}>Round in Play</Typography>}
-            {round && <Typography gutterBottom variant="h5" color={"primary"}>Round {round.number}</Typography>}
-            {round && <Fixture round={round}/>}
-            {round && round.status === "active" &&
-            <Button style={{margin: theme.spacing(5)}} size="large" component={Link} to={PlayRoute} variant="contained" color="primary">Predict
-                Now!</Button>}
+            <div style={{minHeight: 400}}>
+                {roundReady && <div>
+                    {round.id === 0 ? <div className={classes.noRound}>
+                            <Typography className={classes.title} variant={"h2"} color={"primary"}>NEXT ROUND COMING SOON</Typography>
+                    </div>
+                        : <div>
+                            {round.status === "active" &&
+                            <Typography className={classes.title} variant={"h2"} color={"primary"}>Next Round</Typography>}
+                            {round.status === "closed" &&
+                            <Typography className={classes.title} variant={"h2"} color={"primary"}>Round in Play</Typography>}
+                            <Typography gutterBottom variant="h5" color={"primary"}>Round {round.number}</Typography>
+                            <Fixture round={round}/>
+                            {round.status === "active" &&
+                            <Button style={{margin: theme.spacing(5)}} size="large" component={Link} to={PlayRoute} variant="contained"
+                                    color="primary">Predict
+                                Now!</Button>}
+                        </div>}
+                </div>}
+            </div>
             <div className={classes.primarySectionWrapper}>
                 <div className={classes.section}>
                     <Typography className={classes.title} variant={"h2"} color={"secondary"}>SUPER LEIGH!</Typography>
