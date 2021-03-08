@@ -22,7 +22,7 @@ export default function UserMenu() {
     const user = useUser();
     const divRef = useRef();
 
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(undefined);
     const open = Boolean(anchorEl);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function UserMenu() {
     };
 
     const handleClose = () => {
-        setAnchorEl(null);
+        setAnchorEl(undefined);
     };
 
     return user ? (

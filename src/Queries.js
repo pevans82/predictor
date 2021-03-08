@@ -1,4 +1,4 @@
-export const fetchRoundByStatusQuery = `query fetchRoundByStatus($status: RoundStatus) {
+export const fetchRoundByStatusQuery = `query roundByStatus($status: RoundStatus) {
   roundByStatus(status: $status, limit: 1) {
     items {
       awayTeam {
@@ -19,7 +19,7 @@ export const fetchRoundByStatusQuery = `query fetchRoundByStatus($status: RoundS
 }
 `
 
-export const fetchCompleteRoundsQuery = `query fetchCompleteRounds {
+export const fetchCompleteRoundsQuery = `query roundByStatus {
   roundByStatus(status: complete) {
     items {
       id
@@ -29,7 +29,7 @@ export const fetchCompleteRoundsQuery = `query fetchCompleteRounds {
 }
 `
 
-export const fetchResultsQuery = `query fetchResults {
+export const fetchResultsQuery = `query listResults {
   listResults {
     items {
       id
@@ -83,3 +83,37 @@ export const fetchResultByRoundIdQuery = `query listResults($roundId: ID!) {
         }
     }
 }`
+
+export const fetchFixturesQuery = `query roundByStatus {
+  roundByStatus(sortDirection: ASC, status: pending) {
+    items {
+      awayTeam {
+        id
+        name
+        badgeSrc
+      }
+      homeTeam {
+        id
+        name
+        badgeSrc
+      }
+      id
+      kickOff
+      ground
+    }
+  }
+}
+`
+
+export const fetchTeamsQuery = `query listTeams {
+  listTeams {
+    items {
+      badgeSrc
+      ground
+      id
+      name
+    }
+  }
+}
+
+`

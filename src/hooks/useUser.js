@@ -10,7 +10,7 @@ export function useUser() {
                 const thisUser = await Auth.currentAuthenticatedUser();
                 setUser(thisUser);
             } catch {
-                setUser(null);
+                setUser(undefined);
             }
         }
         Hub.listen('auth', updateUser); // listen for login/signup events

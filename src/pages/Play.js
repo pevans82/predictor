@@ -145,11 +145,11 @@ export default function Play() {
                                            awayScore={awayScore} onAwayScoreChange={handleAwayScoreChange}/>
                                 {round.status === "active" &&
                                 <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained" type={"submit"}
-                                        color="primary">Submit</Button>
+                                        color="primary">Save</Button>
                                 }
                                 <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleSnackBarClose}>
                                     <Alert onClose={handleSnackBarClose} severity="success">
-                                        Prediction successfully submitted!
+                                        Prediction successfully saved!
                                     </Alert>
                                 </Snackbar>
                             </form>

@@ -99,7 +99,7 @@ export default function Score() {
             });
             if (res.data.listResults.items.length < 1) {
                 console.log("no result for round");
-                setResult(null);
+                setResult(undefined);
                 setHomeScore(0);
                 setAwayScore(0);
             } else {
@@ -185,24 +185,24 @@ export default function Score() {
                                             <ScoreCard isActive={true} id={"score"} homeScore={homeScore} onHomeScoreChange={handleHomeScoreChange}
                                                        awayScore={awayScore} onAwayScoreChange={handleAwayScoreChange}/>
                                             <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained" type={"submit"}
-                                                    color="primary">Submit</Button>
+                                                    color="primary">Save</Button>
                                             <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleSnackBarClose}>
                                                 <Alert onClose={handleSnackBarClose} severity="success">
-                                                    Scores successfully submitted!
+                                                    Scores successfully saved!
                                                 </Alert>
                                             </Snackbar>
                                             <Button style={{marginTop: theme.spacing(5)}} fullWidth={true} variant="contained"
-                                                    onClick={() => setOpenConfirm(true)} color="primary">Complete</Button>
+                                                    onClick={() => setOpenConfirm(true)} color="secondary">Complete</Button>
                                             <ConfirmDialog
-                                                title="Complete the round?"
-                                                open={openConfirm}
-                                                setOpen={setOpenConfirm}
-                                                onConfirm={handleComplete}
-                                            >
-                                                <Typography variant={"body1"}>Are you sure you want to complete the round?</Typography>
-                                                <Typography variant={"body2"}>If these scores are wrong it will be a nightmare to sort
-                                                    out!</Typography>
-                                            </ConfirmDialog>
+                                            title="Complete the round?"
+                                            open={openConfirm}
+                                            setOpen={setOpenConfirm}
+                                            onConfirm={handleComplete}
+                                        >
+                                            <Typography variant={"body1"}>Are you sure you want to complete the round?</Typography>
+                                            <Typography variant={"body2"}>If these scores are wrong it will be a nightmare to sort
+                                                out!</Typography>
+                                        </ConfirmDialog>
                                         </form>
                                     </div>}
                                 </div>}

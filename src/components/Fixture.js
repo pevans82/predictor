@@ -16,9 +16,6 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         marginBottom: theme.spacing(3),
     },
-    grow: {
-        flexGrow: 1,
-    },
 }));
 
 export default function Fixture(props) {

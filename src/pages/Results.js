@@ -140,7 +140,7 @@ export default function Results() {
 
         if (pred.data.predictionsByRound.items.length < 1) {
             setPrediction(noPrediction);
-            setPointsBreakdown(null);
+            setPointsBreakdown(undefined);
         } else {
             setPrediction(pred.data.predictionsByRound.items[0]);
 
@@ -175,7 +175,7 @@ export default function Results() {
                     <Typography className={classes.title} variant={"h2"} color={"primary"}>Results</Typography>
                     <Typography className={classes.title} variant={"h4"} color={"primary"}>Hold fire eager beaver !</Typography>
                     <Typography className={classes.title} variant={"body1"} color={"primary"}>We've not even played Round 1 yet! Don't forget to have
-                        a go and <Link href={PlayRoute} color="inherit">submit your predictions</Link> before the game starts otherwise you'll score a
+                        a go and <Link href={PlayRoute} color="inherit">enter your predictions</Link> before the game starts otherwise you'll score a
                         big fat...</Typography>
                     <StaticScoreField value={0}></StaticScoreField>
                 </div>
