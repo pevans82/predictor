@@ -20,7 +20,7 @@ export const fetchRoundByStatusQuery = `query roundByStatus($status: RoundStatus
 `
 
 export const fetchCompleteRoundsQuery = `query roundByStatus {
-  roundByStatus(status: complete) {
+  roundByStatus(sortDirection: ASC, status: complete) {
     items {
       id
       number

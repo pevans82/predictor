@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import centurionWhite from '../images/centurionWhite.png'
 import Link from "@material-ui/core/Link";
 import {AboutRoute, PrivacyRoute, TcAndCsRoute} from "../pages/Pages";
+import format from 'date-fns/format';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,7 +54,7 @@ export default function Footer() {
                     </Grid>
                 </Grid>
                 <Typography variant="caption" align={"center"} gutterBottom color={"secondary"}>
-                    ©rocSOLID Services Ltd All Rights Reserved
+                    ©rocSOLID Services Ltd {format(new Date(), 'yyyy')} - All Rights Reserved
                 </Typography>
             </div>
         </div>

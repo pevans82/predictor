@@ -31,7 +31,7 @@ export default function Profile() {
     return (
         <Box className={classes.root}>
             <Typography className={classes.title} variant={"h2"} color={"primary"}>About</Typography>
-            <Typography className={classes.textBlock} variant="body1" component="p"><Link href={HomeRoute}>superleigh.co.uk</Link> is owned and
+            <Typography className={classes.textBlock} variant="body1" component="p"><Link href={HomeRoute}>superleigh.co.uk</Link> is operated and
                 controlled by rocSOLID Services Ltd.</Typography>
             <Typography className={classes.textBlock} variant="body1" component="p">Believe it or not, this is just a side project delivered and
                 maintained by an individual driven by a labour of love. It is not manned by a fleet of IT professionals on hand 24/7. Please be

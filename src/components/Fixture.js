@@ -3,13 +3,14 @@ import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from "@material-ui/core/Grid";
 import TeamCard from "./TeamCard";
-import Moment from 'react-moment';
+import format from 'date-fns/format';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 800,
         width: '100vw',
         margin: "auto",
+        marginBottom: theme.spacing(3),
     },
     head: {
         background: "linear-gradient(#BE1D2C, #FFF)",
@@ -31,7 +32,7 @@ export default function Fixture(props) {
                     <Grid item xs={2}/>
                     <Grid item xs={5}>
                         <Typography gutterBottom variant="h6" color={"secondary"}>
-                            <Moment format="ddd Do MMM YYYY HH:mm">{props.round.kickOff}</Moment>
+                            {format(new Date(props.round.kickOff), 'iii do MMM yyyy HH:mm')}
                         </Typography>
                     </Grid>
                 </Grid>

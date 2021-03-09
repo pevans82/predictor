@@ -130,11 +130,11 @@ export default function Header() {
                     <ListItem button component={Link} to={PlayRoute} key={"Play"} onClick={handleDrawerClose}>
                         <ListItemText primary="Play"/>
                     </ListItem>
-                    <ListItem button component={Link} to={LeaderboardRoute} key={"Leaderboard"} onClick={handleDrawerClose}>
-                        <ListItemText primary="Leaderboard"/>
-                    </ListItem>
                     <ListItem button component={Link} to={ResultsRoute} key={"Results"} onClick={handleDrawerClose}>
                         <ListItemText primary="Results"/>
+                    </ListItem>
+                    <ListItem button component={Link} to={LeaderboardRoute} key={"Leaderboard"} onClick={handleDrawerClose}>
+                        <ListItemText primary="Leaderboard"/>
                     </ListItem>
                     <Divider/>
                     <ListItem button component={Link} to={HowToRoute} key={"How-to"} onClick={handleDrawerClose}>

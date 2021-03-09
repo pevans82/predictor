@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto",
     },
     section: {
-        maxWidth: 1250,
+        maxWidth: 1000,
         margin: "auto",
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(2),

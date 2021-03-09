@@ -13,16 +13,16 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CardContent from "@material-ui/core/CardContent";
 import Card from "@material-ui/core/Card";
 import {AddIcon} from "@material-ui/data-grid";
-import {onCreateRound, onUpdateRound} from "../graphql/subscriptions";
+import {onCreateRound, onDeleteRound, onUpdateRound} from "../graphql/subscriptions";
 import {ConfirmDialog} from "../components/ConfirmDialog";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import MomentUtils from '@date-io/moment';
-import Moment from 'react-moment';
 import {DateTimePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
 import Grid from "@material-ui/core/Grid";
 import TeamCard from "../components/TeamCard";
 import ProgressStepper from "../components/ProgressStepper";
+import * as mutations from "../graphql/mutations";
+import DateFnsUtils from '@date-io/date-fns';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -70,18 +70,27 @@ export default function Fixtures() {
     const [deleteConfirm, setDeleteConfirm] = useState(false);
     const [editMode, setEditMode] = useState(false);
 
+    const [roundId, setRoundId] = useState();
+    const [ground, setGround] = useState('');
+    const [kickOff, setKickOff] = useState(new Date());
+    const [homeTeamIdx, setHomeTeamIdx] = useState(0);
+    const [awayTeamIdx, setAwayTeamIdx] = useState(0);
+    const [leighIdx, setLeighIdx] = useState();
+
     useEffect(() => {
         fetchFixtures();
         fetchTeams();
     }, []);
 
     useEffect(() => {
-        const updatedListener = assignUpdatedListener();
-        const createdListener = assignCreatedListener();
+        const updatedListener = assignListener(onUpdateRound);
+        const createdListener = assignListener(onCreateRound);
+        const deletedListener = assignListener(onDeleteRound);
 
         return function cleanup() {
             updatedListener.unsubscribe();
             createdListener.unsubscribe();
+            deletedListener.unsubscribe();
         };
     }, [fixtures]);
 
@@ -96,24 +105,54 @@ export default function Fixtures() {
         setLeighIdx(teams.data.listTeams.items.findIndex(t => t.name === "Leigh Centurions"));
     }
 
-    function assignUpdatedListener() {
-        return API.graphql(graphqlOperation(onUpdateRound)).subscribe({
+    function assignListener(subscription) {
+        return API.graphql(graphqlOperation(subscription)).subscribe({
             next: (updated) => {
-                const updatedRound = updated.value.data.onUpdateRound;
-                setFixtures(
-                    fixtures.map(round => {
-                        return round.id === updatedRound.id ? updatedRound : round;
-                    }));
+                fetchFixtures();
             }
         });
     }
 
-    function assignCreatedListener() {
-        return API.graphql(graphqlOperation(onCreateRound)).subscribe({
-            next: (created) => {
-                fetchFixtures();
-            }
-        });
+    async function saveFixture() {
+        if (roundId) {
+            await API.graphql({
+                query: mutations.updateRound,
+                variables: {
+                    input: {
+                        id: roundId,
+                        ground: ground,
+                        kickOff: kickOff.toISOString(),
+                        roundHomeTeamId: teams[homeTeamIdx].id,
+                        roundAwayTeamId: teams[awayTeamIdx].id
+                    }
+                },
+                authMode: 'AMAZON_COGNITO_USER_POOLS'
+            });
+        } else {
+            await API.graphql({
+                query: mutations.createRound,
+                variables: {
+                    input: {
+                        status: 'pending',
+                        ground: ground,
+                        kickOff: kickOff.toISOString(),
+                        roundHomeTeamId: teams[homeTeamIdx].id,
+                        roundAwayTeamId: teams[awayTeamIdx].id
+                    }
+                },
+                authMode: 'AMAZON_COGNITO_USER_POOLS'
+            });
+        }
+    }
+
+    async function deleteFixture() {
+        if (roundId) {
+            await API.graphql({
+                query: mutations.deleteRound,
+                variables: {input: {id: roundId}},
+                authMode: 'AMAZON_COGNITO_USER_POOLS'
+            });
+        }
     }
 
     const handleAdd = () => {
@@ -121,49 +160,46 @@ export default function Fixtures() {
         setEditMode(true);
     };
 
+    async function handleEdit(fixture) {
+        setRoundId(fixture.id);
+        setGround(fixture.ground ? fixture.ground : teams.find(t => t.id === fixture.homeTeam.id).ground);
+        setKickOff(new Date(fixture.kickOff));
+        setHomeTeamIdx(teams.findIndex(t => t.id === fixture.homeTeam.id));
+        setAwayTeamIdx(teams.findIndex(t => t.id === fixture.awayTeam.id));
+        setEditMode(true);
+    }
+
     async function handleDelete(fixture) {
         setRoundId(fixture.id);
+        setHomeTeamIdx(teams.findIndex(t => t.id === fixture.homeTeam.id));
+        setAwayTeamIdx(teams.findIndex(t => t.id === fixture.awayTeam.id));
         setDeleteConfirm(true);
-    }
-
-    const handleDeleteConfirm = () => {
-        console.log("delete fixture", roundId);
-    }
-
-    const handleCancel = () => {
-        wipeFields();
-        setEditMode(false);
     }
 
     const wipeFields = () => {
         setRoundId(undefined);
-        setKickOff(Moment.now);
+        setKickOff(new Date());
         setHomeTeamIdx(leighIdx);
         setAwayTeamIdx(leighIdx);
         setGround(teams[leighIdx].ground);
     }
 
     function handleSubmit(event) {
-        console.log("save fixture", ground, kickOff, homeTeamIdx, awayTeamIdx);
+        saveFixture();
         setEditMode(false);
+        wipeFields();
         event.preventDefault();
     }
 
-    async function handleEdit(fixture) {
-        setRoundId(fixture.id);
-        setGround(fixture.ground ? fixture.ground : teams.find(t => t.id === fixture.homeTeam.id).ground);
-        setKickOff(fixture.kickOff ? fixture.kickOff : Moment.now);
-        setHomeTeamIdx(teams.findIndex(t => t.id === fixture.homeTeam.id));
-        setAwayTeamIdx(teams.findIndex(t => t.id === fixture.awayTeam.id));
-        setEditMode(true);
+    const handleDeleteConfirm = () => {
+        deleteFixture();
+        setRoundId(undefined);
     }
 
-    const [roundId, setRoundId] = useState();
-    const [ground, setGround] = useState('');
-    const [kickOff, setKickOff] = useState(Moment.now);
-    const [homeTeamIdx, setHomeTeamIdx] = useState(0);
-    const [awayTeamIdx, setAwayTeamIdx] = useState(0);
-    const [leighIdx, setLeighIdx] = useState(0);
+    const handleCancel = () => {
+        wipeFields();
+        setEditMode(false);
+    }
 
     const handleHomePrevious = () => {
         setHomeTeamIdx((idx) => idx - 1);
@@ -188,16 +224,16 @@ export default function Fixtures() {
             <Box className={classes.root}>
                 {adminUser ?
                     editMode ? <div><Typography className={classes.title} variant={"h2"} color={"primary"}>Change Fixture</Typography>
-                            <MuiPickersUtilsProvider utils={MomentUtils}>
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                 <form noValidate autoComplete="off" onSubmit={handleSubmit}>
                                     <div className={classes.form}>
                                         <DateTimePicker
                                             className={classes.formInput}
                                             disablePast
                                             inputVariant="outlined"
-                                            id="date-picker-dialog"
-                                            label="Game Day"
-                                            format="ddd Do MMM YYYY HH:mm"
+                                            id="kickOff"
+                                            label="Kick off"
+                                            format="iii do MMM yyyy HH:mm"
                                             value={kickOff}
                                             onChange={setKickOff}
                                         />
@@ -206,7 +242,6 @@ export default function Fixtures() {
                                                 <ProgressStepper onHandleNext={handleHomeNext} onHandlePrevious={handleHomePrevious}
                                                                  maxSteps={teams.length} activeStep={homeTeamIdx}/>
                                                 <TeamCard name={teams[homeTeamIdx].name} badgeSrc={teams[homeTeamIdx].badgeSrc}/>
-
                                             </Grid>
                                             <Grid item xs={2} style={{marginTop: "100px"}}>
                                                 <Typography variant="h3" color={"primary"}>vs</Typography>
@@ -266,8 +301,8 @@ export default function Fixtures() {
                                 setOpen={setDeleteConfirm}
                                 onConfirm={handleDeleteConfirm}
                             >
-                                <Typography variant={"body1"}>Are you sure you want to
-                                    delete {teams[homeTeamIdx].name} vs {teams[awayTeamIdx].name}?</Typography>
+                                {leighIdx && <Typography variant={"body1"}>Are you sure you want to
+                                    delete {teams[homeTeamIdx].name} vs {teams[awayTeamIdx].name}?</Typography>}
                             </ConfirmDialog>
                         </div>
                     :
