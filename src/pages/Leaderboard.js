@@ -115,10 +115,7 @@ export default function LeaderBoard() {
         if (user) {
             const result = await API.graphql(graphqlOperation(fetchSeasonLeaderBoardByPointsQuery));
             if (result.data.seasonLeaderboardByPoints.items.length > 0) {
-                const rankings =
-                    result.data.seasonLeaderboardByPoints.items.map((r, i) => {
-                        return {key: i, position: i + 1, player: r.username, points: r.points};
-                    });
+                const rankings = buildRankings(result.data.seasonLeaderboardByPoints.items);
                 setSeasonRankings(rankings);
                 const points = rankings.filter(r => r.player === user.username).map(r => r.points);
                 setSeasonPoints(points.length > 0 ? points : 0);
@@ -130,10 +127,7 @@ export default function LeaderBoard() {
         if (user && rounds) {
             const result = await API.graphql(graphqlOperation(fetchRoundLeaderBoardByPointsQuery, {roundId: rounds[roundIndex].id}));
             if (result.data.roundLeaderboardByPoints.items.length > 0) {
-                const rankings =
-                    result.data.roundLeaderboardByPoints.items.map((r, i) => {
-                        return {key: i, position: i + 1, player: r.username, points: r.points};
-                    });
+                const rankings = buildRankings(result.data.roundLeaderboardByPoints.items);
                 setRoundRankings(rankings);
                 const points = rankings.filter(r => r.player === user.username).map(r => r.points);
                 setRoundPoints(points.length > 0 ? points : 0);
@@ -142,6 +136,19 @@ export default function LeaderBoard() {
                 setRoundPoints(0);
             }
         }
+    }
+
+    function buildRankings(items) {
+        let pts = -1;
+        return items.map((r, i) => {
+            let isSamePoints = true;
+            if (pts === -1 || pts > r.points) {
+                isSamePoints = false;
+            }
+            pts = r.points;
+
+            return {key: i, position: isSamePoints ? "-" : i + 1, player: r.username, points: r.points};
+        });
     }
 
     const handlePrevious = () => {
