@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     logo: {
         margin: "24px auto",
         width: 60,
+        height: 60,
     },
 }));
 
