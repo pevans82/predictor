@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import {Route, Switch} from "react-router-dom";
-import Home from "./Home";
-import Play from './Play'
-import Leaderboard from './Leaderboard'
-import Results from './Results'
-import HowTo from './HowTo'
-import Profile from './Profile'
-import SignIn from './SignIn'
-import About from './About'
-import Privacy from './Privacy'
-import TsAndCs from './TsAndCs'
-import Score from "./Score";
-import Fixtures from "./Fixtures";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+const Home = lazy(() => import('./Home'));
+const Play = lazy(() => import('./Play'));
+const Leaderboard = lazy(() => import('./Leaderboard'));
+const Results = lazy(() => import( './Results'));
+const HowTo = lazy(() => import( './HowTo'));
+const Profile = lazy(() => import( './Profile'));
+const SignIn = lazy(() => import( './SignIn'));
+const About = lazy(() => import( './About'));
+const Privacy = lazy(() => import( './Privacy'));
+const TsAndCs = lazy(() => import( './TsAndCs'));
+const Score = lazy(() => import( "./Score"));
+const Fixtures = lazy(() => import( "./Fixtures"));
 
 export const HomeRoute = "/";
 export const PlayRoute = "/play/";
@@ -28,6 +30,11 @@ export const FixturesRoute = "/fixtures/";
 
 export default function Pages() {
     return (
+        <Suspense fallback={<div style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: 400}}><CircularProgress/></div>}>
         <Switch>
             <Route path={HomeRoute} exact component={Home}/>
             <Route path={PlayRoute} component={Play}/>
@@ -42,5 +49,6 @@ export default function Pages() {
             <Route path={ScoreRoute} exact component={Score}/>
             <Route path={FixturesRoute} exact component={Fixtures}/>
         </Switch>
+        </Suspense>
     );
 }
