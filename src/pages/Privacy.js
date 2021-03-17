@@ -40,7 +40,7 @@ export default function Profile() {
             </Typography>
             <Typography className={classes.textBlock} variant="body1" component="p">To comply with UK data protection law, <strong>rocSOLID Services
                 Ltd</strong> are registered as a 'Data Controller' with the Information Commissioner's Office (ICO). These details are published on a
-                public register on the ICO website at http://ico.org.uk.</Typography>
+                public register on the ICO website at <Link href="http://ico.org.uk">http://ico.org.uk</Link>.</Typography>
             <Typography className={classes.textBlock} variant="body1" component="p">Please remember to keep your passwords secret and safe. Do not use
                 anything obvious and try to add complexity with the use letters, numbers and case. Try not to use the same password across multiple
                 websites and don't forget to change them every now and again to keep the bad guys on their toes.</Typography>

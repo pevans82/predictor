@@ -40,7 +40,7 @@ export default function Results() {
 
     const [results, setResults] = useState();
 
-    const [activeRound, setActiveRound] = useState(0);
+    const [activeRound, setActiveRound] = useState();
     const [maxRounds, setMaxRounds] = useState();
 
     const noPrediction = {homeScore: "-", awayScore: "-", points: "0"};
@@ -60,7 +60,7 @@ export default function Results() {
     }, [user]);
 
     useEffect(() => {
-        if (results) {
+        if (results && activeRound) {
             fetchPrediction(activeRound);
         }
     }, [results, activeRound]);
@@ -180,16 +180,16 @@ export default function Results() {
                     <StaticScoreField value={0}></StaticScoreField>
                 </div>
                 }
-                {results && <div style={{marginBottom: theme.spacing(3)}}>
+                {results && activeRound !== undefined && <div style={{marginBottom: theme.spacing(3)}}>
                     <Typography className={classes.title} variant={"h2"} color={"primary"}>Round {results[activeRound].round.number}</Typography>
                     <Typography className={classes.title} variant={"h4"} color={"primary"}>Points Scored</Typography>
                     <StaticScoreField id={"pts"} value={prediction.points}/>
                 </div>
                 }
-                {maxRounds > 1 && <ProgressStepper
+                {maxRounds !== undefined && activeRound !== undefined && <ProgressStepper
                     onHandleNext={handleNext} onHandlePrevious={handlePrevious} maxSteps={maxRounds} activeStep={activeRound}/>}
                 <Paper square elevation={0} className={classes.header}>
-                    {results &&
+                    {results && activeRound !== undefined &&
                     <div>
                         <Fixture round={results[activeRound].round}/>
                         {results[activeRound].round.status === 'complete' ?
