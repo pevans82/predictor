@@ -60,7 +60,7 @@ export default function Results() {
     }, [user]);
 
     useEffect(() => {
-        if (results && activeRound) {
+        if (results && activeRound !== undefined) {
             fetchPrediction(activeRound);
         }
     }, [results, activeRound]);
@@ -123,7 +123,7 @@ export default function Results() {
             setResults(result.data.listResults.items.sort((a, b) => a.round.number - b.round.number));
             const roundsCount = result.data.listResults.items.length;
             setMaxRounds(roundsCount);
-            if (resetActiveRound) {
+            if (resetActiveRound || activeRound === undefined) {
                 setActiveRound(roundsCount - 1);
             }
         } else {
@@ -186,7 +186,7 @@ export default function Results() {
                     <StaticScoreField id={"pts"} value={prediction.points}/>
                 </div>
                 }
-                {maxRounds !== undefined && activeRound !== undefined && <ProgressStepper
+                {maxRounds > 1 && activeRound !== undefined && <ProgressStepper
                     onHandleNext={handleNext} onHandlePrevious={handlePrevious} maxSteps={maxRounds} activeStep={activeRound}/>}
                 <Paper square elevation={0} className={classes.header}>
                     {results && activeRound !== undefined &&
