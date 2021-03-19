@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Fixture from "../components/Fixture";
 import ScoreCard from "../components/ScoreCard";
-import {AmplifyAuthenticator} from "@aws-amplify/ui-react";
 import {useRound} from "../hooks/useRound";
 import Box from '@material-ui/core/Box';
 import Typography from "@material-ui/core/Typography";
@@ -13,6 +12,7 @@ import {predictionsByRound} from "../graphql/queries";
 import * as mutations from "../graphql/mutations";
 import {useUser} from "../hooks/useUser";
 import MuiAlert from "@material-ui/lab/Alert";
+import Authenticator from "../components/Authenticator";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -128,7 +128,7 @@ export default function Play() {
     };
 
     return (
-        <AmplifyAuthenticator>
+        <Authenticator>
             <Box className={classes.root}>
                 {roundReady && <div>
                     {round.id === 0 ?
@@ -156,6 +156,6 @@ export default function Play() {
                         </div>}
                 </div>}
             </Box>
-        </AmplifyAuthenticator>
+        </Authenticator>
     );
 }

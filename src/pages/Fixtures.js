@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {makeStyles, useTheme} from "@material-ui/core/styles";
-import {AmplifyAuthenticator} from "@aws-amplify/ui-react";
 import Box from '@material-ui/core/Box';
 import Typography from "@material-ui/core/Typography";
 import {useAdminUser} from "../hooks/useAdminUser";
@@ -23,6 +22,7 @@ import TeamCard from "../components/TeamCard";
 import ProgressStepper from "../components/ProgressStepper";
 import * as mutations from "../graphql/mutations";
 import DateFnsUtils from '@date-io/date-fns';
+import Authenticator from "../components/Authenticator";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -220,7 +220,7 @@ export default function Fixtures() {
     };
 
     return (
-        <AmplifyAuthenticator>
+        <Authenticator>
             <Box className={classes.root}>
                 {adminUser ?
                     editMode ? <div><Typography className={classes.title} variant={"h2"} color={"primary"}>Change Fixture</Typography>
@@ -312,6 +312,6 @@ export default function Fixtures() {
                     </div>
                 }
             </Box>
-        </AmplifyAuthenticator>
+        </Authenticator>
     );
 }

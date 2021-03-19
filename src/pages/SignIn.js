@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import {AmplifyAuthenticator} from "@aws-amplify/ui-react";
 import {useHistory} from "react-router";
 import {AuthState, onAuthUIStateChange} from "@aws-amplify/ui-components";
+import Authenticator from "../components/Authenticator";
 
 export default function SignIn() {
-    const history = useHistory()
+    const history = useHistory();
     const [authState, setAuthState] = React.useState();
 
     useEffect(() => {
@@ -20,6 +20,6 @@ export default function SignIn() {
     }, [authState]);
 
     return (
-        <AmplifyAuthenticator/>
+            <Authenticator/>
     );
 }

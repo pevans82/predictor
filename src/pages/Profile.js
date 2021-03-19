@@ -1,7 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import {AmplifyAuthenticator} from "@aws-amplify/ui-react";
 import {makeStyles} from "@material-ui/core/styles";
 import {useUser} from "../hooks/useUser";
 import Table from "@material-ui/core/Table";
@@ -10,6 +9,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
+import Authenticator from "../components/Authenticator";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,7 +35,7 @@ export default function Profile() {
     const user = useUser();
 
     return (
-        <AmplifyAuthenticator>
+        <Authenticator>
             <Box className={classes.root}>
                 <Typography className={classes.title} variant={"h2"} color={"primary"}>Profile</Typography>
                 {user && <TableContainer>
@@ -69,6 +69,6 @@ export default function Profile() {
                 </TableContainer>
                 }
             </Box>
-        </AmplifyAuthenticator>
+        </Authenticator>
     );
 }

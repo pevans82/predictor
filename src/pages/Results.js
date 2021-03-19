@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import {AmplifyAuthenticator} from '@aws-amplify/ui-react';
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Fixture from "../components/Fixture";
 import ScoreCard from "../components/ScoreCard";
@@ -15,6 +14,7 @@ import {onCreateResult, onUpdatePrediction, onUpdateResult} from "../graphql/sub
 import ProgressStepper from "../components/ProgressStepper";
 import {fetchResultsQuery} from "../Queries";
 import PointsBreakdown from "../components/PointsBreakdown";
+import Authenticator from "../components/Authenticator";
 
 export const PlayRoute = "/play/";
 
@@ -169,7 +169,7 @@ export default function Results() {
     };
 
     return (
-        <AmplifyAuthenticator>
+        <Authenticator>
             <Box className={classes.root}>
                 {maxRounds === 0 && <div>
                     <Typography className={classes.title} variant={"h2"} color={"primary"}>Results</Typography>
@@ -211,6 +211,6 @@ export default function Results() {
                     }
                 </Paper>
             </Box>
-        </AmplifyAuthenticator>
+        </Authenticator>
     );
 }

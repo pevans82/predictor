@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Fixture from "../components/Fixture";
 import ScoreCard from "../components/ScoreCard";
-import {AmplifyAuthenticator} from "@aws-amplify/ui-react";
 import {useRound} from "../hooks/useRound";
 import Box from '@material-ui/core/Box';
 import Typography from "@material-ui/core/Typography";
@@ -15,6 +14,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import {useAdminUser} from "../hooks/useAdminUser";
 import {onUpdateResult} from "../graphql/subscriptions";
 import {ConfirmDialog} from "../components/ConfirmDialog";
+import Authenticator from "../components/Authenticator";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -162,7 +162,7 @@ export default function Score() {
     }
 
     return (
-        <AmplifyAuthenticator>
+        <Authenticator>
             <Box className={classes.root}>
                 {adminUser ?
                     <div>
@@ -209,6 +209,6 @@ export default function Score() {
                         <Typography className={classes.title} variant={"h4"}>You're not allowed to be here.</Typography>
                     </div>}
             </Box>
-        </AmplifyAuthenticator>
+        </Authenticator>
     );
 }

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {AmplifyAuthenticator} from "@aws-amplify/ui-react";
 import PropTypes from 'prop-types';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,6 +12,7 @@ import PointsTable from "../components/PointsTable";
 import ProgressStepper from "../components/ProgressStepper";
 import StaticScoreField from "../components/StaticScoreField";
 import {useUser} from "../hooks/useUser";
+import Authenticator from "../components/Authenticator";
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -164,7 +164,7 @@ export default function LeaderBoard() {
     };
 
     return (
-        <AmplifyAuthenticator>
+        <Authenticator>
             <Box className={classes.root}>
                 <div style={{marginBottom: theme.spacing(3)}}>
                     <Typography className={classes.title} variant={"h2"} color={"primary"}>Leaderboards</Typography>
@@ -197,6 +197,6 @@ export default function LeaderBoard() {
                     </TabPanel>
                 </div>
             </Box>
-        </AmplifyAuthenticator>
+        </Authenticator>
     );
 }
