@@ -58,12 +58,6 @@ export default function Profile() {
                                     <Typography variant={"body1"}>{user.attributes.email}</Typography>
                                 </TableCell>
                             </TableRow>
-                            <TableRow key={"email"}>
-                                <TableCell>
-                                    <Typography variant={"caption"} display={"block"}>Phone number</Typography>
-                                    <Typography variant={"body1"}>{user.attributes.phone_number}</Typography>
-                                </TableCell>
-                            </TableRow>
                         </TableBody>
                     </Table>
                 </TableContainer>

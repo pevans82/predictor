@@ -18,15 +18,15 @@
       "function": {
         "pointsengine": {
           "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-          "s3Key": "amplify-builds/pointsengine-73506d516f4d5a432b48-build.zip"
+          "s3Key": "amplify-builds/pointsengine-4c6356577a306e2b6469-build.zip"
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-          "s3Key": "amplify-builds/leaderboardupdater-69546e754c416c466e55-build.zip"
+          "s3Key": "amplify-builds/leaderboardupdater-764f6472364f6d436548-build.zip"
         },
         "roundcloser": {
           "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-          "s3Key": "amplify-builds/roundcloser-71595636507535523343-build.zip"
+          "s3Key": "amplify-builds/roundcloser-4768694b573850795274-build.zip"
         }
       }
     }
