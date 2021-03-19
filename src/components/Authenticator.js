@@ -13,6 +13,10 @@ export default function Authenticator({children}) {
     const [alertMessage, setAlertMessage] = useState('');
     const [openSnackBar, setOpenSnackBar] = useState(false);
 
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const handleToastErrors = ({payload}) => {
         if (payload.event === TOAST_AUTH_ERROR_EVENT && payload.message) {
             setAlertMessage(payload.message);
@@ -44,9 +48,30 @@ export default function Authenticator({children}) {
                 <AmplifySignUp
                     slot="sign-up"
                     formFields={[
-                        {type: "username"},
-                        {type: "password"},
-                        {type: "email"}
+                        {
+                            type: "username",
+                            handleInputChange: (event, cb) => {
+                                setUsername(event.target.value);
+                                cb(event);
+                            },
+                            value: username,
+                        },
+                        {
+                            type: "email",
+                            handleInputChange: (event, cb) => {
+                                setEmail(event.target.value);
+                                cb(event);
+                            },
+                            value: email,
+                        },
+                        {
+                            type: "password",
+                            handleInputChange: (event, cb) => {
+                                setPassword(event.target.value);
+                                cb(event);
+                            },
+                            value: password,
+                        },
                     ]}
                 />
                 {children}
