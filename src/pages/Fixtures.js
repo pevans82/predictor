@@ -23,6 +23,7 @@ import ProgressStepper from "../components/ProgressStepper";
 import * as mutations from "../graphql/mutations";
 import DateFnsUtils from '@date-io/date-fns';
 import Authenticator from "../components/Authenticator";
+import Naughty from "../components/Naughty";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -306,10 +307,7 @@ export default function Fixtures() {
                             </ConfirmDialog>
                         </div>
                     :
-                    <div>
-                        <Typography className={classes.title} variant={"h2"} color={"primary"}>! Naughty !</Typography>
-                        <Typography variant={"body1"}>You're not allowed to be here.</Typography>
-                    </div>
+                    <Naughty />
                 }
             </Box>
         </Authenticator>

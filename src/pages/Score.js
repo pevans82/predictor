@@ -15,6 +15,7 @@ import {useAdminUser} from "../hooks/useAdminUser";
 import {onUpdateResult} from "../graphql/subscriptions";
 import {ConfirmDialog} from "../components/ConfirmDialog";
 import Authenticator from "../components/Authenticator";
+import Naughty from "../components/Naughty";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -204,10 +205,7 @@ export default function Score() {
                         </div>}
                     </div>
                     :
-                    <div>
-                        <Typography className={classes.title} variant={"h2"} color={"primary"}>! Naughty !</Typography>
-                        <Typography className={classes.title} variant={"h4"}>You're not allowed to be here.</Typography>
-                    </div>}
+                    <Naughty />}
             </Box>
         </Authenticator>
     );
