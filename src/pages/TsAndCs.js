@@ -74,7 +74,11 @@ export default function Profile() {
                 </ListItem>
                 <ListItem>
                     <ListItemText
-                        primary='If the fixture is postponed, abandoned or not completed (where less than 80mins is played) the round will be considered void and no points will be scored.'/>
+                        primary='If the fixture is postponed, abandoned or not completed (where less than 80 minutes is played) the round will be considered void and no points will be scored.'/>
+                </ListItem>
+                <ListItem>
+                    <ListItemText
+                        primary='If the fixture is drawn after 80 minutes and golden point extra time is played then the score used will be the final score at the end of additional time.'/>
                 </ListItem>
                 <ListItem>
                     <ListItemText
