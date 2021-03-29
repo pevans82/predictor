@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {API, graphqlOperation} from "@aws-amplify/api";
+import {API} from "@aws-amplify/api";
 import {onUpdateRound} from "../graphql/subscriptions";
 import {fetchRoundByStatusQuery} from "../Queries";
 
@@ -45,7 +45,10 @@ export function useRound() {
     }
 
     function assignUpdatedListener() {
-        return API.graphql(graphqlOperation(onUpdateRound)).subscribe({
+        return API.graphql({
+            query: onUpdateRound,
+            authMode: 'API_KEY'
+        }).subscribe({
             next: (updated) => {
                 const updatedRound = updated.value.data.onUpdateRound;
 
