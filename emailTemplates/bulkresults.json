@@ -1,0 +1,256 @@
+{
+  "Source": "Super Leigh ! <superleigh@rocsolidservices.co.uk>",
+  "Template": "Results",
+  "ConfigurationSetName": "SuperLeigh",
+  "Destinations": [
+    {
+      "Destination": {
+        "ToAddresses": [
+          "steve@sedet.co.uk"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"steve\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "alana.evans@blueyonder.co.uk"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"allybobs\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "iancolbert1952@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"barneyandfreddie\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "cazcapaz@hotmail.co.uk"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"caz\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "soper.del56@outlook.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"derryas56\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "cazcapaz@hotmail.co.uk"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"esther\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "michael.hardy48@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"hardhitter\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "henryjameswakefield@icloud.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"henry\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "idb@blueyonder.co.uk"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"ianb\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "jcw20002000@icloud.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"jackwakefield\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "olivia.alana08@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"liv.alana08\t\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "martfoz75@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"martfoz\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "martyn5992@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"martyn5992\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "jamieshepherd30@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"shepdog\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "andrewsumner8@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"subby09\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "vicky.leech84@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"vicky\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "wakey81@hotmail.co.uk"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"wakey81\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "warrenm55@sky.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"wolfie1\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "angeladriver1301@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"angela13\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "mikepearson@live.co.uk"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"bongser\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "hall_a4@sky.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"a&dhall\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "sheenaslinn@aol.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"daisy\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "gracevictorialeech@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"grace.victoria10\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "halliwellsian@hotmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"sian\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "pfayle154@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"vancouverleyther\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "neil.hallinan@yahoo.co.uk"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"the_don\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "bm-sims@hotmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"bevy.19\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "aidie67@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"atomic\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "bmolyneux@blueyonder.co.uk"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"bob65\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "\tjboy1709@hotmail.co.uk"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"jbcenturion\" }"
+    },
+    {
+      "Destination": {
+        "ToAddresses": [
+          "pevans82@gmail.com"
+        ]
+      },
+      "ReplacementTemplateData": "{ \"username\":\"foo\" }"
+    }
+  ],
+  "DefaultTemplateData": "{ \"username\":\"Friend\", \"home_team\": \"Leigh Centurions\", \"home_score\": \"12\", \"away_team\": \"Wigan Warriors\", \"away_score\": \"22\" }"
+}

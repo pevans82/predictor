@@ -349,3 +349,39 @@ export const onDeleteSeasonLeaderboard = /* GraphQL */ `
     }
   }
 `;
+export const onCreatePreference = /* GraphQL */ `
+  subscription OnCreatePreference($owner: String) {
+    onCreatePreference(owner: $owner) {
+      id
+      matchday
+      results
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdatePreference = /* GraphQL */ `
+  subscription OnUpdatePreference($owner: String) {
+    onUpdatePreference(owner: $owner) {
+      id
+      matchday
+      results
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeletePreference = /* GraphQL */ `
+  subscription OnDeletePreference($owner: String) {
+    onDeletePreference(owner: $owner) {
+      id
+      matchday
+      results
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;

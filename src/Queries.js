@@ -55,7 +55,6 @@ export const fetchResultsQuery = `query listResults {
 }
 `
 
-
 export const fetchSeasonLeaderBoardByPointsQuery = `query seasonLeaderboardByPoints {
     seasonLeaderboardByPoints(sortDirection: DESC, season:1) {
         items {
@@ -115,5 +114,30 @@ export const fetchTeamsQuery = `query listTeams {
     }
   }
 }
+`
 
+export const fetchPreferencesQuery = `query listPreferences {
+  listPreferences() {
+    items {
+      id
+      homeScore
+      awayScore
+      round {
+        awayTeam {
+          badgeSrc
+          name
+        }
+        ground
+        homeTeam {
+          badgeSrc
+          name
+        }
+        kickOff
+        number
+        status
+        id
+      }
+    }
+  }
+}
 `

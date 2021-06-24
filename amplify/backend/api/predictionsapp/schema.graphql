@@ -87,3 +87,14 @@ type SeasonLeaderboard @model
     username: String!
     points: Int!
 }
+
+type Preference @model
+@auth(rules: [
+    { allow: owner },
+    { allow: private, provider: iam, operations: [read] }
+])
+{
+    id: ID!
+    matchday: Boolean
+    results: Boolean
+}

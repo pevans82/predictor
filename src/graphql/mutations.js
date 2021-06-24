@@ -1,21 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const deleteSeasonLeaderboard = /* GraphQL */ `
-  mutation DeleteSeasonLeaderboard(
-    $input: DeleteSeasonLeaderboardInput!
-    $condition: ModelSeasonLeaderboardConditionInput
-  ) {
-    deleteSeasonLeaderboard(input: $input, condition: $condition) {
-      id
-      season
-      username
-      points
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createRound = /* GraphQL */ `
   mutation CreateRound(
     $input: CreateRoundInput!
@@ -400,6 +385,66 @@ export const updateSeasonLeaderboard = /* GraphQL */ `
       points
       createdAt
       updatedAt
+    }
+  }
+`;
+export const deleteSeasonLeaderboard = /* GraphQL */ `
+  mutation DeleteSeasonLeaderboard(
+    $input: DeleteSeasonLeaderboardInput!
+    $condition: ModelSeasonLeaderboardConditionInput
+  ) {
+    deleteSeasonLeaderboard(input: $input, condition: $condition) {
+      id
+      season
+      username
+      points
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createPreference = /* GraphQL */ `
+  mutation CreatePreference(
+    $input: CreatePreferenceInput!
+    $condition: ModelPreferenceConditionInput
+  ) {
+    createPreference(input: $input, condition: $condition) {
+      id
+      matchday
+      results
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updatePreference = /* GraphQL */ `
+  mutation UpdatePreference(
+    $input: UpdatePreferenceInput!
+    $condition: ModelPreferenceConditionInput
+  ) {
+    updatePreference(input: $input, condition: $condition) {
+      id
+      matchday
+      results
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deletePreference = /* GraphQL */ `
+  mutation DeletePreference(
+    $input: DeletePreferenceInput!
+    $condition: ModelPreferenceConditionInput
+  ) {
+    deletePreference(input: $input, condition: $condition) {
+      id
+      matchday
+      results
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;

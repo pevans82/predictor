@@ -1,6 +1,35 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getRound = /* GraphQL */ `
+  query GetRound($id: ID!) {
+    getRound(id: $id) {
+      id
+      number
+      kickOff
+      ground
+      status
+      createdAt
+      updatedAt
+      homeTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+      awayTeam {
+        id
+        name
+        badgeSrc
+        ground
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
 export const listRounds = /* GraphQL */ `
   query ListRounds(
     $filter: ModelRoundFilterInput
@@ -34,35 +63,6 @@ export const listRounds = /* GraphQL */ `
         }
       }
       nextToken
-    }
-  }
-`;
-export const getRound = /* GraphQL */ `
-  query GetRound($id: ID!) {
-    getRound(id: $id) {
-      id
-      number
-      kickOff
-      ground
-      status
-      createdAt
-      updatedAt
-      homeTeam {
-        id
-        name
-        badgeSrc
-        ground
-        createdAt
-        updatedAt
-      }
-      awayTeam {
-        id
-        name
-        badgeSrc
-        ground
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -112,6 +112,18 @@ export const roundByStatus = /* GraphQL */ `
     }
   }
 `;
+export const getTeam = /* GraphQL */ `
+  query GetTeam($id: ID!) {
+    getTeam(id: $id) {
+      id
+      name
+      badgeSrc
+      ground
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const listTeams = /* GraphQL */ `
   query ListTeams(
     $filter: ModelTeamFilterInput
@@ -128,18 +140,6 @@ export const listTeams = /* GraphQL */ `
         updatedAt
       }
       nextToken
-    }
-  }
-`;
-export const getTeam = /* GraphQL */ `
-  query GetTeam($id: ID!) {
-    getTeam(id: $id) {
-      id
-      name
-      badgeSrc
-      ground
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -395,6 +395,37 @@ export const seasonLeaderboardByPoints = /* GraphQL */ `
         points
         createdAt
         updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getPreference = /* GraphQL */ `
+  query GetPreference($id: ID!) {
+    getPreference(id: $id) {
+      id
+      matchday
+      results
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listPreferences = /* GraphQL */ `
+  query ListPreferences(
+    $filter: ModelPreferenceFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPreferences(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        matchday
+        results
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
     }

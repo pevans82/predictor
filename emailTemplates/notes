@@ -1,0 +1,5 @@
+aws ses update-template --cli-input-json file://matchday.json
+aws ses update-template --cli-input-json file://results.json
+
+aws ses send-bulk-templated-email --cli-input-json file://bulkmatchday.json
+aws ses send-bulk-templated-email --cli-input-json file://bulkresults.json
