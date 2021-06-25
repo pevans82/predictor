@@ -28,6 +28,11 @@
         "roundcloser": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
           "s3Key": "amplify-builds/roundcloser-71595636507535523343-build.zip"
+        },
+        "matchdayreminder": {
+          "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
+          "s3Key": "amplify-builds/matchdayreminder-44745643493652674777-build.zip",
+          "cognitoUserPoolId": "eu-west-1_5y2vJB9gk"
         }
       }
     }
@@ -60,38 +65,6 @@
         },
         "roundcloser": {
           "deploymentBucketName": "amplify-predictor-prod-205907-deployment",
-          "s3Key": "amplify-builds/roundcloser-4768694b573850795274-build.zip"
-        }
-      }
-    }
-  },
-  "staging": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-amplifyb72d80399d824-staging-123605-authRole",
-      "UnauthRoleArn": "arn:aws:iam::415541965992:role/amplify-amplifyb72d80399d824-staging-123605-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::415541965992:role/amplify-amplifyb72d80399d824-staging-123605-authRole",
-      "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-      "UnauthRoleName": "amplify-amplifyb72d80399d824-staging-123605-unauthRole",
-      "StackName": "amplify-amplifyb72d80399d824-staging-123605",
-      "StackId": "arn:aws:cloudformation:eu-west-1:415541965992:stack/amplify-amplifyb72d80399d824-staging-123605/eaadcc70-4c2d-11eb-a958-0a23af1c9dca",
-      "AmplifyAppId": "d4eq4pp4q5yu3"
-    },
-    "categories": {
-      "auth": {
-        "predictorf4b9a321": {}
-      },
-      "function": {
-        "pointsengine": {
-          "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-          "s3Key": "amplify-builds/pointsengine-4c6356577a306e2b6469-build.zip"
-        },
-        "leaderboardupdater": {
-          "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
-          "s3Key": "amplify-builds/leaderboardupdater-764f6472364f6d436548-build.zip"
-        },
-        "roundcloser": {
-          "deploymentBucketName": "amplify-amplifyb72d80399d824-staging-123605-deployment",
           "s3Key": "amplify-builds/roundcloser-4768694b573850795274-build.zip"
         }
       }

@@ -252,5 +252,5 @@
       "ReplacementTemplateData": "{ \"username\":\"foo\" }"
     }
   ],
-  "DefaultTemplateData": "{ \"username\":\"Friend\", \"home_team\": \"Leigh Centurions\", \"away_team\": \"Hull FC\", \"kickOff\": \"15:00\" }"
+  "DefaultTemplateData": "{ \"username\":\"Friend\", \"home_team\": \"Leigh Centurions\", \"away_team\": \"Hull FC\", \"kickOff\": \"15:00\", \"ground\": \"LSV\" }"
 }
