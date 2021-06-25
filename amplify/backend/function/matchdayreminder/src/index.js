@@ -61,7 +61,7 @@ exports.handler = async (event) => {
 
                 const sentEmails = await ses.sendBulkTemplatedEmail(bulkTemplatedEmail).promise();
                 console.log(sentEmails);
-
+                
                 return {
                     statusCode: 200,
                     body: JSON.stringify("reminder emails sent")
