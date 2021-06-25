@@ -11,7 +11,10 @@ const AWS = require("aws-sdk");
 const urlParse = require("url").URL;
 const appsyncUrl = process.env.API_PREDICTIONSAPP_GRAPHQLAPIENDPOINTOUTPUT;
 const region = process.env.REGION;
+const userPoolId = process.env.COGNITO_USERPOOLID;
 const endpoint = new urlParse(appsyncUrl).hostname.toString();
+const cognitoIdentityService = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-19', region: region});
+const ses = new AWS.SES({ region: region});
 const fetchPredictions = require('./query.js').predictionsQuery;
 const createRoundForUser = require('./query.js').createRoundMutation;
 const fetchSeasonForUser = require('./query.js').seasonUserQuery;
@@ -19,6 +22,8 @@ const createSeasonForUser = require('./query.js').createSeasonMutation;
 const updateSeasonForUser = require('./query.js').updateSeasonMutation;
 const fetchNextRound = require('./query.js').pendingRoundsQuery;
 const updateRoundToActive = require('./query.js').activateRoundMutation;
+const fetchPreferences = require('./query.js').preferencesQuery;
+const fetchResults = require('./query.js').resultsQuery;
 
 exports.handler = async (event) => {
   //eslint-disable-line
@@ -47,6 +52,8 @@ exports.handler = async (event) => {
         await activateRound(rounds.items[0].id, Number(event.Records[0].dynamodb.NewImage.number.N) +1);
       }
 
+      await notifyUsers(event.Records[0].dynamodb.NewImage.id.S);
+
       return {
         statusCode: 200,
         body: JSON.stringify("leaderboards updated")
@@ -66,6 +73,34 @@ exports.handler = async (event) => {
   };
 
 };
+
+async function notifyUsers(roundId) {
+  const users = await cognitoIdentityService.listUsers({UserPoolId: userPoolId, AttributesToGet: ['email']}).promise();
+  const preferences = await callGraphqlApi(fetchPreferences,"listPreferences");
+  const optInUsers = preferences.items.filter(item => item.results == false || item.results == null).map(item => item.owner);
+  const destinations = users.Users.filter(user => optInUsers.includes(user.Username)).map(function(user) {
+    return { "Destination": { "ToAddresses": [ user.Attributes[0].Value ] }, "ReplacementTemplateData": JSON.stringify({ "username": user.Username }) }
+  });
+
+  const results = await callGraphqlApi(fetchResults, "getResult", {"roundId": roundId});
+
+  const bulkTemplatedEmail = {
+    "Source": "Super Leigh ! <superleigh@rocsolidservices.co.uk>",
+    "Template": "Results",
+    "ConfigurationSetName": "SuperLeigh",
+    "Destinations": destinations,
+    "DefaultTemplateData": JSON.stringify({ "username":"Friend",
+      "home_team": results.round.homeTeam.name,
+      "home_score": results.homeScore,
+      "away_team": results.round.awayTeam.name,
+      "away_score": results.awayScore })
+  }
+  console.log(JSON.stringify(bulkTemplatedEmail));
+
+  const sentEmails = await ses.sendBulkTemplatedEmail(bulkTemplatedEmail).promise();
+  console.log(sentEmails);
+
+}
 
 async function applyRoundPoints(predictions) {
   return await Promise.all(predictions.items.map(prediction =>

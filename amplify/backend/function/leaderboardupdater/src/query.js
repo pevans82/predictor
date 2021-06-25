@@ -69,5 +69,27 @@ module.exports = {
         status
         updatedAt
       }
+    }`,
+    preferencesQuery: `query listPreferences {
+        listPreferences {
+            items {
+                owner
+                results
+            }
+        }
+    }`,
+    resultsQuery: `query getResult($roundId: ID!) {
+      getResult(id: $roundId) {
+        awayScore
+        homeScore
+        round {
+          awayTeam {
+            name
+          }
+          homeTeam {
+            name
+          }
+        }
+      }
     }`
 }

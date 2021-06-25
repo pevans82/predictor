@@ -27,6 +27,10 @@
     "apipredictionsappGraphQLAPIKeyOutput": {
       "Type": "String",
       "Default": "apipredictionsappGraphQLAPIKeyOutput"
+    },
+    "cognitoUserPoolId": {
+      "Type": "String",
+      "Default": "cognitoUserPoolId"
     }
   },
   "Conditions": {
@@ -90,6 +94,9 @@
             },
             "API_PREDICTIONSAPP_GRAPHQLAPIKEYOUTPUT": {
               "Ref": "apipredictionsappGraphQLAPIKeyOutput"
+            },
+            "COGNITO_USERPOOLID": {
+              "Ref": "cognitoUserPoolId"
             }
           }
         },
@@ -177,6 +184,49 @@
                     },
                     "lambda": {
                       "Ref": "LambdaFunction"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "Sid": "Cognito",
+              "Effect": "Allow",
+              "Action": [
+                "cognito-idp:ListUsers"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:aws:cognito-idp:${region}:${account}:userpool/${cognitoUserPoolId}",
+                  {
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "cognitoUserPoolId": {
+                      "Ref": "cognitoUserPoolId"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "Sid": "SES",
+              "Effect": "Allow",
+              "Action": [
+                "ses:SendBulkTemplatedEmail"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:aws:ses:${region}:${account}:identity/superleigh@rocsolidservices.co.uk",
+                  {
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
                     }
                   }
                 ]

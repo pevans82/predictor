@@ -22,7 +22,8 @@
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/leaderboardupdater-69546e754c416c466e55-build.zip"
+          "s3Key": "amplify-builds/leaderboardupdater-2f447343427368494643-build.zip",
+          "cognitoUserPoolId": "eu-west-1_5y2vJB9gk"
         },
         "roundcloser": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
@@ -54,7 +55,8 @@
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-predictor-prod-205907-deployment",
-          "s3Key": "amplify-builds/leaderboardupdater-764f6472364f6d436548-build.zip"
+          "s3Key": "amplify-builds/leaderboardupdater-764f6472364f6d436548-build.zip",
+          "cognitoUserPoolId": "eu-west-1_e8xND3Pa9"
         },
         "roundcloser": {
           "deploymentBucketName": "amplify-predictor-prod-205907-deployment",
