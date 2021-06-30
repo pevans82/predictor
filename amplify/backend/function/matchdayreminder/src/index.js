@@ -36,14 +36,22 @@ exports.handler = async (event) => {
             if (tomorrow.getTime() === matchday.getTime()) {
                 const users = await cognitoIdentityService.listUsers({UserPoolId: userPoolId, AttributesToGet: ['email']}).promise();
                 const preferences = await callGraphqlApi(fetchPreferences, "listPreferences");
-                const optInUsers = preferences.items.filter(item => item.matchday == false || item.matchday == null).map(item => item.owner);
-                const destinations = users.Users.filter(user => optInUsers.includes(user.Username)).map(function (user) {
+                const optOutUsers = preferences.items.filter(item => item.matchday == true).map(item => item.owner);
+                const destinations = users.Users.filter(user => !optOutUsers.includes(user.Username)).map(function (user) {
                     return {
                         "Destination": {"ToAddresses": [user.Attributes[0].Value]},
                         "ReplacementTemplateData": JSON.stringify({"username": user.Username})
                     }
                 });
+
                 const kickoffTime = new Date(round.kickOff);
+                const bstStart = getLastSunday(kickoffTime.getFullYear(), 3);
+                const bstEnd = getLastSunday(kickoffTime.getFullYear(), 10);
+                //add hour if in BST
+                if (kickoffTime > bstStart && kickoffTime < bstEnd) {
+                    kickoffTime.setHours(kickoffTime.getHours() + 1);
+                }
+
                 const bulkTemplatedEmail = {
                     "Source": "Super Leigh ! <superleigh@rocsolidservices.co.uk>",
                     "Template": "Matchday",
@@ -81,6 +89,14 @@ exports.handler = async (event) => {
         body: JSON.stringify("reminder emails not sent out today")
     };
 };
+
+function getLastSunday(year, month) {
+    // Create date for last day in month
+    var date = new Date(year, month, 0);
+    // Adjust to previous Sunday
+    date.setDate(date.getDate() - date.getDay());
+    return date;
+}
 
 async function callGraphqlApi(query, operationName, variables) {
     const req = new AWS.HttpRequest(appsyncUrl, region);

@@ -77,8 +77,8 @@ exports.handler = async (event) => {
 async function notifyUsers(roundId) {
   const users = await cognitoIdentityService.listUsers({UserPoolId: userPoolId, AttributesToGet: ['email']}).promise();
   const preferences = await callGraphqlApi(fetchPreferences,"listPreferences");
-  const optInUsers = preferences.items.filter(item => item.results == false || item.results == null).map(item => item.owner);
-  const destinations = users.Users.filter(user => optInUsers.includes(user.Username)).map(function(user) {
+  const optOutUsers = preferences.items.filter(item => item.results == true).map(item => item.owner);
+  const destinations = users.Users.filter(user => !optOutUsers.includes(user.Username)).map(function(user) {
     return { "Destination": { "ToAddresses": [ user.Attributes[0].Value ] }, "ReplacementTemplateData": JSON.stringify({ "username": user.Username }) }
   });
 
