@@ -78,16 +78,18 @@ module.exports = {
             }
         }
     }`,
-    resultsQuery: `query getResult($roundId: ID!) {
-      getResult(id: $roundId) {
-        awayScore
-        homeScore
-        round {
-          awayTeam {
-            name
-          }
-          homeTeam {
-            name
+    resultsQuery: `query listResults($roundId: ID!) {
+      listResults(filter: {roundId: {eq: $roundId}}) {
+        items {
+          awayScore
+          homeScore
+          round {
+            awayTeam {
+              name
+            }
+            homeTeam {
+              name
+            }
           }
         }
       }

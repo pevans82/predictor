@@ -90,10 +90,10 @@ async function notifyUsers(roundId) {
     "ConfigurationSetName": "SuperLeigh",
     "Destinations": destinations,
     "DefaultTemplateData": JSON.stringify({ "username":"Friend",
-      "home_team": results.round.homeTeam.name,
-      "home_score": results.homeScore,
-      "away_team": results.round.awayTeam.name,
-      "away_score": results.awayScore })
+      "home_team": results.items[0].round.homeTeam.name,
+      "home_score": results.items[0].homeScore,
+      "away_team": results.items[0].round.awayTeam.name,
+      "away_score": results.items[0].awayScore })
   }
   console.log(JSON.stringify(bulkTemplatedEmail));
 

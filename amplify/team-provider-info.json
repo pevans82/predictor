@@ -22,7 +22,7 @@
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/leaderboardupdater-30495166644e332f4e50-build.zip",
+          "s3Key": "amplify-builds/leaderboardupdater-75675355397957586f30-build.zip",
           "cognitoUserPoolId": "eu-west-1_5y2vJB9gk"
         },
         "roundcloser": {
