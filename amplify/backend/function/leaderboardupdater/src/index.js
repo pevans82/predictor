@@ -82,7 +82,7 @@ async function notifyUsers(roundId) {
     return { "Destination": { "ToAddresses": [ user.Attributes[0].Value ] }, "ReplacementTemplateData": JSON.stringify({ "username": user.Username }) }
   });
 
-  const results = await callGraphqlApi(fetchResults, "getResult", {"roundId": roundId});
+  const results = await callGraphqlApi(fetchResults, "listResults", {"roundId": roundId});
 
   const bulkTemplatedEmail = {
     "Source": "Super Leigh ! <superleigh@rocsolidservices.co.uk>",
