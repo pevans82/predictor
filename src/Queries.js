@@ -20,7 +20,7 @@ export const fetchRoundByStatusQuery = `query roundByStatus($status: RoundStatus
 `
 
 export const fetchCompleteRoundsQuery = `query roundByStatus {
-  roundByStatus(sortDirection: ASC, status: complete) {
+  roundByStatus(sortDirection: ASC, status: complete, filter: {season: {eq: 2}}) {
     items {
       id
       number
@@ -29,8 +29,8 @@ export const fetchCompleteRoundsQuery = `query roundByStatus {
 }
 `
 
-export const fetchResultsQuery = `query listResults {
-  listResults {
+export const fetchResultsBySeasonQuery = `query resultsBySeason {
+  resultsBySeason(season: 2) {
     items {
       id
       homeScore
@@ -56,7 +56,7 @@ export const fetchResultsQuery = `query listResults {
 `
 
 export const fetchSeasonLeaderBoardByPointsQuery = `query seasonLeaderboardByPoints {
-    seasonLeaderboardByPoints(sortDirection: DESC, season:1) {
+    seasonLeaderboardByPoints(sortDirection: DESC, season: 2) {
         items {
             points
             username

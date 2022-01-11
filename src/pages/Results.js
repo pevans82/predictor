@@ -12,7 +12,7 @@ import {useUser} from "../hooks/useUser";
 import Link from "@material-ui/core/Link";
 import {onCreateResult, onUpdatePrediction, onUpdateResult} from "../graphql/subscriptions";
 import ProgressStepper from "../components/ProgressStepper";
-import {fetchResultsQuery} from "../Queries";
+import {fetchResultsBySeasonQuery} from "../Queries";
 import PointsBreakdown from "../components/PointsBreakdown";
 import Authenticator from "../components/Authenticator";
 
@@ -117,11 +117,11 @@ export default function Results() {
     }
 
     async function fetchResults(resetActiveRound) {
-        const result = await API.graphql(graphqlOperation(fetchResultsQuery));
+        const result = await API.graphql(graphqlOperation(fetchResultsBySeasonQuery));
 
-        if (result.data.listResults.items.length > 0) {
-            setResults(result.data.listResults.items.sort((a, b) => a.round.number - b.round.number));
-            const roundsCount = result.data.listResults.items.length;
+        if (result.data.resultsBySeason.items.length > 0) {
+            setResults(result.data.resultsBySeason.items.sort((a, b) => a.round.number - b.round.number));
+            const roundsCount = result.data.resultsBySeason.items.length;
             setMaxRounds(roundsCount);
             if (resetActiveRound || activeRound === undefined) {
                 setActiveRound(roundsCount - 1);

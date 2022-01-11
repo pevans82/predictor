@@ -12,6 +12,7 @@ export const createRound = /* GraphQL */ `
       kickOff
       ground
       status
+      season
       createdAt
       updatedAt
       homeTeam {
@@ -44,6 +45,7 @@ export const updateRound = /* GraphQL */ `
       kickOff
       ground
       status
+      season
       createdAt
       updatedAt
       homeTeam {
@@ -76,6 +78,7 @@ export const deleteRound = /* GraphQL */ `
       kickOff
       ground
       status
+      season
       createdAt
       updatedAt
       homeTeam {
@@ -203,6 +206,7 @@ export const createResult = /* GraphQL */ `
       roundId
       homeScore
       awayScore
+      season
       createdAt
       updatedAt
       round {
@@ -211,6 +215,7 @@ export const createResult = /* GraphQL */ `
         kickOff
         ground
         status
+        season
         createdAt
         updatedAt
         homeTeam {
@@ -243,6 +248,7 @@ export const updateResult = /* GraphQL */ `
       roundId
       homeScore
       awayScore
+      season
       createdAt
       updatedAt
       round {
@@ -251,6 +257,7 @@ export const updateResult = /* GraphQL */ `
         kickOff
         ground
         status
+        season
         createdAt
         updatedAt
         homeTeam {
@@ -283,6 +290,7 @@ export const deleteResult = /* GraphQL */ `
       roundId
       homeScore
       awayScore
+      season
       createdAt
       updatedAt
       round {
@@ -291,6 +299,7 @@ export const deleteResult = /* GraphQL */ `
         kickOff
         ground
         status
+        season
         createdAt
         updatedAt
         homeTeam {

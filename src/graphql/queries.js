@@ -9,6 +9,7 @@ export const getRound = /* GraphQL */ `
       kickOff
       ground
       status
+      season
       createdAt
       updatedAt
       homeTeam {
@@ -43,6 +44,7 @@ export const listRounds = /* GraphQL */ `
         kickOff
         ground
         status
+        season
         createdAt
         updatedAt
         homeTeam {
@@ -89,6 +91,7 @@ export const roundByStatus = /* GraphQL */ `
         kickOff
         ground
         status
+        season
         createdAt
         updatedAt
         homeTeam {
@@ -214,6 +217,7 @@ export const getResult = /* GraphQL */ `
       roundId
       homeScore
       awayScore
+      season
       createdAt
       updatedAt
       round {
@@ -222,6 +226,7 @@ export const getResult = /* GraphQL */ `
         kickOff
         ground
         status
+        season
         createdAt
         updatedAt
         homeTeam {
@@ -256,6 +261,7 @@ export const listResults = /* GraphQL */ `
         roundId
         homeScore
         awayScore
+        season
         createdAt
         updatedAt
         round {
@@ -264,6 +270,45 @@ export const listResults = /* GraphQL */ `
           kickOff
           ground
           status
+          season
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const resultsBySeason = /* GraphQL */ `
+  query ResultsBySeason(
+    $season: Int
+    $sortDirection: ModelSortDirection
+    $filter: ModelResultFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    resultsBySeason(
+      season: $season
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        roundId
+        homeScore
+        awayScore
+        season
+        createdAt
+        updatedAt
+        round {
+          id
+          number
+          kickOff
+          ground
+          status
+          season
           createdAt
           updatedAt
         }

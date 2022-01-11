@@ -9,7 +9,7 @@ module.exports = {
         }
     }`,
     seasonUserQuery: `query seasonLeaderboardByPoints($username:String!) {
-      seasonLeaderboardByPoints(season: 1, filter: {username: {eq: $username}}) {
+      seasonLeaderboardByPoints(season: 2, filter: {username: {eq: $username}}) {
         items {
           id
           points
@@ -31,7 +31,7 @@ module.exports = {
       }
     `,
     createSeasonMutation: `mutation createSeasonLeaderboard($season: Int!, $username: String!, $points: Int!) {
-        createSeasonLeaderboard(input: {season: $season, username: $username, points: $points, }) {
+        createSeasonLeaderboard(input: {season: $season, username: $username, points: $points}) {
           id
         }
       }
@@ -67,6 +67,7 @@ module.exports = {
         kickOff
         number
         status
+        season
         updatedAt
       }
     }`,

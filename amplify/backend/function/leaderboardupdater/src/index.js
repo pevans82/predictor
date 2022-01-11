@@ -118,7 +118,7 @@ async function applySeasonPoints(prediction) {
 
   if (seasonRecord.items.length < 1) {
     return await callGraphqlApi(createSeasonForUser, "createSeasonLeaderboard", {
-      season: 1,
+      season: 2,
       username: prediction.owner,
       points: prediction.points
     });

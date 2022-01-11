@@ -32,6 +32,7 @@ module.exports = {
         kickOff
         number
         status
+        season
         updatedAt
       }
     }`

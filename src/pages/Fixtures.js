@@ -138,7 +138,8 @@ export default function Fixtures() {
                         ground: ground,
                         kickOff: kickOff.toISOString(),
                         roundHomeTeamId: teams[homeTeamIdx].id,
-                        roundAwayTeamId: teams[awayTeamIdx].id
+                        roundAwayTeamId: teams[awayTeamIdx].id,
+                        season: 2
                     }
                 },
                 authMode: 'AMAZON_COGNITO_USER_POOLS'

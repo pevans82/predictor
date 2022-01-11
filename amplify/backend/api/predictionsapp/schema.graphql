@@ -13,6 +13,7 @@ type Round @model
     kickOff: AWSDateTime!
     ground: String
     status: RoundStatus!
+    season: Int!
 }
 
 enum RoundStatus {
@@ -54,12 +55,14 @@ type Result @model
         { allow: private, operations: [read] },
         { allow: groups, groups:["admin"], operations: [create, update, delete, read] }
     ])
+    @key(name: "bySeason", fields: ["season"], queryField: "resultsBySeason")
 {
     id: ID!
     roundId: ID!
     round: Round! @connection(fields:["roundId"])
     homeScore: Int!
     awayScore: Int!
+    season: Int!
 }
 
 type RoundLeaderboard @model
