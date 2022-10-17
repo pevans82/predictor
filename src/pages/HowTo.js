@@ -53,7 +53,7 @@ export default function HowTo() {
                            content="A maximum of 10 points are up for grabs here. These points are allocated for the differences between the result and the prediction. 1 point is lost for every 2 points difference until the difference is 20."/>
             <Typography className={classes.title} variant={"h4"} color={"primary"}>Examples</Typography>
             <TitledContent title="Example result" variant={"h5"}
-                           content="Let's pick a completely random result from Leigh Centurions' last time in the top flight."/>
+                           content="Let's pick a completely random result from Leigh Centurions' 2017 campaign."/>
             <Fixture round={{
                 ground: "Leigh Sports Village",
                 kickOff: "2017-06-08T20:00:00.000Z",
