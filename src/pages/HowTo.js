@@ -35,7 +35,7 @@ export default function HowTo() {
             <Typography className={classes.title} variant={"h2"} color={"primary"}>How it works?</Typography>
             <Typography className={classes.title} variant={"h4"} color={"primary"}>Playing the game</Typography>
             <TitledContent title="Rounds" variant={"h5"}
-                           content="Each round has a single fixture that is most likely to be Leigh Centurions' next game. A round goes through various stages:"/>
+                           content="Each round has a single fixture that is most likely to be Leigh's next game. A round goes through various stages:"/>
             <TitledContent title="Open" variant={"h6"}
                            content="The next round will open as soon as the previous round is complete.  While a round is open, you may update your predications as often as you like until the round becomes in play."/>
             <TitledContent title={"In Play"} variant={"h6"}
@@ -53,11 +53,11 @@ export default function HowTo() {
                            content="A maximum of 10 points are up for grabs here. These points are allocated for the differences between the result and the prediction. 1 point is lost for every 2 points difference until the difference is 20."/>
             <Typography className={classes.title} variant={"h4"} color={"primary"}>Examples</Typography>
             <TitledContent title="Example result" variant={"h5"}
-                           content="Let's pick a completely random result from Leigh Centurions' 2017 campaign."/>
+                           content="Let's pick a completely random result from Leigh's 2017 Super League campaign."/>
             <Fixture round={{
                 ground: "Leigh Sports Village",
                 kickOff: "2017-06-08T20:00:00.000Z",
-                homeTeam: {name: "Leigh Centurions", badgeSrc: "../teams/leigh.png"},
+                homeTeam: {name: "Leigh Centurions", badgeSrc: "../teams/leigh-centurions.png"},
                 awayTeam: {name: "Wigan Warriors", badgeSrc: "../teams/wigan.png"}
             }}/>
             <ScoreCard id={"results"} homeScore={50} awayScore={34}/>

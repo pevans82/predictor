@@ -2,7 +2,7 @@ import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import centurionWhite from '../images/centurionWhite.png'
+import paw from '../images/paw.png'
 import Link from "@material-ui/core/Link";
 import {AboutRoute, PrivacyRoute, TcAndCsRoute} from "../pages/Pages";
 import format from 'date-fns/format';
@@ -31,7 +31,7 @@ export default function Footer() {
     return (
         <div className={classes.root}>
             <div className={classes.footer}>
-                <img className={classes.logo} src={centurionWhite} alt="Logo"/>
+                <img className={classes.logo} src={paw} alt="Logo"/>
                 <Grid container justify={"center"}>
                     <Grid item xs={12} sm={6} md={3}>
                         <Typography align={"center"} gutterBottom color={"secondary"}>

@@ -103,7 +103,7 @@ export default function Fixtures() {
     async function fetchTeams() {
         const teams = await API.graphql(graphqlOperation(fetchTeamsQuery));
         setTeams(teams.data.listTeams.items.sort((a, b) => a.name.localeCompare(b.name)));
-        setLeighIdx(teams.data.listTeams.items.findIndex(t => t.name === "Leigh Centurions"));
+        setLeighIdx(teams.data.listTeams.items.findIndex(t => t.name === "Leigh Leopards"));
     }
 
     function assignListener(subscription) {

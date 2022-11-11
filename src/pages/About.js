@@ -37,8 +37,7 @@ export default function Profile() {
                 maintained by an individual driven by a labour of love. It is not manned by a fleet of IT professionals on hand 24/7. Please be
                 patient with any queries or concerns.
             </Typography>
-            <Typography className={classes.textBlock} variant="body2" component="p">"Roman Helmet" icon by parkjisun from the Noun
-                Project.</Typography>
+            <Typography className={classes.textBlock} variant="body2" component="p">"Panther Paw" icon by Kemesh Maharjan from the Noun Project</Typography>
         </Box>
     );
 }

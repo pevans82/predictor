@@ -61,7 +61,7 @@ export default function Profile() {
                     <ListItemText primary='There is one fixture per round.'/>
                 </ListItem>
                 <ListItem>
-                    <ListItemText primary="Although the fixture will usually be Leigh Centurions' next fixture, it is not required to be so and on occasion we reserve the right to
+                    <ListItemText primary="Although the fixture will usually be Leigh's next fixture, it is not required to be so and on occasion we reserve the right to
             play a different fixture."/>
                 </ListItem>
                 <ListItem>

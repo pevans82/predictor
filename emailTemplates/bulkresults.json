@@ -252,5 +252,5 @@
       "ReplacementTemplateData": "{ \"username\":\"foo\" }"
     }
   ],
-  "DefaultTemplateData": "{ \"username\":\"Friend\", \"home_team\": \"Leigh Centurions\", \"home_score\": \"12\", \"away_team\": \"Wigan Warriors\", \"away_score\": \"22\" }"
+  "DefaultTemplateData": "{ \"username\":\"Friend\", \"home_team\": \"Leigh Leopards\", \"home_score\": \"12\", \"away_team\": \"Wigan Warriors\", \"away_score\": \"22\" }"
 }

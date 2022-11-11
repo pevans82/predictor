@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import HowToCard from "../components/HowToCard"
-import centurions from "../images/centurions.jpg";
+import leopards from "../images/leopards.png";
 import Fixture from "../components/Fixture";
 import {Link} from "react-router-dom";
 import {PlayRoute} from "./Pages";
@@ -23,13 +23,13 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(2),
     },
-    centurionWrapper: {
+    logoWrapper: {
         maxWidth: 1000,
         margin: "auto",
     },
-    centurion: {
-        background: `url(${centurions}) no-repeat top`,
-        backgroundSize: `cover`,
+    logo: {
+        background: `url(${leopards}) no-repeat top`,
+        backgroundSize: `contain`,
         paddingBottom: `70%`,
     },
     title: {
@@ -68,10 +68,8 @@ export default function Home() {
 
     return (
         <Box>
-            <div className={classes.primarySectionWrapper}>
-                <div className={classes.centurionWrapper}>
-                    <div className={classes.centurion}/>
-                </div>
+            <div className={classes.logoWrapper}>
+                <div className={classes.logo}/>
             </div>
             <div style={{minHeight: 400}}>
                 {roundReady && <div>
@@ -96,10 +94,10 @@ export default function Home() {
                 <div className={classes.section}>
                     <Typography className={classes.title} variant={"h2"} color={"secondary"}>SUPER LEIGH!</Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
-                        Welcome to the rugby league prediction game dedicated to Leigh Centurions - for all the Leythers out there.
+                        Welcome to the rugby league prediction game dedicated to Leigh Rugby Football Club - for all the Leythers out there.
                     </Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
-                        It's simple, just predict the outcome of Leigh Centurions next fixture! The closer you are to the result, the more points
+                        It's simple, just predict the outcome of Leigh's next fixture! The closer you are to the result, the more points
                         you'll score. Earn bonus points for predicting the winner and getting it spot on.
                     </Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
@@ -116,10 +114,10 @@ export default function Home() {
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
                         <HowToCard title={"PREDICT THE SCORE"} icon={"question"}
-                                   description={"Tell us what you think the score of Leigh Centurions' next fixture will be."}/>
+                                   description={"Tell us what you think the score of Leigh's next fixture will be."}/>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
-                        <HowToCard title={"SUPPORT THE CENTURIONS!"} icon={"rugby"}
+                        <HowToCard title={"SUPPORT THE LEOPARDS!"} icon={"rugby"}
                                    description={"Cheer the lads on and enjoy the game ...no matter what the outcome."}/>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}>
@@ -132,8 +130,7 @@ export default function Home() {
                 <div className={classes.section}>
                     <Typography className={classes.title} variant={"h2"} color={"secondary"}>Origins</Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
-                        There is a fan, lets call him <strong>Steve</strong>. He thinks he's great at predicting the results of his beloved Leigh
-                        Centurions,
+                        There is a fan, lets call him <strong>Steve</strong>. He thinks he's great at predicting the results of his beloved Leigh,
                         but that wasn't enough. He needed to prove that he wasn't just good, but he was the best!
                     </Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>

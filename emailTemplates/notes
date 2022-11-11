@@ -5,6 +5,6 @@ aws ses update-template --cli-input-json file://results.json --profile predictor
 aws ses update-template --cli-input-json file://season.json --profile predictor  --region=eu-west-1
 
 
-aws ses send-bulk-templated-email --cli-input-json file://bulkmatchday.json --profile predictor
-aws ses send-bulk-templated-email --cli-input-json file://bulkresults.json --profile predictor
-aws ses send-bulk-templated-email --cli-input-json file://bulkseason.json --profile predictor  --region=eu-west-1
+aws ses send-bulk-templated-email --cli-input-json file://bulkmatchday.json --profile predictor --region=eu-west-1
+aws ses send-bulk-templated-email --cli-input-json file://bulkresults.json --profile predictor --region=eu-west-1
+aws ses send-bulk-templated-email --cli-input-json file://bulkseason.json --profile predictor --region=eu-west-1
