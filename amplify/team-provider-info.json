@@ -34,6 +34,9 @@
           "s3Key": "amplify-builds/matchdayreminder-4637344a526b5967456c-build.zip",
           "cognitoUserPoolId": "eu-west-1_5y2vJB9gk"
         }
+      },
+      "api": {
+        "predictionsapp": {}
       }
     }
   },
