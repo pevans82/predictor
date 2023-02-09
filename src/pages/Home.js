@@ -107,7 +107,7 @@ export default function Home() {
             </div>
             <div className={classes.section}>
                 <Typography className={classes.title} variant={"h2"} color={"primary"}>How to Play?</Typography>
-                <Grid container justify={"center"}>
+                <Grid container justifyContent={"center"}>
                     <Grid item xs={12} sm={6} md={3}>
                         <HowToCard title={"SIGN UP"} icon={"account"}
                                    description={"Register to play and pit your wits against others to be crowned Leyther's greatest predictor."}/>

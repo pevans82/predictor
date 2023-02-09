@@ -25,7 +25,7 @@ export default function Fixture(props) {
     return (
         <div className={classes.root}>
             <div className={classes.head}>
-                <Grid container justify={"center"}>
+                <Grid container justifyContent={"center"}>
                     <Grid item xs={5}>
                         <Typography gutterBottom variant="h6" color={"secondary"}>{props.round.ground}</Typography>
                     </Grid>
@@ -37,7 +37,7 @@ export default function Fixture(props) {
                     </Grid>
                 </Grid>
             </div>
-            <Grid container justify={"center"}>
+            <Grid container justifyContent={"center"}>
                 <Grid item xs={5}>
                     <TeamCard name={props.round.homeTeam.name} badgeSrc={props.round.homeTeam.badgeSrc}/>
                 </Grid>

@@ -239,7 +239,7 @@ export default function Fixtures() {
                                             value={kickOff}
                                             onChange={setKickOff}
                                         />
-                                        <Grid container justify={"center"}>
+                                        <Grid container justifyContent={"center"}>
                                             <Grid item xs={5}>
                                                 <ProgressStepper onHandleNext={handleHomeNext} onHandlePrevious={handleHomePrevious}
                                                                  maxSteps={teams.length} activeStep={homeTeamIdx}/>

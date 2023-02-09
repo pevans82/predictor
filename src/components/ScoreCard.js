@@ -19,7 +19,7 @@ export default function ScoreCard(props) {
 
     return (
         <div className={classes.root}>
-            <Grid style={{marginTop: theme.spacing(5)}} container justify={"center"}>
+            <Grid style={{marginTop: theme.spacing(5)}} container justifyContent={"center"}>
                 <Grid item xs={5}>
                     {props.isActive ?
                         <ScoreField id={props.id + "-homeScore"} label={props.label} value={props.homeScore} onChange={props.onHomeScoreChange}/>

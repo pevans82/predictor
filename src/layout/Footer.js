@@ -32,7 +32,7 @@ export default function Footer() {
         <div className={classes.root}>
             <div className={classes.footer}>
                 <img className={classes.logo} src={paw} alt="Logo"/>
-                <Grid container justify={"center"}>
+                <Grid container justifyContent={"center"}>
                     <Grid item xs={12} sm={6} md={3}>
                         <Typography align={"center"} gutterBottom color={"secondary"}>
                             <Link color={"secondary"} href={AboutRoute}>About</Link>
