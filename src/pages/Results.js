@@ -144,17 +144,25 @@ export default function Results() {
         } else {
             setPrediction(pred.data.predictionsByRound.items[0]);
 
-            const predictionDiff = pred.data.predictionsByRound.items[0].homeScore - pred.data.predictionsByRound.items[0].awayScore;
-            const resultDiff = results[activeRound].homeScore - results[activeRound].awayScore;
+            const predictionHome = pred.data.predictionsByRound.items[0].homeScore
+            const predictionAway = pred.data.predictionsByRound.items[0].awayScore
 
-            const score = pred.data.predictionsByRound.items[0].homeScore === results[activeRound].homeScore
-            && pred.data.predictionsByRound.items[0].awayScore === results[activeRound].awayScore ? 5 : 0;
-            const result = ((resultDiff < 0 && predictionDiff < 0) || (resultDiff === 0 && predictionDiff === 0) || (resultDiff > 0 && predictionDiff > 0)) ? 5 : 0;
+            const resultHome = results[activeRound].homeScore
+            const resultAway = results[activeRound].awayScore
 
-            const diff = Math.abs(predictionDiff - resultDiff);
-            const diffPoints = Math.floor(Math.max(0, 10 - (diff / 2)));
+            const homeDiff = Math.abs(predictionHome - resultHome)
+            const homePoints = Math.floor(Math.max(0, 10 - (homeDiff / 2)));
 
-            setPointsBreakdown({score: score, result: result, difference: diff, diffPoints: diffPoints, total: score + result + diffPoints});
+            const awayDiff = Math.abs(predictionAway - resultAway)
+            const awayPoints = Math.floor(Math.max(0, 10 - (awayDiff / 2)));
+
+            const resultDiff = Math.abs((resultHome - resultAway) - (predictionHome - predictionAway))
+            const resultPoints = Math.floor(Math.max(0, 5 - (resultDiff / 2)));
+
+            setPointsBreakdown({homeDiff: homeDiff, homePoints: homePoints,
+                awayDiff: awayDiff, awayPoints: awayPoints,
+                resultDiff: resultDiff, resultPoints: resultPoints,
+                total: homePoints + awayPoints + resultPoints});
         }
     }
 
@@ -204,8 +212,9 @@ export default function Results() {
                         <ScoreCard id={"results"} homeScore={results[activeRound].homeScore} awayScore={results[activeRound].awayScore}/>
                         <Typography className={classes.title} variant={"h4"} color={"primary"}>Prediction</Typography>
                         <ScoreCard id={"predictions"} homeScore={prediction.homeScore} awayScore={prediction.awayScore}/>
-                        {pointsBreakdown && <PointsBreakdown scorePoints={pointsBreakdown.score} resultPoints={pointsBreakdown.result}
-                                                             difference={pointsBreakdown.difference} diffPoints={pointsBreakdown.diffPoints}
+                        {pointsBreakdown && <PointsBreakdown homeDiff={pointsBreakdown.homeDiff} homePoints={pointsBreakdown.homePoints}
+                                                             awayDiff={pointsBreakdown.awayDiff} awayPoints={pointsBreakdown.awayPoints}
+                                                             resultDiff={pointsBreakdown.resultDiff} resultPoints={pointsBreakdown.resultPoints}
                                                              total={pointsBreakdown.total}/>}
                     </div>
                     }

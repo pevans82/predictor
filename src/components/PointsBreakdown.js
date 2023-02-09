@@ -39,17 +39,17 @@ export default function PointsBreakdown(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow key={"score"}>
-                            <TableCell><Typography variant={"body1"}>Correct Score</Typography></TableCell>
-                            <TableCell align="right"><Typography variant={"body1"}>{props.scorePoints} points</Typography></TableCell>
+                        <TableRow key={"home-score"}>
+                            <TableCell><Typography variant={"body1"}>Home score difference of {props.homeDiff}</Typography></TableCell>
+                            <TableCell align="right"><Typography variant={"body1"}>{props.homePoints} points</Typography></TableCell>
                         </TableRow>
                         <TableRow key={"result"}>
-                            <TableCell><Typography variant={"body1"}>Correct Result</Typography></TableCell>
-                            <TableCell align="right"><Typography variant={"body1"}>{props.resultPoints} points</Typography></TableCell>
+                            <TableCell><Typography variant={"body1"}>Away score difference of {props.awayDiff}</Typography></TableCell>
+                            <TableCell align="right"><Typography variant={"body1"}>{props.awayPoints} points</Typography></TableCell>
                         </TableRow>
                         <TableRow key={"diff"}>
-                            <TableCell><Typography variant={"body1"}>Difference of {props.difference}</Typography></TableCell>
-                            <TableCell align="right"><Typography variant={"body1"}>{props.diffPoints} points</Typography></TableCell>
+                            <TableCell><Typography variant={"body1"}>Result difference of {props.resultDiff}</Typography></TableCell>
+                            <TableCell align="right"><Typography variant={"body1"}>{props.resultPoints} points</Typography></TableCell>
                         </TableRow>
                         <TableRow className={classes.total} key={"total"}>
                             <TableCell className={classes.total}><Typography variant={"body1"}>Total</Typography></TableCell>

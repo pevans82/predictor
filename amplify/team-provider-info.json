@@ -18,11 +18,11 @@
       "function": {
         "pointsengine": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/pointsengine-73506d516f4d5a432b48-build.zip"
+          "s3Key": "amplify-builds/pointsengine-642f736b773673516444-build.zip"
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/leaderboardupdater-696c714a343872647050-build.zip",
+          "s3Key": "amplify-builds/leaderboardupdater-4e57724853424d4e3841-build.zip",
           "cognitoUserPoolId": "eu-west-1_5y2vJB9gk"
         },
         "roundcloser": {

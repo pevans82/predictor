@@ -69,23 +69,19 @@ async function applyPoints(predictions, resultHome, resultAway) {
 function pointsScored(resultHome, resultAway, predictionHome, predictionAway) {
     //max points for getting it spot on
     if (resultHome == predictionHome && resultAway == predictionAway) {
-        return 20;
+        return 25;
     }
 
-    const predictionDiff = predictionHome - predictionAway;
-    const resultDiff = resultHome - resultAway;
+    //10 points available for home and away score differences dropping 1 point for every 2 points difference (round down if odd)
+    const homePoints = Math.floor(Math.max(0, 10 - (Math.abs(predictionHome - resultHome) / 2)));
+    const awayPoints = Math.floor(Math.max(0, 10 - (Math.abs(predictionAway - resultAway) / 2)));
 
-    //10 points available dropping 1 point for every 2 points difference (round down if odd)
-    let points = Math.floor(Math.max(0, 10 - (Math.abs(predictionDiff - resultDiff) / 2)));
+    //5 points available for overall result difference dropping 1 point for every 2 points difference (round down if odd)
+    const predictionDiff = predictionHome - predictionAway
+    const resultsDiff = resultHome - resultAway
+    const diffPoints = Math.floor(Math.max(0, 5 - (Math.abs(resultsDiff - predictionDiff) / 2)));
 
-    //5 bonus points for correct result
-    if ((resultDiff < 0 && predictionDiff < 0)
-        || (resultDiff == 0 && predictionDiff == 0)
-        || (resultDiff > 0 && predictionDiff > 0)) {
-        points += 5;
-    }
-
-    return points;
+    return homePoints + awayPoints + diffPoints;
 }
 
 async function callGraphqlApi(query, operationName, variables) {
