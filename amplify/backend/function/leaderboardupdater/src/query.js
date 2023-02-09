@@ -8,8 +8,8 @@ module.exports = {
             }
         }
     }`,
-    seasonUserQuery: `query seasonLeaderboardByPoints($username:String!) {
-      seasonLeaderboardByPoints(season: 2, filter: {username: {eq: $username}}) {
+    seasonUserQuery: `query seasonLeaderboardByPoints($season: Int!, $username:String!) {
+      seasonLeaderboardByPoints(season: $season, filter: {username: {eq: $username}}) {
         items {
           id
           points

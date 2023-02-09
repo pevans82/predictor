@@ -113,12 +113,13 @@ async function applyRoundPoints(predictions) {
 
 async function applySeasonPoints(prediction) {
   const seasonRecord = await callGraphqlApi(fetchSeasonForUser, "seasonLeaderboardByPoints", {
+    season: 3,
     username: prediction.owner
   });
 
   if (seasonRecord.items.length < 1) {
     return await callGraphqlApi(createSeasonForUser, "createSeasonLeaderboard", {
-      season: 2,
+      season: 3,
       username: prediction.owner,
       points: prediction.points
     });
