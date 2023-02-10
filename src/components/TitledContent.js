@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto",
         textAlign: "left",
         paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
         paddingTop: theme.spacing(2),
         maxWidth: 800,
     },
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto",
         textAlign: "left",
         paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
         paddingBottom: theme.spacing(2),
     },
 }));

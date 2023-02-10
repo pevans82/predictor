@@ -1,8 +1,9 @@
-aws ses create-template --cli-input-json file://season.json --profile predictor --region=eu-west-1
+aws ses create-template --cli-input-json file://update.json --profile predictor --region=eu-west-1
 
 aws ses update-template --cli-input-json file://matchday.json --profile predictor
 aws ses update-template --cli-input-json file://results.json --profile predictor
 aws ses update-template --cli-input-json file://season.json --profile predictor  --region=eu-west-1
+aws ses update-template --cli-input-json file://update.json --profile predictor  --region=eu-west-1
 
 
 aws ses send-bulk-templated-email --cli-input-json file://bulkmatchday.json --profile predictor --region=eu-west-1

@@ -1,6 +1,6 @@
 {
   "Source": "Super Leigh ! <superleigh@rocsolidservices.co.uk>",
-  "Template": "Season",
+  "Template": "Update",
   "ConfigurationSetName": "SuperLeigh",
   "Destinations": [
     {
@@ -12,5 +12,5 @@
       "ReplacementTemplateData": "{ \"username\":\"foo\" }"
     }
   ],
-  "DefaultTemplateData": "{ \"username\":\"Friend\", \"home_team\": \"Leigh Leopards\", \"away_team\": \"Salford Red Devils\", \"ground\": \"Leigh Sports Village\", \"kickOff\": \"20:00\", \"date\": \"Friday 17th February\" }"
+  "DefaultTemplateData": "{ \"username\":\"Friend\" }"
 }
