@@ -151,17 +151,21 @@ export default function Results() {
             const resultAway = results[activeRound].awayScore
 
             const homeDiff = Math.abs(predictionHome - resultHome)
-            const homePoints = Math.floor(Math.max(0, 10 - (homeDiff / 2)));
+            const homePoints = Math.floor(Math.max(0, 10 - (homeDiff / 2)))
 
             const awayDiff = Math.abs(predictionAway - resultAway)
-            const awayPoints = Math.floor(Math.max(0, 10 - (awayDiff / 2)));
+            const awayPoints = Math.floor(Math.max(0, 10 - (awayDiff / 2)))
 
-            const resultDiff = Math.abs((resultHome - resultAway) - (predictionHome - predictionAway))
-            const resultPoints = Math.floor(Math.max(0, 5 - (resultDiff / 2)));
+            const predictionDiff = predictionHome - predictionAway
+            const resultDiff = resultHome - resultAway
+            const correctResult = ((resultDiff < 0 && predictionDiff < 0) || (resultDiff === 0 && predictionDiff === 0) || (resultDiff > 0 && predictionDiff > 0))
+
+            const actualDiff = Math.abs(resultDiff - predictionDiff)
+            const resultPoints = correctResult ? Math.floor(Math.max(0, 5 - (actualDiff / 2))) : 0
 
             setPointsBreakdown({homeDiff: homeDiff, homePoints: homePoints,
-                awayDiff: awayDiff, awayPoints: awayPoints,
-                resultDiff: resultDiff, resultPoints: resultPoints,
+                awayDiff: awayDiff, awayPoints: awayPoints, correctResult: correctResult,
+                resultDiff: actualDiff, resultPoints: resultPoints,
                 total: homePoints + awayPoints + resultPoints});
         }
     }
@@ -214,8 +218,8 @@ export default function Results() {
                         <ScoreCard id={"predictions"} homeScore={prediction.homeScore} awayScore={prediction.awayScore}/>
                         {pointsBreakdown && <PointsBreakdown homeDiff={pointsBreakdown.homeDiff} homePoints={pointsBreakdown.homePoints}
                                                              awayDiff={pointsBreakdown.awayDiff} awayPoints={pointsBreakdown.awayPoints}
-                                                             resultDiff={pointsBreakdown.resultDiff} resultPoints={pointsBreakdown.resultPoints}
-                                                             total={pointsBreakdown.total}/>}
+                                                             correctResult={pointsBreakdown.correctResult} resultDiff={pointsBreakdown.resultDiff}
+                                                             resultPoints={pointsBreakdown.resultPoints} total={pointsBreakdown.total}/>}
                     </div>
                     }
                 </Paper>

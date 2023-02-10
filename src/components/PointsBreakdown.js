@@ -48,7 +48,7 @@ export default function PointsBreakdown(props) {
                             <TableCell align="right"><Typography variant={"body1"}>{props.awayPoints} points</Typography></TableCell>
                         </TableRow>
                         <TableRow key={"diff"}>
-                            <TableCell><Typography variant={"body1"}>Result difference of {props.resultDiff}</Typography></TableCell>
+                            <TableCell><Typography variant={"body1"}>Result {props.correctResult === true ? 'difference of ' + props.resultDiff : 'incorrect'}</Typography></TableCell>
                             <TableCell align="right"><Typography variant={"body1"}>{props.resultPoints} points</Typography></TableCell>
                         </TableRow>
                         <TableRow className={classes.total} key={"total"}>

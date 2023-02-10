@@ -78,8 +78,11 @@ function pointsScored(resultHome, resultAway, predictionHome, predictionAway) {
 
     //5 points available for overall result difference dropping 1 point for every 2 points difference (round down if odd)
     const predictionDiff = predictionHome - predictionAway
-    const resultsDiff = resultHome - resultAway
-    const diffPoints = Math.floor(Math.max(0, 5 - (Math.abs(resultsDiff - predictionDiff) / 2)));
+    const resultDiff = resultHome - resultAway
+    const diffPoints = ((resultDiff < 0 && predictionDiff < 0)
+        || (resultDiff == 0 && predictionDiff == 0)
+        || (resultDiff > 0 && predictionDiff > 0))
+        ? Math.floor(Math.max(0, 5 - ((resultDiff - predictionDiff) / 2))) : 0
 
     return homePoints + awayPoints + diffPoints;
 }

@@ -49,8 +49,8 @@ export default function HowTo() {
                            content="Points are allocated for the difference between the predicted and actual home scores."/>
             <TitledContent title="Away Score - Max 10 points" variant={"h6"}
                            content="Points are allocated for the difference between the predicted and actual away scores."/>
-            <TitledContent title="Result Difference- Max 5 points" variant={"h6"}
-                           content="Points are allocated for the difference between the predicted and actual differences between home and away scores."/>
+            <TitledContent title="Result - Max 5 points" variant={"h6"}
+                           content="Points are only available if the correct result is predicted.  Points are allocated for the difference between the predicted and actual differences."/>
             <Typography className={classes.title} variant={"h4"} color={"primary"}>Examples</Typography>
             <TitledContent title="Example result" variant={"h5"}
                            content="Let's pick a completely random result from Leigh's 2017 Super League campaign."/>
@@ -63,25 +63,32 @@ export default function HowTo() {
             <ScoreCard id={"results"} homeScore={50} awayScore={34}/>
             <TitledContent title="Example 1" variant={"h6"}
                            content="Had you have predicted the final score to be 50 - 34, you would have received 25 points for being spot on."/>
-            <PointsBreakdown homeDiff={0} homePoints={10} awayDiff={0} awayPoints={10} resultDiff={0} resultPoints={5} total={25}/>
+            <PointsBreakdown homeDiff={0} homePoints={10} awayDiff={0} awayPoints={10} resultDiff={0} resultPoints={5} total={25} correctResult={true} />
             <TitledContent title="Example 2" variant={"h6"}
                            content="Had you have predicted the final score to be 40 - 24, you would have received 15 points."/>
-            <PointsBreakdown homeDiff={10} homePoints={5} awayDiff={10} awayPoints={5} resultDiff={0} resultPoints={5} total={15}/>
+            <PointsBreakdown homeDiff={10} homePoints={5} awayDiff={10} awayPoints={5} resultDiff={0} resultPoints={5} total={15} correctResult={true} />
             <TitledContent title="Example 3" variant={"h6"}
                            content="Had you have predicted the final score to be 50 - 40, you would have received 19 points."/>
-            <PointsBreakdown homeDiff={0} homePoints={10} awayDiff={6} awayPoints={7} resultDiff={6} resultPoints={2} total={19}/>
+            <PointsBreakdown homeDiff={0} homePoints={10} awayDiff={6} awayPoints={7} resultDiff={6} resultPoints={2} total={19} correctResult={true} />
             <Typography className={classes.textBlock} variant="body1" color={"textSecondary"} component="p">We only receive 2 points for the result difference because there is
                 a 6 point difference between the result (16) and our prediction (10).</Typography>
             <TitledContent title="Example 4" variant={"h6"}
                            content="Had you have predicted the final score to be 50 - 16, you would have received 11 points."/>
-            <PointsBreakdown homeDiff={0} homePoints={10} awayDiff={18} awayPoints={1} resultDiff={18} resultPoints={0} total={11}/>
+            <PointsBreakdown homeDiff={0} homePoints={10} awayDiff={18} awayPoints={1} resultDiff={18} resultPoints={0} total={11} correctResult={true} />
             <Typography className={classes.textBlock} variant="body1" color={"textSecondary"} component="p">We don't receive any points for the result difference because there
                 is an 18 point difference between the result (16) and our prediction (34).</Typography>
             <TitledContent title="Example 5" variant={"h6"}
+                           content="Had you have predicated the final score to be 100 - 70, you would have received 0 points."/>
+            <PointsBreakdown homeDiff={50} homePoints={0} awayDiff={36} awayPoints={0} resultDiff={14} resultPoints={0} total={0} correctResult={true} />
+            <Typography className={classes.textBlock} variant="body1" color={"textSecondary"} component="p">We don't receive any points because the predication was way out even if we got the correct result.</Typography>
+            <TitledContent title="Example 6" variant={"h6"}
+                           content="Had you have predicated the final score to be 32 - 34, you would have received 11 points."/>
+            <PointsBreakdown homeDiff={18} homePoints={1} awayDiff={0} awayPoints={10} resultDiff={0} resultPoints={0} total={11} correctResult={false}/>
+            <Typography className={classes.textBlock} variant="body1" color={"textSecondary"} component="p">Points are still awarded for home and away scores even if the result is wrong.</Typography>
+            <TitledContent title="Example 7" variant={"h6"}
                            content="If you were a nervous pie'ater who predicted the final score to be 10 - 12, you would have received 0 points...and rightly so."/>
-            <PointsBreakdown homeDiff={40} homePoints={0} awayDiff={22} awayPoints={0} resultDiff={18} resultPoints={0} total={0}/>
-            <Typography className={classes.textBlock} variant="body1" color={"textSecondary"} component="p">We don't receive any points for the result difference because there
-                is an 18 point difference between the result (16) and our prediction (-2).</Typography>
+            <PointsBreakdown homeDiff={40} homePoints={0} awayDiff={22} awayPoints={0} resultDiff={18} resultPoints={0} total={0} correctResult={false}/>
+            <Typography className={classes.textBlock} variant="body1" color={"textSecondary"} component="p">We don't receive any points because the predication was way out.</Typography>
         </Box>
     );
 }
