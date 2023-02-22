@@ -28,15 +28,16 @@ exports.handler = async (event) => {
 
             const tomorrow = new Date()
             tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(0,0,0,0);
+            tomorrow.setHours(0, 0, 0, 0);
 
             const matchday = new Date(round.kickOff);
-            matchday.setHours(0,0,0,0);
+            matchday.setHours(0, 0, 0, 0);
 
             if (tomorrow.getTime() === matchday.getTime()) {
                 const users = await cognitoIdentityService.listUsers({UserPoolId: userPoolId, AttributesToGet: ['email']}).promise();
                 const preferences = await callGraphqlApi(fetchPreferences, "listPreferences");
                 const optOutUsers = preferences.items.filter(item => item.matchday == true).map(item => item.owner);
+
                 const destinations = users.Users.filter(user => !optOutUsers.includes(user.Username)).map(function (user) {
                     return {
                         "Destination": {"ToAddresses": [user.Attributes[0].Value]},
@@ -44,32 +45,14 @@ exports.handler = async (event) => {
                     }
                 });
 
-                const kickoffTime = new Date(round.kickOff);
-                const bstStart = getLastSunday(kickoffTime.getFullYear(), 3);
-                const bstEnd = getLastSunday(kickoffTime.getFullYear(), 10);
-                //add hour if in BST
-                if (kickoffTime > bstStart && kickoffTime < bstEnd) {
-                    kickoffTime.setHours(kickoffTime.getHours() + 1);
+                const splitDestinations = sliceIntoChunks(destinations, 50);
+
+                console.log(splitDestinations);
+
+                for (const dest of splitDestinations) {
+                    await sendInBatches(round, dest);
                 }
 
-                const bulkTemplatedEmail = {
-                    "Source": "Super Leigh ! <superleigh@rocsolidservices.co.uk>",
-                    "Template": "Matchday",
-                    "ConfigurationSetName": "SuperLeigh",
-                    "Destinations": destinations,
-                    "DefaultTemplateData": JSON.stringify({
-                        "username": "Friend",
-                        "home_team": round.homeTeam.name,
-                        "away_team": round.awayTeam.name,
-                        "ground": round.ground,
-                        "kickOff": ("0" + kickoffTime.getHours()).slice (-2)+":"+("0" + kickoffTime.getMinutes()).slice (-2)
-                    })
-                }
-                console.log(JSON.stringify(bulkTemplatedEmail));
-
-                const sentEmails = await ses.sendBulkTemplatedEmail(bulkTemplatedEmail).promise();
-                console.log(sentEmails);
-                
                 return {
                     statusCode: 200,
                     body: JSON.stringify("reminder emails sent")
@@ -89,6 +72,43 @@ exports.handler = async (event) => {
         body: JSON.stringify("reminder emails not sent out today")
     };
 };
+
+function sliceIntoChunks(arr, chunkSize) {
+    const res = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+        const chunk = arr.slice(i, i + chunkSize);
+        res.push(chunk);
+    }
+    return res;
+}
+
+async function sendInBatches(round, destinations) {
+    const kickoffTime = new Date(round.kickOff);
+    const bstStart = getLastSunday(kickoffTime.getFullYear(), 3);
+    const bstEnd = getLastSunday(kickoffTime.getFullYear(), 10);
+    //add hour if in BST
+    if (kickoffTime > bstStart && kickoffTime < bstEnd) {
+        kickoffTime.setHours(kickoffTime.getHours() + 1);
+    }
+
+    const bulkTemplatedEmail = {
+        "Source": "Super Leigh ! <superleigh@rocsolidservices.co.uk>",
+        "Template": "Matchday",
+        "ConfigurationSetName": "SuperLeigh",
+        "Destinations": destinations,
+        "DefaultTemplateData": JSON.stringify({
+            "username": "Friend",
+            "home_team": round.homeTeam.name,
+            "away_team": round.awayTeam.name,
+            "ground": round.ground,
+            "kickOff": ("0" + kickoffTime.getHours()).slice(-2) + ":" + ("0" + kickoffTime.getMinutes()).slice(-2)
+        })
+    }
+    console.log(JSON.stringify(bulkTemplatedEmail));
+
+    const sentEmails = await ses.sendBulkTemplatedEmail(bulkTemplatedEmail).promise();
+    console.log(`sent email response: `, sentEmails);
+}
 
 function getLastSunday(year, month) {
     // Create date for last day in month
