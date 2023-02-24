@@ -43,16 +43,36 @@ exports.handler = async (event) => {
 
             await Promise.all(predictions.items.map(prediction => applySeasonPoints(prediction)));
 
-            const rounds = await callGraphqlApi(
-                fetchNextRound,
-                "roundByStatus",
-                null);
+            const rounds = await callGraphqlApi(fetchNextRound, "roundByStatus", null);
 
             if (rounds.items.length > 0) {
                 await activateRound(rounds.items[0].id, Number(event.Records[0].dynamodb.NewImage.number.N) + 1);
             }
 
-            await notifyUsers(event.Records[0].dynamodb.NewImage.id.S);
+            const results = await callGraphqlApi(fetchResults, "listResults", {"roundId": event.Records[0].dynamodb.NewImage.id.S});
+            const preferences = await callGraphqlApi(fetchPreferences, "listPreferences");
+            const optOutUsers = preferences.items.filter(item => item.results == true).map(item => item.owner);
+
+            let paginationToken = undefined;
+            do {
+                const usersResponse = await cognitoIdentityService.listUsers({
+                    UserPoolId: userPoolId,
+                    PaginationToken: paginationToken,
+                    Limit: 50,
+                    AttributesToGet: ['email'],
+                    Filter: 'cognito:user_status=\"CONFIRMED\"'
+                }).promise();
+
+                const destinations = usersResponse.Users.filter(user => !optOutUsers.includes(user.Username)).map(function (user) {
+                    return {
+                        "Destination": {"ToAddresses": [user.Attributes[0].Value]},
+                        "ReplacementTemplateData": JSON.stringify({"username": user.Username})
+                    }
+                });
+
+                await notifyUsers(results, destinations);
+                paginationToken = usersResponse.PaginationToken
+            } while(paginationToken);
 
             return {
                 statusCode: 200,
@@ -74,35 +94,7 @@ exports.handler = async (event) => {
 
 };
 
-async function notifyUsers(roundId) {
-    const users = await cognitoIdentityService.listUsers({UserPoolId: userPoolId, AttributesToGet: ['email']}).promise();
-    const preferences = await callGraphqlApi(fetchPreferences, "listPreferences");
-    const optOutUsers = preferences.items.filter(item => item.results == true).map(item => item.owner);
-    const destinations = users.Users.filter(user => !optOutUsers.includes(user.Username)).map(function (user) {
-        return {"Destination": {"ToAddresses": [user.Attributes[0].Value]}, "ReplacementTemplateData": JSON.stringify({"username": user.Username})}
-    });
-
-    const results = await callGraphqlApi(fetchResults, "listResults", {"roundId": roundId});
-
-    const splitDestinations = sliceIntoChunks(destinations, 50);
-
-    console.log(splitDestinations);
-
-    for (const dest of splitDestinations) {
-        await sendInBatches(results, dest);
-    }
-}
-
-function sliceIntoChunks(arr, chunkSize) {
-    const res = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-        const chunk = arr.slice(i, i + chunkSize);
-        res.push(chunk);
-    }
-    return res;
-}
-
-async function sendInBatches(results, destinations) {
+async function notifyUsers(results, destinations) {
     const bulkTemplatedEmail = {
         "Source": "Super Leigh ! <superleigh@rocsolidservices.co.uk>",
         "Template": "Results",

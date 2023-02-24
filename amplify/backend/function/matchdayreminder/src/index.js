@@ -34,24 +34,37 @@ exports.handler = async (event) => {
             matchday.setHours(0, 0, 0, 0);
 
             if (tomorrow.getTime() === matchday.getTime()) {
-                const users = await cognitoIdentityService.listUsers({UserPoolId: userPoolId, AttributesToGet: ['email']}).promise();
                 const preferences = await callGraphqlApi(fetchPreferences, "listPreferences");
                 const optOutUsers = preferences.items.filter(item => item.matchday == true).map(item => item.owner);
 
-                const destinations = users.Users.filter(user => !optOutUsers.includes(user.Username)).map(function (user) {
-                    return {
-                        "Destination": {"ToAddresses": [user.Attributes[0].Value]},
-                        "ReplacementTemplateData": JSON.stringify({"username": user.Username})
-                    }
-                });
-
-                const splitDestinations = sliceIntoChunks(destinations, 50);
-
-                console.log(splitDestinations);
-
-                for (const dest of splitDestinations) {
-                    await sendInBatches(round, dest);
+                const kickoffTime = new Date(round.kickOff);
+                const bstStart = getLastSunday(kickoffTime.getFullYear(), 3);
+                const bstEnd = getLastSunday(kickoffTime.getFullYear(), 10);
+                //add hour if in BST
+                if (kickoffTime > bstStart && kickoffTime < bstEnd) {
+                    kickoffTime.setHours(kickoffTime.getHours() + 1);
                 }
+
+                let paginationToken = undefined;
+                do {
+                    const usersResponse = await cognitoIdentityService.listUsers({
+                        UserPoolId: userPoolId,
+                        PaginationToken: paginationToken,
+                        Limit: 50,
+                        AttributesToGet: ['email'],
+                        Filter: 'cognito:user_status=\"CONFIRMED\"'
+                    }).promise();
+
+                    const destinations = usersResponse.Users.filter(user => !optOutUsers.includes(user.Username)).map(function (user) {
+                        return {
+                            "Destination": {"ToAddresses": [user.Attributes[0].Value]},
+                            "ReplacementTemplateData": JSON.stringify({"username": user.Username})
+                        }
+                    });
+
+                    await notifyUsers(round, kickoffTime, destinations);
+                    paginationToken = usersResponse.PaginationToken
+                } while(paginationToken);
 
                 return {
                     statusCode: 200,
@@ -73,24 +86,7 @@ exports.handler = async (event) => {
     };
 };
 
-function sliceIntoChunks(arr, chunkSize) {
-    const res = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-        const chunk = arr.slice(i, i + chunkSize);
-        res.push(chunk);
-    }
-    return res;
-}
-
-async function sendInBatches(round, destinations) {
-    const kickoffTime = new Date(round.kickOff);
-    const bstStart = getLastSunday(kickoffTime.getFullYear(), 3);
-    const bstEnd = getLastSunday(kickoffTime.getFullYear(), 10);
-    //add hour if in BST
-    if (kickoffTime > bstStart && kickoffTime < bstEnd) {
-        kickoffTime.setHours(kickoffTime.getHours() + 1);
-    }
-
+async function notifyUsers(round, kickoffTime, destinations) {
     const bulkTemplatedEmail = {
         "Source": "Super Leigh ! <superleigh@rocsolidservices.co.uk>",
         "Template": "Matchday",

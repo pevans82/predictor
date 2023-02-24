@@ -22,7 +22,7 @@
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/leaderboardupdater-2b6a6d57307646696b54-build.zip",
+          "s3Key": "amplify-builds/leaderboardupdater-59484c49485268613772-build.zip",
           "cognitoUserPoolId": "eu-west-1_5y2vJB9gk"
         },
         "roundcloser": {
@@ -31,7 +31,7 @@
         },
         "matchdayreminder": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/matchdayreminder-582b4d3457626f36334f-build.zip",
+          "s3Key": "amplify-builds/matchdayreminder-4d7235652b7772537044-build.zip",
           "cognitoUserPoolId": "eu-west-1_5y2vJB9gk"
         }
       },
