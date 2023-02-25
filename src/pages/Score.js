@@ -134,6 +134,7 @@ export default function Score() {
     }
 
     async function completeRound() {
+        await saveResult();
         await API.graphql({
             query: mutations.updateRound,
             variables: {input: {id: round.id, status: "complete"}},
