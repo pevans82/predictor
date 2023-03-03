@@ -18,7 +18,7 @@
       "function": {
         "pointsengine": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/pointsengine-593046444750376b2f46-build.zip"
+          "s3Key": "amplify-builds/pointsengine-7143776d427a38676a6c-build.zip"
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
@@ -33,7 +33,8 @@
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
           "s3Key": "amplify-builds/matchdayreminder-4d7235652b7772537044-build.zip",
           "cognitoUserPoolId": "eu-west-1_5y2vJB9gk"
-        }
+        },
+        "roundresetter": {}
       },
       "api": {
         "predictionsapp": {}

@@ -80,9 +80,9 @@ function pointsScored(resultHome, resultAway, predictionHome, predictionAway) {
     const predictionDiff = predictionHome - predictionAway
     const resultDiff = resultHome - resultAway
     const diffPoints = ((resultDiff < 0 && predictionDiff < 0)
-        || (resultDiff == 0 && predictionDiff == 0)
+        || (resultDiff === 0 && predictionDiff === 0)
         || (resultDiff > 0 && predictionDiff > 0))
-        ? Math.floor(Math.max(0, 5 - ((resultDiff - predictionDiff) / 2))) : 0
+        ? Math.floor(Math.max(0, 5 - (Math.abs(resultDiff - predictionDiff) / 2))) : 0
 
     return homePoints + awayPoints + diffPoints;
 }

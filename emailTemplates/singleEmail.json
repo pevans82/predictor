@@ -1,0 +1,25 @@
+{
+  "Source": "Super Leigh ! <superleigh@rocsolidservices.co.uk>",
+  "ConfigurationSetName": "SuperLeigh",
+  "Destination": {
+      "ToAddresses": [
+        "pevans82@gmail.com"
+      ]
+  },
+  "Message": {
+    "Subject": {
+      "Charset": "UTF-8",
+      "Data": "Sorry if we've upset you!"
+    },
+    "Body": {
+      "Html": {
+        "Charset": "UTF-8",
+        "Data": "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><title>Super Leigh!</title><style>h2 {color: #BE1D2C;}</style></head><body><div class=\"emailwrapper\"><div class=\"main\"><div class=\"content\"><h1>Hi foo,</h1><h2>We're sorry that you don't like our automated emails.</h2><p>Our match day reminders and results emails are there to help but if you find them to be a nuisance and you'd rather not receive them then you can opt out by signing in and going to your profile <a href=\"https://www.superleigh.co.uk/profile/\">here</a></p></p>We hope you continue to play and enjoy Super Leigh in the future.</p><h2>Good luck !</h2><br><h3>The Super Leigh Team</h3><small><p>Struggling to sign in?</p><p>Your username is foo and the sign in page provides an option to reset your password.</p></small></div></div></div></body></html>"
+      },
+      "Text": {
+        "Charset": "UTF-8",
+        "Data": "Hi foo,\r\n\r\nWe're sorry that you don't like our automated emails.\r\n\r\nOur match day reminders and results emails are there to help but if you find them to be a nuisance and you'd rather not receive them then you can opt out by signing in and going to your profile here: https://www.superleigh.co.uk/profile\r\nWe hope you continue to play and enjoy Super Leigh in the future.\r\n\r\nGood luck !\r\n\r\nThe Super Leigh Team\n\nStruggling to sign in?\nYour username is foo and the sign in page provides an option to reset your password."
+      }
+    }
+  }
+}
