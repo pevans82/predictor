@@ -130,7 +130,7 @@ export default function Home() {
                 <div className={classes.section}>
                     <Typography className={classes.title} variant={"h2"} color={"secondary"}>Origins</Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
-                        There is a fan, lets call him <strong>Steve</strong>. He thinks he's great at predicting the results of his beloved Leigh,
+                        There was a fan, lets call him <strong>Steve</strong>. He thinks he's great at predicting the results of his beloved Leigh,
                         but that wasn't enough. He needed to prove that he wasn't just good, but he was the best!
                     </Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
@@ -146,6 +146,9 @@ export default function Home() {
                         If you have any idea's for improvement, please <s>keep them to
                         yourself</s> let us know, we'd love to here your thoughts.
                     </Typography>
+                    <Typography className={classes.title} variant={"h6"} color={"secondary"}>In Loving Memory of:</Typography>
+                    <Typography className={classes.title} variant={"h4"} color={"secondary"}>Steve Evans</Typography>
+                    <Typography className={classes.title} variant={"h6"} color={"secondary"}>18/03/1954 - 16/03/2023</Typography>
                 </div>
             </div>
         </Box>
