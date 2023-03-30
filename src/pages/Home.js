@@ -146,7 +146,7 @@ export default function Home() {
                         If you have any idea's for improvement, please <s>keep them to
                         yourself</s> let us know, we'd love to here your thoughts.
                     </Typography>
-                    <Typography className={classes.title} variant={"h6"} color={"secondary"}>In Loving Memory of:</Typography>
+                    <Typography className={classes.title} variant={"h6"} color={"secondary"}>In Loving Memory of</Typography>
                     <Typography className={classes.title} variant={"h4"} color={"secondary"}>Steve Evans</Typography>
                     <Typography className={classes.title} variant={"h6"} color={"secondary"}>18/03/1954 - 16/03/2023</Typography>
                 </div>
