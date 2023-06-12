@@ -144,7 +144,7 @@ export default function Home() {
                     </Typography>
                     <Typography className={classes.textBlock} variant={"body1"} color={"secondary"}>
                         If you have any idea's for improvement, please <s>keep them to
-                        yourself</s> let us know, we'd love to here your thoughts.
+                        yourself</s> let us know, we'd love to hear your thoughts.
                     </Typography>
                     <Typography className={classes.title} variant={"h6"} color={"secondary"}>In Loving Memory of</Typography>
                     <Typography className={classes.title} variant={"h4"} color={"secondary"}>Steve Evans</Typography>
