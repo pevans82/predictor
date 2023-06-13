@@ -59,7 +59,7 @@ type Result @model
 {
     id: ID!
     roundId: ID!
-    round: Round! @connection(fields:["roundId"])
+    round: Round @connection(fields:["roundId"])
     homeScore: Int!
     awayScore: Int!
     season: Int!
