@@ -18,7 +18,7 @@
       "function": {
         "pointsengine": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/pointsengine-7143776d427a38676a6c-build.zip"
+          "s3Key": "amplify-builds/pointsengine-4671574242576b715274-build.zip"
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
