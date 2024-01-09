@@ -6,15 +6,21 @@
 	REGION
 Amplify Params - DO NOT EDIT */
 
-const https = require('https');
-const AWS = require("aws-sdk");
-const urlParse = require("url").URL;
-const appsyncUrl = process.env.API_PREDICTIONSAPP_GRAPHQLAPIENDPOINTOUTPUT;
-const region = process.env.REGION;
+const { Sha256 } = require('@aws-crypto/sha256-js');
+const { defaultProvider } = require('@aws-sdk/credential-provider-node');
+const { SignatureV4 } = require('@aws-sdk/signature-v4');
+const { HttpRequest } = require('@aws-sdk/protocol-http');
+const { default: fetch, Request } = require('node-fetch');
+const { CognitoIdentityProviderClient, ListUsersCommand } = require("@aws-sdk/client-cognito-identity-provider");
+const { SESClient, SendBulkTemplatedEmailCommand } = require("@aws-sdk/client-ses");
+
+const GRAPHQL_ENDPOINT = process.env.API_PREDICTIONSAPP_GRAPHQLAPIENDPOINTOUTPUT;
+const AWS_REGION = process.env.AWS_REGION || 'eu-west-1';
 const userPoolId = process.env.COGNITO_USERPOOLID;
-const endpoint = new urlParse(appsyncUrl).hostname.toString();
-const cognitoIdentityService = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-19', region: region});
-const ses = new AWS.SES({region: region});
+
+const cognitoClient = new CognitoIdentityProviderClient({region: AWS_REGION});
+const sesClient = new SESClient({region: AWS_REGION});
+
 const fetchPredictions = require('./query.js').predictionsQuery;
 const createRoundForUser = require('./query.js').createRoundMutation;
 const fetchSeasonForUser = require('./query.js').seasonUserQuery;
@@ -25,6 +31,9 @@ const updateRoundToActive = require('./query.js').activateRoundMutation;
 const fetchPreferences = require('./query.js').preferencesQuery;
 const fetchResults = require('./query.js').resultsQuery;
 
+/**
+ * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
+ */
 exports.handler = async (event) => {
     //eslint-disable-line
     console.log(JSON.stringify(event, null, 2));
@@ -55,13 +64,13 @@ exports.handler = async (event) => {
 
             let paginationToken = undefined;
             do {
-                const usersResponse = await cognitoIdentityService.listUsers({
+                const usersResponse = await cognitoClient.send(new ListUsersCommand({
                     UserPoolId: userPoolId,
                     PaginationToken: paginationToken,
                     Limit: 50,
                     AttributesToGet: ['email'],
-                    Filter: 'cognito:user_status=\"CONFIRMED\"'
-                }).promise();
+                    Filter: 'cognito:user_status="CONFIRMED"'
+                }));
 
                 const destinations = usersResponse.Users.filter(user => !optOutUsers.includes(user.Username)).map(function (user) {
                     return {
@@ -110,7 +119,7 @@ async function notifyUsers(results, destinations) {
     }
     console.log(JSON.stringify(bulkTemplatedEmail));
 
-    const sentEmails = await ses.sendBulkTemplatedEmail(bulkTemplatedEmail).promise();
+    const sentEmails = await sesClient.send(new SendBulkTemplatedEmailCommand(bulkTemplatedEmail));
     console.log(sentEmails);
 }
 
@@ -125,13 +134,13 @@ async function applyRoundPoints(predictions) {
 
 async function applySeasonPoints(prediction) {
     const seasonRecord = await callGraphqlApi(fetchSeasonForUser, "seasonLeaderboardByPoints", {
-        season: 3,
+        season: 4,
         username: prediction.owner
     });
 
     if (seasonRecord.items.length < 1) {
         return await callGraphqlApi(createSeasonForUser, "createSeasonLeaderboard", {
-            season: 3,
+            season: 4,
             username: prediction.owner,
             points: prediction.points
         });
@@ -151,38 +160,43 @@ async function activateRound(roundId, number) {
 }
 
 async function callGraphqlApi(query, operationName, variables) {
-    const req = new AWS.HttpRequest(appsyncUrl, region);
+    const endpoint = new URL(GRAPHQL_ENDPOINT);
 
-    req.method = "POST";
-    req.path = "/graphql";
-    req.headers.host = endpoint;
-    req.headers["Content-Type"] = "application/json";
-    req.body = JSON.stringify({
-        query,
-        operationName,
-        variables
+    const signer = new SignatureV4({
+        credentials: defaultProvider(),
+        region: AWS_REGION,
+        service: 'appsync',
+        sha256: Sha256
     });
 
-    const signer = new AWS.Signers.V4(req, "appsync", true);
-    signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
-
-    return await new Promise((resolve, reject) => {
-        console.log(`making request for ${operationName}`);
-        const httpRequest = https.request({...req, host: endpoint}, (result) => {
-            result.on('data', (data) => {
-                const response = JSON.parse(data.toString());
-                if (response.errors) {
-                    console.log(`Failed during ${operationName} query`);
-                    console.log("Request body: ", req.body);
-                    console.log(response.errors);
-                    reject(null, `Failed during ${operationName} query`);
-                }
-                console.log(`response is: `, response.data[operationName]);
-                resolve(response.data[operationName]);
-            });
-        });
-
-        httpRequest.write(req.body);
-        httpRequest.end();
+    const requestToBeSigned = new HttpRequest({
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            host: endpoint.host
+        },
+        hostname: endpoint.host,
+        body: JSON.stringify({ query, operationName, variables }),
+        path: endpoint.pathname
     });
+
+    const signed = await signer.sign(requestToBeSigned);
+    const request = new Request(GRAPHQL_ENDPOINT, signed);
+
+    let body;
+    let response;
+
+    try {
+        response = await fetch(request);
+        body = await response.json();
+    } catch (error) {
+        console.log(error);
+        console.log(`Failed during ${operationName} query`);
+        console.log("Request: ", requestToBeSigned.body);
+        console.log("Response: ", JSON.stringify(body));
+
+        throw error;
+    }
+
+    return body.data[operationName];
 }

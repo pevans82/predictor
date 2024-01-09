@@ -18,20 +18,20 @@
       "function": {
         "pointsengine": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/pointsengine-4671574242576b715274-build.zip"
+          "s3Key": "amplify-builds/pointsengine-7a6132752b786b584d55-build.zip"
         },
         "leaderboardupdater": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/leaderboardupdater-59484c49485268613772-build.zip",
+          "s3Key": "amplify-builds/leaderboardupdater-734f6a466953724c5666-build.zip",
           "cognitoUserPoolId": "eu-west-1_5y2vJB9gk"
         },
         "roundcloser": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/roundcloser-4d64544c514434544242-build.zip"
+          "s3Key": "amplify-builds/roundcloser-7364566f41636e375a54-build.zip"
         },
         "matchdayreminder": {
           "deploymentBucketName": "amplify-predictor-dev-164748-deployment",
-          "s3Key": "amplify-builds/matchdayreminder-4d7235652b7772537044-build.zip",
+          "s3Key": "amplify-builds/matchdayreminder-53714d426f665950775a-build.zip",
           "cognitoUserPoolId": "eu-west-1_5y2vJB9gk"
         },
         "roundresetter": {}
