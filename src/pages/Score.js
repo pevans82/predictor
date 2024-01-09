@@ -126,7 +126,7 @@ export default function Score() {
         } else {
             const res = await API.graphql({
                 query: mutations.createResult,
-                variables: {input: {roundId: round.id, season: 3, homeScore: homeScore, awayScore: awayScore}},
+                variables: {input: {roundId: round.id, season: 4, homeScore: homeScore, awayScore: awayScore}},
                 authMode: 'AMAZON_COGNITO_USER_POOLS'
             });
             setResult(res.data.createResult);
