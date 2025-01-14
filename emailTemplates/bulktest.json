@@ -3,22 +3,7 @@
   "Template": "Update",
   "ConfigurationSetName": "SuperLeigh",
   "Destinations": [
-    {
-      "Destination": {
-        "ToAddresses": [
-          "steve@sedet.co.uk"
-        ]
-      },
-      "ReplacementTemplateData": "{ \"username\":\"DRAFT EMAIL - FOR APPROVAL\" }"
-    },
-    {
-      "Destination": {
-        "ToAddresses": [
-          "pevans82@gmail.com"
-        ]
-      },
-      "ReplacementTemplateData": "{ \"username\":\"foo\" }"
-    }
+    { "ReplacementTemplateData": "{ \"username\":\"foo\" }", "Destination": {"ToAddresses": ["pevans82@gmail.com"]}}
   ],
   "DefaultTemplateData": "{ \"username\":\"Friend\" }"
 }
