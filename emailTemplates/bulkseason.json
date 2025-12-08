@@ -5,5 +5,5 @@
   "Destinations": [
     { "ReplacementTemplateData": "{ \"username\":\"foo\" }", "Destination": {"ToAddresses": ["pevans82@gmail.com"]}}
   ],
-  "DefaultTemplateData": "{ \"username\":\"Friend\", \"home_team\": \"Leigh Leopards\", \"away_team\": \"Huddersfield Giants\", \"ground\": \"Leigh Sports Village\", \"kickOff\": \"20:00\", \"date\": \"Friday 16th February\" }"
+  "DefaultTemplateData": "{ \"username\":\"Friend\", \"home_team\": \"Leigh Leopards\", \"away_team\": \"Leeds Rhinos\", \"ground\": \"Leigh Sports Village\", \"kickOff\": \"20:00\", \"date\": \"Friday 13th February 2026\" }"
 }
